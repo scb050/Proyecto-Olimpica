@@ -1,0 +1,1205 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Análisis Exploratorio de Ventas &#8212; Proyecto Olimpica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eda/03_eda_ventas';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Análisis de Promociones y Descuentos" href="04_eda_promos_precios.html" />
+    <link rel="prev" title="2. Limpieza y Construcción de Variables" href="02_limpieza_y_features2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Olimpica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ingesta_y_auditoria2.html">1. Ingesta y Auditoría del Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_limpieza_y_features2.html">2. Limpieza y Construcción de Variables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Análisis Exploratorio de Ventas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_eda_promos_precios.html">4. Análisis de Promociones y Descuentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conclusiones_y_reqs_dataset_grande.html">5. Conclusiones y Requerimientos para la Fase 2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/eda/03_eda_ventas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3. Análisis Exploratorio de Ventas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-las-tablas-agregadas-para-analisis"><strong>3.1 Carga de las tablas agregadas para análisis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-la-tabla-agregada-nivel-diatiendaproducto"><strong>Interpretación de la Tabla Agregada – Nivel Día–Tienda–Producto</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-significado-de-las-variables">Estructura y significado de las variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-tecnicas-relevantes">Observaciones Técnicas Relevantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones Estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión Ejecutiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-ventas-totales-y-metricas-clave"><strong>3.2 Panorama general de ventas (totales y métricas clave)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-ventas-netas-y-unidades"><strong>3.3 Distribución de ventas netas y unidades</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-concentracion-regla-80-20-pareto-por-producto"><strong>3.4 Análisis de concentración (Regla 80/20 - Pareto por producto)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-ventas-y-por-unidades"><strong>3.5 Top productos por ventas y por unidades</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabilidad-de-ventas-coeficiente-de-variacion"><strong>3.6 Variabilidad de ventas (Coeficiente de variación)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-por-tienda"><strong>3.7 Análisis por tienda</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-facturas"><strong>3.8 Análisis de facturas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-eda-de-ventas"><strong>3.9 Conclusiones del EDA de ventas</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-ventas">
+<h1><strong>3. Análisis Exploratorio de Ventas</strong><a class="headerlink" href="#analisis-exploratorio-de-ventas" title="Permalink to this heading">#</a></h1>
+<section id="carga-de-las-tablas-agregadas-para-analisis">
+<h2><strong>3.1 Carga de las tablas agregadas para análisis</strong><a class="headerlink" href="#carga-de-las-tablas-agregadas-para-analisis" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.float_format&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">,.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_project_root</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">max_up</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_up</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">marker</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">p</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">return</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_project_root</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
+<span class="n">DATA_PROCESSED</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;processed&quot;</span>
+
+<span class="n">ts_path</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;ts_ventas_dia_tienda_producto.csv&quot;</span>
+<span class="k">assert</span> <span class="n">ts_path</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="s2">&quot;No encuentro la tabla agregada.&quot;</span>
+
+<span class="n">df_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ts_path</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">])</span>
+<span class="n">df_ts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FECHA</th>
+      <th>CENTRO</th>
+      <th>PLU_SAP</th>
+      <th>VENTA_BRUTA</th>
+      <th>DESCUENTO</th>
+      <th>VENTA_NETA</th>
+      <th>UNIDADES</th>
+      <th>PROMO_LINES</th>
+      <th>LINES</th>
+      <th>PRECIO_UNIT_MED</th>
+      <th>DESC_PCT_MED</th>
+      <th>PROMO_RATE</th>
+      <th>DESCUENTO_PCT_APROX</th>
+      <th>PROMO_FLAG_AGG</th>
+      <th>PRECIO_MEDIO_NETO_APROX</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>3</td>
+      <td>36900</td>
+      <td>0.000</td>
+      <td>36,900.000</td>
+      <td>2.061</td>
+      <td>0</td>
+      <td>1</td>
+      <td>17,903.930</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>17,903.930</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>5</td>
+      <td>143700</td>
+      <td>0.000</td>
+      <td>143,700.000</td>
+      <td>21.285</td>
+      <td>0</td>
+      <td>3</td>
+      <td>6,751.233</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>6,751.233</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>7</td>
+      <td>60900</td>
+      <td>0.000</td>
+      <td>60,900.000</td>
+      <td>1.968</td>
+      <td>0</td>
+      <td>2</td>
+      <td>30,945.122</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>30,945.122</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>9</td>
+      <td>17750</td>
+      <td>0.000</td>
+      <td>17,750.000</td>
+      <td>0.771</td>
+      <td>0</td>
+      <td>1</td>
+      <td>23,022.049</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>23,022.049</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>11</td>
+      <td>24300</td>
+      <td>0.000</td>
+      <td>24,300.000</td>
+      <td>0.804</td>
+      <td>0</td>
+      <td>2</td>
+      <td>30,223.881</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>30,223.881</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="interpretacion-de-la-tabla-agregada-nivel-diatiendaproducto">
+<h2><strong>Interpretación de la Tabla Agregada – Nivel Día–Tienda–Producto</strong><a class="headerlink" href="#interpretacion-de-la-tabla-agregada-nivel-diatiendaproducto" title="Permalink to this heading">#</a></h2>
+<p>La tabla anterior corresponde a la estructura final construida para el análisis exploratorio y modelado predictivo.<br />
+Cada fila representa la agregación de ventas a nivel <strong>Día – Tienda – Producto (PLU_SAP)</strong>, lo cual constituye la granularidad recomendada para modelos de forecasting en retail.</p>
+<section id="estructura-y-significado-de-las-variables">
+<h3>Estructura y significado de las variables<a class="headerlink" href="#estructura-y-significado-de-las-variables" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>FECHA</strong>: Fecha calendario de la venta.</p></li>
+<li><p><strong>CENTRO</strong>: Identificador de tienda.</p></li>
+<li><p><strong>PLU_SAP</strong>: Código único de producto.</p></li>
+<li><p><strong>VENTA_BRUTA</strong>: Valor total facturado antes de descuentos.</p></li>
+<li><p><strong>DESCUENTO</strong>: Monto total descontado en ese producto ese día.</p></li>
+<li><p><strong>VENTA_NETA</strong>: Ingreso efectivo generado (VENTA_BRUTA − DESCUENTO).</p></li>
+<li><p><strong>UNIDADES</strong>: Cantidad total vendida (incluye ventas por peso).</p></li>
+<li><p><strong>PROMO_LINES</strong>: Número de líneas con promoción.</p></li>
+<li><p><strong>LINES</strong>: Número total de líneas transaccionales agregadas.</p></li>
+<li><p><strong>PROMO_RATE</strong>: Proporción de líneas vendidas bajo promoción.</p></li>
+<li><p><strong>DESCUENTO_PCT_APROX</strong>: Porcentaje aproximado de descuento aplicado.</p></li>
+<li><p><strong>PRECIO_MEDIO_NETO_APROX</strong>: Precio promedio neto por unidad.</p></li>
+<li><p><strong>PROMO_FLAG_AGG</strong>: Indicador binario de si el producto estuvo en promoción ese día.</p></li>
+</ul>
+</section>
+<section id="observaciones-tecnicas-relevantes">
+<h3>Observaciones Técnicas Relevantes<a class="headerlink" href="#observaciones-tecnicas-relevantes" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Coherencia en las métricas monetarias</strong><br />
+Se observa consistencia entre VENTA_BRUTA, DESCUENTO y VENTA_NETA. No se evidencian valores negativos ni descuentos superiores a la venta bruta en esta muestra.</p></li>
+<li><p><strong>Presencia de unidades fraccionarias</strong><br />
+Las cantidades vendidas presentan valores decimales (ej. 2.061, 0.804), lo cual es típico en categorías por peso (cárnicos, frutas, etc.).<br />
+Esto confirma que el modelo deberá tratar correctamente ventas continuas y no solo conteos enteros.</p></li>
+<li><p><strong>Construcción de variables estratégicas</strong><br />
+La inclusión de variables como:</p>
+<ul class="simple">
+<li><p>PROMO_RATE</p></li>
+<li><p>DESCUENTO_PCT_APROX</p></li>
+<li><p>PRECIO_MEDIO_NETO_APROX</p></li>
+</ul>
+<p>permite capturar efectos comerciales fundamentales para modelado predictivo avanzado.</p>
+</li>
+<li><p><strong>Estructura compatible con modelos secuenciales</strong><br />
+La tabla está preparada para incorporar:</p>
+<ul class="simple">
+<li><p>Lags temporales</p></li>
+<li><p>Ventanas móviles</p></li>
+<li><p>Variables de tendencia y estacionalidad</p></li>
+</ul>
+<p>Esto es especialmente relevante para modelos como LSTM o arquitecturas temporales más sofisticadas.</p>
+</li>
+</ol>
+</section>
+<section id="implicaciones-estrategicas">
+<h3>Implicaciones Estratégicas<a class="headerlink" href="#implicaciones-estrategicas" title="Permalink to this heading">#</a></h3>
+<p>Esta estructura permite:</p>
+<ul class="simple">
+<li><p>Modelar ventas a nivel operativo real.</p></li>
+<li><p>Evaluar impacto de promociones en ingresos.</p></li>
+<li><p>Analizar elasticidad precio–ventas.</p></li>
+<li><p>Identificar productos de alta variabilidad.</p></li>
+<li><p>Detectar patrones específicos por tienda.</p></li>
+</ul>
+<p>Además, esta agregación evita el ruido transaccional y convierte el dataset en una base analítica lista para modelado predictivo robusto.</p>
+</section>
+<section id="conclusion-ejecutiva">
+<h3>Conclusión Ejecutiva<a class="headerlink" href="#conclusion-ejecutiva" title="Permalink to this heading">#</a></h3>
+<p>La construcción de esta tabla representa un paso clave hacia la implementación de modelos de predicción de ventas.<br />
+Desde el punto de vista técnico y estructural, el dataset cumple con los requisitos mínimos para avanzar hacia:</p>
+<ul class="simple">
+<li><p>Modelos baseline de forecasting.</p></li>
+<li><p>Modelos de Machine Learning.</p></li>
+<li><p>Modelos Deep Learning orientados a series de tiempo.</p></li>
+</ul>
+<p>La siguiente etapa dependerá principalmente de contar con histórico ampliado para capturar patrones temporales de largo plazo.</p>
+</section>
+</section>
+<section id="panorama-general-de-ventas-totales-y-metricas-clave">
+<h2><strong>3.2 Panorama general de ventas (totales y métricas clave)</strong><a class="headerlink" href="#panorama-general-de-ventas-totales-y-metricas-clave" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Total Ventas Netas&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s2">&quot;Total Ventas Brutas&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s2">&quot;Total Descuentos&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s2">&quot;Total Unidades&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s2">&quot;Número de Productos&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+    <span class="s2">&quot;Número de Tiendas&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+    <span class="s2">&quot;Número de Fechas&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+<span class="p">}</span>
+
+<span class="n">summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Total Ventas Netas&#39;: np.float64(5621632.0),
+ &#39;Total Ventas Brutas&#39;: np.int64(5706941),
+ &#39;Total Descuentos&#39;: np.float64(85309.0),
+ &#39;Total Unidades&#39;: np.float64(299.32899999999995),
+ &#39;Número de Productos&#39;: 228,
+ &#39;Número de Tiendas&#39;: 1,
+ &#39;Número de Fechas&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="distribucion-de-ventas-netas-y-unidades">
+<h2><strong>3.3 Distribución de ventas netas y unidades</strong><a class="headerlink" href="#distribucion-de-ventas-netas-y-unidades" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribución de Ventas Netas&quot;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribución de Unidades Vendidas&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/344522a17ac32df4f700fefe639cc4c6f7737d9bfdf65f6079ea1039b32119b1.png" src="../_images/344522a17ac32df4f700fefe639cc4c6f7737d9bfdf65f6079ea1039b32119b1.png" />
+</div>
+</div>
+</section>
+<section id="analisis-de-concentracion-regla-80-20-pareto-por-producto">
+<h2><strong>3.4 Análisis de concentración (Regla 80/20 - Pareto por producto)</strong><a class="headerlink" href="#analisis-de-concentracion-regla-80-20-pareto-por-producto" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ventas_producto</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">ventas_producto</span><span class="p">[</span><span class="s2">&quot;cumsum&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ventas_producto</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">ventas_producto</span><span class="p">[</span><span class="s2">&quot;cumsum_pct&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ventas_producto</span><span class="p">[</span><span class="s2">&quot;cumsum&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">ventas_producto</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># ¿Cuántos productos generan 80%?</span>
+<span class="n">n_80</span> <span class="o">=</span> <span class="p">(</span><span class="n">ventas_producto</span><span class="p">[</span><span class="s2">&quot;cumsum_pct&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Productos que generan el 80% de las ventas: </span><span class="si">{</span><span class="n">n_80</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ventas_producto</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Productos que generan el 80% de las ventas: 132
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PLU_SAP</th>
+      <th>VENTA_NETA</th>
+      <th>cumsum</th>
+      <th>cumsum_pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>143,700.000</td>
+      <td>143,700.000</td>
+      <td>0.026</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>51</td>
+      <td>119,960.000</td>
+      <td>263,660.000</td>
+      <td>0.047</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>90</td>
+      <td>98,910.000</td>
+      <td>362,570.000</td>
+      <td>0.064</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>139</td>
+      <td>93,100.000</td>
+      <td>455,670.000</td>
+      <td>0.081</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>308</td>
+      <td>77,790.000</td>
+      <td>533,460.000</td>
+      <td>0.095</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>49</td>
+      <td>69,930.000</td>
+      <td>603,390.000</td>
+      <td>0.107</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>304</td>
+      <td>65,980.000</td>
+      <td>669,370.000</td>
+      <td>0.119</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>60,900.000</td>
+      <td>730,270.000</td>
+      <td>0.130</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>375</td>
+      <td>56,900.000</td>
+      <td>787,170.000</td>
+      <td>0.140</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>137</td>
+      <td>56,400.000</td>
+      <td>843,570.000</td>
+      <td>0.150</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="top-productos-por-ventas-y-por-unidades">
+<h2><strong>3.5 Top productos por ventas y por unidades</strong><a class="headerlink" href="#top-productos-por-ventas-y-por-unidades" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_ventas</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">top_unidades</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">top_ventas</span><span class="p">,</span> <span class="n">top_unidades</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(PLU_SAP
+ 5     143,700.000
+ 51    119,960.000
+ 90     98,910.000
+ 139    93,100.000
+ 308    77,790.000
+ 49     69,930.000
+ 304    65,980.000
+ 7      60,900.000
+ 375    56,900.000
+ 137    56,400.000
+ Name: VENTA_NETA, dtype: float64,
+ PLU_SAP
+ 5     21.285
+ 139   18.772
+ 379    9.906
+ 375    8.643
+ 248    8.320
+ 118    7.284
+ 51     6.708
+ 95     5.678
+ 19     5.402
+ 340    4.828
+ Name: UNIDADES, dtype: float64)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variabilidad-de-ventas-coeficiente-de-variacion">
+<h2><strong>3.6 Variabilidad de ventas (Coeficiente de variación)</strong><a class="headerlink" href="#variabilidad-de-ventas-coeficiente-de-variacion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_producto</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">])</span>
+<span class="p">)</span>
+
+<span class="n">cv_producto</span><span class="p">[</span><span class="s2">&quot;CV&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv_producto</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">cv_producto</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">cv_producto</span> <span class="o">=</span> <span class="n">cv_producto</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;CV&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">cv_producto</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+      <th>CV</th>
+    </tr>
+    <tr>
+      <th>PLU_SAP</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>36,900.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>143,700.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60,900.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>17,750.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>24,300.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>7,200.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>17,980.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>23,700.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>31,400.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>31,800.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="analisis-por-tienda">
+<h2><strong>3.7 Análisis por tienda</strong><a class="headerlink" href="#analisis-por-tienda" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ventas_tienda</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">ventas_tienda</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CENTRO
+1   5,621,632.000
+Name: VENTA_NETA, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-de-facturas">
+<h2><strong>3.8 Análisis de facturas</strong><a class="headerlink" href="#analisis-de-facturas" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Volvemos al dataset línea si lo necesitas</span>
+<span class="n">clean_path</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;Ventas_1_clean.csv&quot;</span>
+<span class="n">df_line</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">clean_path</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">])</span>
+
+<span class="n">ticket_stats</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_line</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;FACTURA&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">total_ticket</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+        <span class="n">productos_distintos</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;nunique&quot;</span><span class="p">),</span>
+        <span class="n">total_unidades</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">ticket_stats</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_ticket</th>
+      <th>productos_distintos</th>
+      <th>total_unidades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>175.000</td>
+      <td>175.000</td>
+      <td>175.000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>32,123.611</td>
+      <td>1.971</td>
+      <td>1.710</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>33,404.319</td>
+      <td>1.627</td>
+      <td>2.168</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1,200.000</td>
+      <td>1.000</td>
+      <td>0.088</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>9,895.000</td>
+      <td>1.000</td>
+      <td>0.455</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>21,330.000</td>
+      <td>1.000</td>
+      <td>0.959</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>45,225.000</td>
+      <td>2.000</td>
+      <td>2.048</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>219,620.000</td>
+      <td>11.000</td>
+      <td>16.188</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="conclusiones-del-eda-de-ventas">
+<h2><strong>3.9 Conclusiones del EDA de ventas</strong><a class="headerlink" href="#conclusiones-del-eda-de-ventas" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conclusiones</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Venta promedio por producto&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+    <span class="s2">&quot;Descuento promedio (%)&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">if</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;Productos que dominan ventas (80%)&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_80</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">conclusiones</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Venta promedio por producto&#39;: np.float64(24656.280701754386),
+ &#39;Descuento promedio (%)&#39;: np.float64(0.01494828840879904),
+ &#39;Productos que dominan ventas (80%)&#39;: 132}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./eda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_limpieza_y_features2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>2. Limpieza y Construcción de Variables</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_eda_promos_precios.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>4. Análisis de Promociones y Descuentos</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-las-tablas-agregadas-para-analisis"><strong>3.1 Carga de las tablas agregadas para análisis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-la-tabla-agregada-nivel-diatiendaproducto"><strong>Interpretación de la Tabla Agregada – Nivel Día–Tienda–Producto</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-significado-de-las-variables">Estructura y significado de las variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-tecnicas-relevantes">Observaciones Técnicas Relevantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones Estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión Ejecutiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-ventas-totales-y-metricas-clave"><strong>3.2 Panorama general de ventas (totales y métricas clave)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-ventas-netas-y-unidades"><strong>3.3 Distribución de ventas netas y unidades</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-concentracion-regla-80-20-pareto-por-producto"><strong>3.4 Análisis de concentración (Regla 80/20 - Pareto por producto)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-ventas-y-por-unidades"><strong>3.5 Top productos por ventas y por unidades</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabilidad-de-ventas-coeficiente-de-variacion"><strong>3.6 Variabilidad de ventas (Coeficiente de variación)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-por-tienda"><strong>3.7 Análisis por tienda</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-facturas"><strong>3.8 Análisis de facturas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-eda-de-ventas"><strong>3.9 Conclusiones del EDA de ventas</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Andrés Ramos Cardona & Sergio Cadavid
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

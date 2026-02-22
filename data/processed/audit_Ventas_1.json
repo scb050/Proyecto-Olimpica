@@ -1,0 +1,41 @@
+{
+  "file": "C:\\Users\\juana\\olimpica_book\\data\\raw\\Ventas_1.csv",
+  "shape_raw": [
+    345,
+    12
+  ],
+  "shape_clean": [
+    345,
+    16
+  ],
+  "summary": {
+    "n_rows": 345,
+    "n_cols": 12,
+    "n_dates": 1,
+    "n_centros": 1,
+    "n_facturas": 175,
+    "n_products": 228
+  },
+  "checks": {
+    "venta_neta_negativa": 0,
+    "descuento_mayor_que_venta": 0,
+    "promo_flag_1_descuento_0": 0,
+    "promo_flag_0_descuento_gt_0": 0,
+    "cantidad_le_0": 0
+  },
+  "nulls": {
+    "NroReg": 0,
+    "FECHA": 0,
+    "CENTRO": 0,
+    "Estrato": 0,
+    "OFERTA_ID": 0,
+    "FACTURA": 0,
+    "GRUPO_CATEG": 0,
+    "PLU_SAP": 0,
+    "CANTIDAD": 0,
+    "VENTA": 0,
+    "DESCUENTO": 0,
+    "GRUCOM": 0
+  },
+  "duplicate_rows_full": 0
+}

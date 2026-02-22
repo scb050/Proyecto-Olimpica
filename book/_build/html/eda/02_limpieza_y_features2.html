@@ -1,0 +1,2010 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Limpieza y Construcción de Variables &#8212; Proyecto Olimpica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eda/02_limpieza_y_features2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Análisis Exploratorio de Ventas" href="03_eda_ventas.html" />
+    <link rel="prev" title="1. Ingesta y Auditoría del Dataset" href="01_ingesta_y_auditoria2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Olimpica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ingesta_y_auditoria2.html">1. Ingesta y Auditoría del Dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Limpieza y Construcción de Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_eda_ventas.html">3. Análisis Exploratorio de Ventas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_eda_promos_precios.html">4. Análisis de Promociones y Descuentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conclusiones_y_reqs_dataset_grande.html">5. Conclusiones y Requerimientos para la Fase 2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/eda/02_limpieza_y_features2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2. Limpieza y Construcción de Variables</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-processed-y-verificacion"><strong>2.1 Carga del dataset limpio (processed) y verificación</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-y-validacion-estructural-final">Carga del dataset limpio y validación estructural final</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-persistencia-y-trazabilidad">Validación de persistencia y trazabilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-actual-del-dataset">Estructura actual del dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva-de-la-muestra-mostrada">Lectura ejecutiva de la muestra mostrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion-de-columnas-y-control-de-tipos-re-chequeo"><strong>2.2 Normalización de columnas y control de tipos (re-chequeo)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-tipos-de-datos-en-variables-criticas">Validación de tipos de datos en variables críticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-del-reporte-de-tipos">Resultado del reporte de tipos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica">Interpretación técnica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-de-negocio-venta-neta-flags-precio-unitario"><strong>2.3 Ingeniería de variables de negocio (venta neta, flags, precio unitario)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidacion-de-variables-derivadas-y-creacion-de-indicador-porcentual-de-descuento">Consolidación de variables derivadas y creación de indicador porcentual de descuento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-consolidadas-en-la-tabla">Variables consolidadas en la tabla</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento-pct-estandarizacion-del-impacto-promocional">DESCUENTO_PCT: estandarización del impacto promocional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-pipeline">Robustez del pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-calendario-dia-semana-mes-fin-de-mes-quincena"><strong>2.4 Features de calendario (día semana, mes, fin de mes, quincena)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-de-variables-de-calendario-para-analisis-temporal">Generación de variables de calendario para análisis temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-creadas-y-su-utilidad-analitica">Variables creadas y su utilidad analítica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-muestra-observada">Lectura de la muestra observada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria"><strong>2.5 Construcción de tablas agregadas para forecasting (día–tienda–producto y día–tienda–categoría)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-serie-agregada-a-nivel-diatiendaproducto">Construcción de serie agregada a nivel día–tienda–producto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-de-agregacion-construido">Nivel de agregación construido</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-agregadas-generadas">Métricas agregadas generadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-salida-observada">Lectura de la salida observada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-transformacion">Valor estratégico de esta transformación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-temporales-lags-y-rolling-windows-ventas-y-unidades"><strong>2.6 Features temporales: lags y rolling windows (ventas y unidades)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-features-temporales-lags-y-rolling-para-pronostico">Preparación de features temporales (lags y rolling) para pronóstico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-hace-este-bloque">Qué hace este bloque</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mensaje-de-advertencia-observado">Mensaje de advertencia observado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-del-enfoque">Valor estratégico del enfoque</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Conclusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-promociones-intensidad-y-efecto-descuento-promo-rate"><strong>2.7 Features de promociones: intensidad y efecto (descuento %, promo rate)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-indicadores-de-intensidad-promocional-y-precio-agregado">Construcción de indicadores de intensidad promocional y precio agregado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento-pct-aprox">1. DESCUENTO_PCT_APROX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promo-flag-agg">2. PROMO_FLAG_AGG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-medio-neto-aprox">3. PRECIO_MEDIO_NETO_APROX</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones-posteriores-a-agregacion-consistencia-y-gaps"><strong>2.8 Validaciones posteriores a agregación (consistencia y gaps)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-posteriores-a-la-agregacion">Controles de consistencia posteriores a la agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-validacion">Resultados de validación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-final-de-fase-1-tablas-listas-para-eda-y-modelado-baseline"><strong>2.9 Dataset final de Fase 1 (tablas listas para EDA y modelado baseline)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-de-series-temporales-listas-para-analisis-y-modelado">Persistencia de series temporales listas para análisis y modelado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-generados">Archivos generados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-persistencia">Valor estratégico de esta persistencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-metodologico">Enfoque metodológico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Conclusión</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="limpieza-y-construccion-de-variables">
+<h1><strong>2. Limpieza y Construcción de Variables</strong><a class="headerlink" href="#limpieza-y-construccion-de-variables" title="Permalink to this heading">#</a></h1>
+<section id="carga-del-dataset-limpio-processed-y-verificacion">
+<h2><strong>2.1 Carga del dataset limpio (processed) y verificación</strong><a class="headerlink" href="#carga-del-dataset-limpio-processed-y-verificacion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.width&quot;</span><span class="p">,</span> <span class="mi">160</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.float_format&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">,.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_project_root</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">max_up</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_up</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">marker</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">p</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">return</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_project_root</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
+<span class="n">DATA_PROCESSED</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;processed&quot;</span>
+<span class="n">DATA_PROCESSED</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">clean_path</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;Ventas_1_clean.csv&quot;</span>
+<span class="k">assert</span> <span class="n">clean_path</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;No encuentro el archivo limpio en: </span><span class="si">{</span><span class="n">clean_path</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">clean_path</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ruta:&quot;</span><span class="p">,</span> <span class="n">clean_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ruta: C:\Users\juana\olimpica_book\data\processed\Ventas_1_clean.csv
+Shape: (345, 16)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NroReg</th>
+      <th>FECHA</th>
+      <th>CENTRO</th>
+      <th>Estrato</th>
+      <th>OFERTA_ID</th>
+      <th>FACTURA</th>
+      <th>GRUPO_CATEG</th>
+      <th>PLU_SAP</th>
+      <th>CANTIDAD</th>
+      <th>VENTA</th>
+      <th>DESCUENTO</th>
+      <th>GRUCOM</th>
+      <th>VENTA_NETA</th>
+      <th>OFERTA_ID_NUM</th>
+      <th>PROMO_FLAG</th>
+      <th>PRECIO_UNITARIO_NETO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>45</td>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2.061</td>
+      <td>36900</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>36,900.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17,903.930</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>61</td>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>5</td>
+      <td>7.095</td>
+      <td>47900</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>47,900.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6,751.233</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>63</td>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>6</td>
+      <td>1</td>
+      <td>7</td>
+      <td>0.984</td>
+      <td>30450</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>30,450.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30,945.122</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>83</td>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>8</td>
+      <td>1</td>
+      <td>9</td>
+      <td>0.771</td>
+      <td>17750</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>17,750.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>23,022.049</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>88</td>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>10</td>
+      <td>1</td>
+      <td>11</td>
+      <td>0.402</td>
+      <td>12150</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>12,150.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30,223.881</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="carga-del-dataset-limpio-y-validacion-estructural-final">
+<h2>Carga del dataset limpio y validación estructural final<a class="headerlink" href="#carga-del-dataset-limpio-y-validacion-estructural-final" title="Permalink to this heading">#</a></h2>
+<p>Este bloque marca el inicio formal de la fase analítica sobre datos ya procesados y auditados. Se carga el archivo <code class="docutils literal notranslate"><span class="pre">Ventas_1_clean.csv</span></code> desde la carpeta <code class="docutils literal notranslate"><span class="pre">processed</span></code>, garantizando que el análisis se realice sobre una versión controlada y validada del dataset.</p>
+<section id="validacion-de-persistencia-y-trazabilidad">
+<h3>Validación de persistencia y trazabilidad<a class="headerlink" href="#validacion-de-persistencia-y-trazabilidad" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ruta confirmada: <code class="docutils literal notranslate"><span class="pre">data/processed/Ventas_1_clean.csv</span></code></p></li>
+<li><p>Shape cargado: 345 filas y 16 columnas</p></li>
+</ul>
+<p>El incremento de 12 a 16 columnas confirma la incorporación exitosa de variables derivadas estratégicas sin alterar el número de registros originales.</p>
+</section>
+<section id="estructura-actual-del-dataset">
+<h3>Estructura actual del dataset<a class="headerlink" href="#estructura-actual-del-dataset" title="Permalink to this heading">#</a></h3>
+<p>Además de las variables transaccionales originales, ahora se dispone de:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code>: ingreso real por línea.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OFERTA_ID_NUM</span></code>: versión numérica para análisis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span></code>: indicador binario de promoción.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRECIO_UNITARIO_NETO</span></code>: señal económica clave para análisis de elasticidad.</p></li>
+</ul>
+<p>La columna <code class="docutils literal notranslate"><span class="pre">FECHA</span></code> se carga correctamente como tipo fecha (<code class="docutils literal notranslate"><span class="pre">parse_dates=[&quot;FECHA&quot;]</span></code>), habilitando análisis temporales y construcción de series de tiempo.</p>
+</section>
+<section id="lectura-ejecutiva-de-la-muestra-mostrada">
+<h3>Lectura ejecutiva de la muestra mostrada<a class="headerlink" href="#lectura-ejecutiva-de-la-muestra-mostrada" title="Permalink to this heading">#</a></h3>
+<p>En los primeros registros se observa:</p>
+<ul class="simple">
+<li><p>Coherencia entre <code class="docutils literal notranslate"><span class="pre">VENTA</span></code> y <code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code> cuando no hay descuento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span> <span class="pre">=</span> <span class="pre">0</span></code> consistente con ausencia de descuento.</p></li>
+<li><p>Cantidades fraccionadas que confirman venta por peso en algunos productos.</p></li>
+<li><p>Precios unitarios netos consistentes con la relación venta/cantidad.</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>El dataset limpio ha sido cargado exitosamente y mantiene:</p>
+<ul class="simple">
+<li><p>Integridad estructural.</p></li>
+<li><p>Trazabilidad desde el archivo fuente.</p></li>
+<li><p>Variables enriquecidas listas para análisis avanzado.</p></li>
+</ul>
+<p>A partir de este punto, el entorno está completamente preparado para:</p>
+<ul class="simple">
+<li><p>Análisis exploratorio profundo.</p></li>
+<li><p>Construcción de métricas comerciales.</p></li>
+<li><p>Desarrollo de modelos predictivos de ventas alineados con objetivos estratégicos.</p></li>
+</ul>
+</section>
+<section id="normalizacion-de-columnas-y-control-de-tipos-re-chequeo">
+<h2><strong>2.2 Normalización de columnas y control de tipos (re-chequeo)</strong><a class="headerlink" href="#normalizacion-de-columnas-y-control-de-tipos-re-chequeo" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (Opcional) Normalizar nombres de columnas a un estándar</span>
+<span class="c1"># Aquí mantenemos nombres originales, pero validamos tipos críticos.</span>
+
+<span class="n">expected_types</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;FECHA&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VENTA&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">type_report</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">expected_types</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">type_report</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+<span class="n">type_report</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;FECHA&#39;: &#39;datetime64[us]&#39;,
+ &#39;VENTA&#39;: &#39;int64&#39;,
+ &#39;DESCUENTO&#39;: &#39;float64&#39;,
+ &#39;VENTA_NETA&#39;: &#39;float64&#39;,
+ &#39;CANTIDAD&#39;: &#39;float64&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="validacion-de-tipos-de-datos-en-variables-criticas">
+<h2>Validación de tipos de datos en variables críticas<a class="headerlink" href="#validacion-de-tipos-de-datos-en-variables-criticas" title="Permalink to this heading">#</a></h2>
+<p>El bloque ejecutado verifica que las variables fundamentales para análisis cuantitativo y modelado tengan el tipo de dato adecuado tras el proceso de limpieza.</p>
+<section id="resultado-del-reporte-de-tipos">
+<h3>Resultado del reporte de tipos<a class="headerlink" href="#resultado-del-reporte-de-tipos" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FECHA</span></code>: datetime64[us]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA</span></code>: int64</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code>: float64</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code>: float64</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code>: float64</p></li>
+</ul>
+</section>
+<section id="interpretacion-tecnica">
+<h3>Interpretación técnica<a class="headerlink" href="#interpretacion-tecnica" title="Permalink to this heading">#</a></h3>
+<p><strong>FECHA</strong><br />
+Se encuentra correctamente tipificada como fecha. Aunque aparece como <code class="docutils literal notranslate"><span class="pre">datetime64[us]</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code>, funcionalmente es equivalente para análisis temporal en pandas. Esto permite:</p>
+<ul class="simple">
+<li><p>agregaciones por día, semana o mes</p></li>
+<li><p>construcción de variables temporales</p></li>
+<li><p>modelado de series de tiempo</p></li>
+</ul>
+<p><strong>VENTA</strong><br />
+Se encuentra como <code class="docutils literal notranslate"><span class="pre">int64</span></code>. Desde una perspectiva analítica, esto es válido dado que representa valores monetarios enteros.<br />
+Si se requiere homogeneidad con <code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code>, podría convertirse a <code class="docutils literal notranslate"><span class="pre">float64</span></code>, pero no es estrictamente necesario.</p>
+<p><strong>DESCUENTO y VENTA_NETA</strong><br />
+Correctamente tipificadas como <code class="docutils literal notranslate"><span class="pre">float64</span></code>, lo cual es coherente ya que pueden involucrar decimales y operaciones aritméticas.</p>
+<p><strong>CANTIDAD</strong><br />
+Se mantiene como <code class="docutils literal notranslate"><span class="pre">float64</span></code>, lo cual es indispensable dado que existen cantidades fraccionadas (venta por peso).</p>
+</section>
+<section id="conclusion-ejecutiva">
+<h3>Conclusión ejecutiva<a class="headerlink" href="#conclusion-ejecutiva" title="Permalink to this heading">#</a></h3>
+<p>Las variables críticas se encuentran correctamente tipificadas para:</p>
+<ul class="simple">
+<li><p>análisis estadístico</p></li>
+<li><p>cálculo de métricas agregadas</p></li>
+<li><p>ingeniería de variables</p></li>
+<li><p>modelado predictivo</p></li>
+</ul>
+</section>
+</section>
+<section id="ingenieria-de-variables-de-negocio-venta-neta-flags-precio-unitario">
+<h2><strong>2.3 Ingeniería de variables de negocio (venta neta, flags, precio unitario)</strong><a class="headerlink" href="#ingenieria-de-variables-de-negocio-venta-neta-flags-precio-unitario" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Asegurar columnas clave (por si alguien re-abrió y no guardó algunas)</span>
+<span class="k">if</span> <span class="p">{</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;VENTA_NETA&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span>
+
+<span class="c1"># Promo flag</span>
+<span class="k">if</span> <span class="s2">&quot;PROMO_FLAG&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;OFERTA_ID_NUM&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;OFERTA_ID_NUM&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="s2">&quot;OFERTA_ID&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;OFERTA_ID_NUM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;OFERTA_ID&quot;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;OFERTA_ID_NUM&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Precio unitario neto (exploratorio)</span>
+<span class="k">if</span> <span class="s2">&quot;PRECIO_UNITARIO_NETO&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="p">{</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PRECIO_UNITARIO_NETO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="c1"># Porcentaje de descuento (si podemos estimarlo)</span>
+<span class="c1"># Nota: si VENTA es neta ya, esto cambia. Aquí asumimos VENTA bruto.</span>
+<span class="k">if</span> <span class="p">{</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">,</span> <span class="s2">&quot;PRECIO_UNITARIO_NETO&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO_PCT&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VENTA</th>
+      <th>DESCUENTO</th>
+      <th>VENTA_NETA</th>
+      <th>CANTIDAD</th>
+      <th>PROMO_FLAG</th>
+      <th>PRECIO_UNITARIO_NETO</th>
+      <th>DESCUENTO_PCT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>36900</td>
+      <td>0.000</td>
+      <td>36,900.000</td>
+      <td>2.061</td>
+      <td>0</td>
+      <td>17,903.930</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>47900</td>
+      <td>0.000</td>
+      <td>47,900.000</td>
+      <td>7.095</td>
+      <td>0</td>
+      <td>6,751.233</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30450</td>
+      <td>0.000</td>
+      <td>30,450.000</td>
+      <td>0.984</td>
+      <td>0</td>
+      <td>30,945.122</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>17750</td>
+      <td>0.000</td>
+      <td>17,750.000</td>
+      <td>0.771</td>
+      <td>0</td>
+      <td>23,022.049</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12150</td>
+      <td>0.000</td>
+      <td>12,150.000</td>
+      <td>0.402</td>
+      <td>0</td>
+      <td>30,223.881</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1200</td>
+      <td>0.000</td>
+      <td>1,200.000</td>
+      <td>0.321</td>
+      <td>0</td>
+      <td>3,738.318</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>17980</td>
+      <td>0.000</td>
+      <td>17,980.000</td>
+      <td>0.792</td>
+      <td>0</td>
+      <td>22,702.020</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>11850</td>
+      <td>0.000</td>
+      <td>11,850.000</td>
+      <td>0.633</td>
+      <td>0</td>
+      <td>18,720.379</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>31400</td>
+      <td>0.000</td>
+      <td>31,400.000</td>
+      <td>5.402</td>
+      <td>0</td>
+      <td>5,812.662</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>31800</td>
+      <td>0.000</td>
+      <td>31,800.000</td>
+      <td>0.580</td>
+      <td>0</td>
+      <td>54,827.586</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="consolidacion-de-variables-derivadas-y-creacion-de-indicador-porcentual-de-descuento">
+<h2>Consolidación de variables derivadas y creación de indicador porcentual de descuento<a class="headerlink" href="#consolidacion-de-variables-derivadas-y-creacion-de-indicador-porcentual-de-descuento" title="Permalink to this heading">#</a></h2>
+<p>La salida confirma la consolidación de variables derivadas clave para análisis comercial y modelado, además de incorporar un indicador adicional que estandariza el efecto del descuento entre productos con precios distintos.</p>
+<section id="variables-consolidadas-en-la-tabla">
+<h3>Variables consolidadas en la tabla<a class="headerlink" href="#variables-consolidadas-en-la-tabla" title="Permalink to this heading">#</a></h3>
+<p>La vista incluye:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA</span></code>: valor bruto de la línea</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code>: descuento aplicado en moneda</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code>: venta después de descuento</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code>: unidades o cantidad fraccionada vendida</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span></code>: indicador binario de promoción</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRECIO_UNITARIO_NETO</span></code>: aproximación de precio neto por unidad</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO_PCT</span></code>: descuento relativo respecto a la venta bruta</p></li>
+</ul>
+</section>
+<section id="descuento-pct-estandarizacion-del-impacto-promocional">
+<h3>DESCUENTO_PCT: estandarización del impacto promocional<a class="headerlink" href="#descuento-pct-estandarizacion-del-impacto-promocional" title="Permalink to this heading">#</a></h3>
+<p>Se calcula como:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO_PCT</span> <span class="pre">=</span> <span class="pre">DESCUENTO</span> <span class="pre">/</span> <span class="pre">VENTA</span></code> (cuando <code class="docutils literal notranslate"><span class="pre">VENTA</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>)</p></li>
+</ul>
+<p>Este indicador es relevante porque permite comparar promociones de forma homogénea, incluso cuando se trata de productos con distintos niveles de precio. A nivel analítico, habilita:</p>
+<ul class="simple">
+<li><p>medición de intensidad promocional por producto o categoría</p></li>
+<li><p>segmentación por rangos de descuento (bajo, medio, alto)</p></li>
+<li><p>evaluación de relación entre descuento relativo y volumen vendido</p></li>
+</ul>
+<p>En la muestra mostrada, <code class="docutils literal notranslate"><span class="pre">DESCUENTO_PCT</span> <span class="pre">=</span> <span class="pre">0.000</span></code> en los primeros registros, consistente con <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span> <span class="pre">=</span> <span class="pre">0</span></code> y <code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span> <span class="pre">=</span> <span class="pre">0</span></code>, lo cual confirma coherencia interna entre las variables derivadas.</p>
+</section>
+<section id="robustez-del-pipeline">
+<h3>Robustez del pipeline<a class="headerlink" href="#robustez-del-pipeline" title="Permalink to this heading">#</a></h3>
+<p>El bloque incorpora verificaciones para asegurar que las columnas existan, incluso si el archivo se vuelve a cargar en otro entorno. Esto reduce fallas por re-ejecución y mantiene consistencia del flujo de trabajo.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Conclusión<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>La tabla resultante confirma que el dataset está enriquecido con variables de negocio interpretables y comparables. En particular, <code class="docutils literal notranslate"><span class="pre">DESCUENTO_PCT</span></code> aporta una métrica estandarizada que facilita análisis de efectividad promocional y mejora la calidad de las variables explicativas para modelos predictivos de ventas.</p>
+</section>
+<section id="features-de-calendario-dia-semana-mes-fin-de-mes-quincena">
+<h2><strong>2.4 Features de calendario (día semana, mes, fin de mes, quincena)</strong><a class="headerlink" href="#features-de-calendario-dia-semana-mes-fin-de-mes-quincena" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Features de calendario (derivadas)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;DOW&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofweek</span>               <span class="c1"># 0=Lun ... 6=Dom</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;DOM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>                      <span class="c1"># día del mes</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;MES&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;ANIO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;SEMANA_ANIO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()</span><span class="o">.</span><span class="n">week</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Fin de mes</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;FIN_MES&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">is_month_end</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Quincena (1: días 1-15, 2: 16-fin)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;QUINCENA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DOM&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Fin de semana</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;FIN_SEMANA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DOW&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;DOW&quot;</span><span class="p">,</span> <span class="s2">&quot;DOM&quot;</span><span class="p">,</span> <span class="s2">&quot;MES&quot;</span><span class="p">,</span> <span class="s2">&quot;ANIO&quot;</span><span class="p">,</span> <span class="s2">&quot;SEMANA_ANIO&quot;</span><span class="p">,</span> <span class="s2">&quot;FIN_MES&quot;</span><span class="p">,</span> <span class="s2">&quot;QUINCENA&quot;</span><span class="p">,</span> <span class="s2">&quot;FIN_SEMANA&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FECHA</th>
+      <th>DOW</th>
+      <th>DOM</th>
+      <th>MES</th>
+      <th>ANIO</th>
+      <th>SEMANA_ANIO</th>
+      <th>FIN_MES</th>
+      <th>QUINCENA</th>
+      <th>FIN_SEMANA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2026-01-01</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2026</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="generacion-de-variables-de-calendario-para-analisis-temporal">
+<h2>Generación de variables de calendario para análisis temporal<a class="headerlink" href="#generacion-de-variables-de-calendario-para-analisis-temporal" title="Permalink to this heading">#</a></h2>
+<p>La salida muestra la creación de variables temporales derivadas a partir de <code class="docutils literal notranslate"><span class="pre">FECHA</span></code>, con el objetivo de capturar patrones recurrentes en el comportamiento de ventas (estacionalidad, efectos de fin de mes y hábitos de consumo por día de semana).</p>
+<section id="variables-creadas-y-su-utilidad-analitica">
+<h3>Variables creadas y su utilidad analítica<a class="headerlink" href="#variables-creadas-y-su-utilidad-analitica" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DOW</span></code> (day of week): codifica el día de la semana (0=Lunes, 6=Domingo).<br />
+Permite medir diferencias de ventas entre días hábiles y fines de semana, y capturar patrones semanales.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOM</span></code> (día del mes): identifica el número de día dentro del mes.<br />
+Es útil para analizar ciclos intra-mensuales y relacionarlos con eventos de pago o abastecimiento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MES</span></code> y <code class="docutils literal notranslate"><span class="pre">ANIO</span></code>: facilitan agregaciones mensuales/anuales y habilitan análisis de estacionalidad a mayor escala.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SEMANA_ANIO</span></code>: semana ISO del año.<br />
+Útil para modelado de series de tiempo con periodicidad semanal y para comparar semanas equivalentes entre años.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FIN_MES</span></code>: indicador binario de cierre de mes.<br />
+Captura efectos típicos de consumo asociados al final de mes, donde pueden ocurrir cambios en demanda o estrategias comerciales.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QUINCENA</span></code>: indicador de primera o segunda mitad del mes.<br />
+Es una variable relevante en contextos de nómina y pagos quincenales, permitiendo analizar si existe concentración de consumo en determinados periodos del mes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FIN_SEMANA</span></code>: indicador binario para sábado o domingo.<br />
+Permite capturar incrementos o cambios de comportamiento asociados a compras de fin de semana.</p></li>
+</ul>
+</section>
+<section id="lectura-de-la-muestra-observada">
+<h3>Lectura de la muestra observada<a class="headerlink" href="#lectura-de-la-muestra-observada" title="Permalink to this heading">#</a></h3>
+<p>En los registros mostrados se evidencia coherencia temporal:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FECHA</span> <span class="pre">=</span> <span class="pre">2026-01-01</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOM</span> <span class="pre">=</span> <span class="pre">1</span></code> (primer día del mes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MES</span> <span class="pre">=</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">ANIO</span> <span class="pre">=</span> <span class="pre">2026</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QUINCENA</span> <span class="pre">=</span> <span class="pre">1</span></code> (primera mitad del mes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FIN_MES</span> <span class="pre">=</span> <span class="pre">0</span></code> (no es cierre de mes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FIN_SEMANA</span> <span class="pre">=</span> <span class="pre">0</span></code> (no corresponde a sábado o domingo)</p></li>
+</ul>
+<p>Esto confirma que las variables fueron derivadas correctamente y que el pipeline temporal está listo para escalar a múltiples fechas.</p>
+</section>
+</section>
+<section id="id2">
+<h2>Conclusión<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Estas variables de calendario enriquecen el dataset con señales temporales que mejoran tanto el análisis exploratorio como el desempeño de modelos predictivos. Son especialmente útiles para capturar patrones semanales y quincenales, y para evaluar efectos de calendario relevantes para la operación comercial.</p>
+</section>
+<section id="construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria">
+<h2><strong>2.5 Construcción de tablas agregadas para forecasting (día–tienda–producto y día–tienda–categoría)</strong><a class="headerlink" href="#construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Objetivo: construir series temporales agregadas a niveles útiles</span>
+
+<span class="c1"># Helpers: columnas disponibles</span>
+<span class="n">has_store</span> <span class="o">=</span> <span class="s2">&quot;CENTRO&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">has_prod</span> <span class="o">=</span> <span class="s2">&quot;PLU_SAP&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">has_cat</span> <span class="o">=</span> <span class="s2">&quot;GRUPO_CATEG&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># Agregación día–tienda–producto</span>
+<span class="n">group_cols_ptp</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">agg_ptp</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_cols_ptp</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+          <span class="n">VENTA_BRUTA</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+          <span class="n">DESCUENTO</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+          <span class="n">VENTA_NETA</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+          <span class="n">UNIDADES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+          <span class="n">PROMO_LINES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+          <span class="n">LINES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">),</span>
+          <span class="n">PRECIO_UNIT_MED</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PRECIO_UNITARIO_NETO&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">),</span>
+          <span class="n">DESC_PCT_MED</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;DESCUENTO_PCT&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">),</span>
+      <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Promo rate por agregación (proporción de líneas con promo)</span>
+<span class="n">agg_ptp</span><span class="p">[</span><span class="s2">&quot;PROMO_RATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">agg_ptp</span><span class="p">[</span><span class="s2">&quot;LINES&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">agg_ptp</span><span class="p">[</span><span class="s2">&quot;PROMO_LINES&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ptp</span><span class="p">[</span><span class="s2">&quot;LINES&quot;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="n">agg_ptp</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">agg_ptp</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(       FECHA  CENTRO  PLU_SAP  VENTA_BRUTA  DESCUENTO  VENTA_NETA  UNIDADES  PROMO_LINES  LINES  PRECIO_UNIT_MED  DESC_PCT_MED  PROMO_RATE
+ 0 2026-01-01       1        3        36900      0.000  36,900.000     2.061            0      1       17,903.930         0.000       0.000
+ 1 2026-01-01       1        5       143700      0.000 143,700.000    21.285            0      3        6,751.233         0.000       0.000
+ 2 2026-01-01       1        7        60900      0.000  60,900.000     1.968            0      2       30,945.122         0.000       0.000
+ 3 2026-01-01       1        9        17750      0.000  17,750.000     0.771            0      1       23,022.049         0.000       0.000
+ 4 2026-01-01       1       11        24300      0.000  24,300.000     0.804            0      2       30,223.881         0.000       0.000,
+ (228, 12))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="construccion-de-serie-agregada-a-nivel-diatiendaproducto">
+<h2>Construcción de serie agregada a nivel día–tienda–producto<a class="headerlink" href="#construccion-de-serie-agregada-a-nivel-diatiendaproducto" title="Permalink to this heading">#</a></h2>
+<p>El bloque presentado consolida la información transaccional al nivel operativo más útil para análisis de demanda: <strong>producto por tienda por día</strong>.</p>
+<section id="nivel-de-agregacion-construido">
+<h3>Nivel de agregación construido<a class="headerlink" href="#nivel-de-agregacion-construido" title="Permalink to this heading">#</a></h3>
+<p>Columnas clave utilizadas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FECHA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CENTRO</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code></p></li>
+</ul>
+<p>Este nivel representa la granularidad adecuada para:</p>
+<ul class="simple">
+<li><p>Modelos de predicción por producto</p></li>
+<li><p>Análisis de rotación por tienda</p></li>
+<li><p>Evaluación de impacto promocional por SKU</p></li>
+</ul>
+</section>
+<section id="metricas-agregadas-generadas">
+<h3>Métricas agregadas generadas<a class="headerlink" href="#metricas-agregadas-generadas" title="Permalink to this heading">#</a></h3>
+<p>Para cada combinación día–tienda–producto se calculan:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA_BRUTA</span></code>: suma de ventas antes de descuento</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code>: suma total de descuentos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code>: ingreso real consolidado</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UNIDADES</span></code>: volumen total vendido</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_LINES</span></code>: número de líneas con promoción</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LINES</span></code>: número total de líneas (transacciones del SKU ese día)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRECIO_UNIT_MED</span></code>: mediana del precio unitario neto</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESC_PCT_MED</span></code>: mediana del porcentaje de descuento</p></li>
+</ul>
+<p>Adicionalmente:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_RATE</span></code>: proporción de líneas en promoción sobre el total de líneas</p></li>
+</ul>
+<p>Esta métrica permite medir intensidad promocional de manera relativa y comparable entre productos.</p>
+</section>
+<section id="lectura-de-la-salida-observada">
+<h3>Lectura de la salida observada<a class="headerlink" href="#lectura-de-la-salida-observada" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Dimensión resultante: 228 filas × 12 columnas</p></li>
+<li><p>Esto coincide con el número de productos distintos en la muestra (228), lo que confirma que:</p>
+<ul>
+<li><p>Se trata de un solo día</p></li>
+<li><p>Un solo centro</p></li>
+<li><p>Un registro agregado por producto</p></li>
+</ul>
+</li>
+</ul>
+<p>En este extracto:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_RATE</span> <span class="pre">=</span> <span class="pre">0.000</span></code> para los primeros registros</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESC_PCT_MED</span> <span class="pre">=</span> <span class="pre">0.000</span></code></p></li>
+</ul>
+<p>Esto es consistente con la muestra inicial donde no se observaron descuentos activos.</p>
+</section>
+<section id="valor-estrategico-de-esta-transformacion">
+<h3>Valor estratégico de esta transformación<a class="headerlink" href="#valor-estrategico-de-esta-transformacion" title="Permalink to this heading">#</a></h3>
+<p>Este nivel de agregación es el punto de partida natural para:</p>
+<ul class="simple">
+<li><p>Construcción de modelos de forecast por SKU</p></li>
+<li><p>Evaluación de sensibilidad a promociones</p></li>
+<li><p>Análisis de elasticidad precio–volumen</p></li>
+<li><p>Identificación de productos de alta variabilidad</p></li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2>Conclusión<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p>La agregación día–tienda–producto convierte datos transaccionales en una estructura analíticamente eficiente y alineada con objetivos de pronóstico y optimización comercial. El dataset resultante es compacto, interpretable y directamente utilizable para modelos de series de tiempo o machine learning.</p>
+</section>
+<section id="features-temporales-lags-y-rolling-windows-ventas-y-unidades">
+<h2><strong>2.6 Features temporales: lags y rolling windows (ventas y unidades)</strong><a class="headerlink" href="#features-temporales-lags-y-rolling-windows-ventas-y-unidades" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># IMPORTANTE: para lags/rolling necesitas múltiples fechas. Con la muestra de 1 día, esto queda en NaN.</span>
+<span class="c1"># Aun así dejamos el pipeline listo para cuando llegue el dataset grande.</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_time_features</span><span class="p">(</span><span class="n">df_ts</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">group_keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">target_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">14</span><span class="p">),</span> <span class="n">rolls</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">28</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">group_keys</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">lags</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">target_col</span><span class="si">}</span><span class="s2">_LAG_</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_keys</span><span class="p">)[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">W</span> <span class="ow">in</span> <span class="n">rolls</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">target_col</span><span class="si">}</span><span class="s2">_ROLLMEAN_</span><span class="si">{</span><span class="n">W</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_keys</span><span class="p">)[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">target_col</span><span class="si">}</span><span class="s2">_ROLLSTD_</span><span class="si">{</span><span class="n">W</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_keys</span><span class="p">)[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># Ejemplo: features sobre VENTA_NETA y UNIDADES</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">agg_ptp</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">agg_ptp_feat</span> <span class="o">=</span> <span class="n">add_time_features</span><span class="p">(</span><span class="n">agg_ptp</span><span class="p">,</span> <span class="n">group_keys</span><span class="o">=</span><span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">agg_ptp</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span> <span class="n">target_col</span><span class="o">=</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">)</span>
+    <span class="n">agg_ptp_feat</span> <span class="o">=</span> <span class="n">add_time_features</span><span class="p">(</span><span class="n">agg_ptp_feat</span><span class="p">,</span> <span class="n">group_keys</span><span class="o">=</span><span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">agg_ptp</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span> <span class="n">target_col</span><span class="o">=</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">agg_ptp_feat</span> <span class="o">=</span> <span class="n">agg_ptp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.&quot;</span><span class="p">)</span>
+
+<span class="n">agg_ptp_feat</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⚠️ Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FECHA</th>
+      <th>CENTRO</th>
+      <th>PLU_SAP</th>
+      <th>VENTA_BRUTA</th>
+      <th>DESCUENTO</th>
+      <th>VENTA_NETA</th>
+      <th>UNIDADES</th>
+      <th>PROMO_LINES</th>
+      <th>LINES</th>
+      <th>PRECIO_UNIT_MED</th>
+      <th>DESC_PCT_MED</th>
+      <th>PROMO_RATE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>3</td>
+      <td>36900</td>
+      <td>0.000</td>
+      <td>36,900.000</td>
+      <td>2.061</td>
+      <td>0</td>
+      <td>1</td>
+      <td>17,903.930</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>5</td>
+      <td>143700</td>
+      <td>0.000</td>
+      <td>143,700.000</td>
+      <td>21.285</td>
+      <td>0</td>
+      <td>3</td>
+      <td>6,751.233</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>7</td>
+      <td>60900</td>
+      <td>0.000</td>
+      <td>60,900.000</td>
+      <td>1.968</td>
+      <td>0</td>
+      <td>2</td>
+      <td>30,945.122</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>9</td>
+      <td>17750</td>
+      <td>0.000</td>
+      <td>17,750.000</td>
+      <td>0.771</td>
+      <td>0</td>
+      <td>1</td>
+      <td>23,022.049</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>11</td>
+      <td>24300</td>
+      <td>0.000</td>
+      <td>24,300.000</td>
+      <td>0.804</td>
+      <td>0</td>
+      <td>2</td>
+      <td>30,223.881</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="preparacion-de-features-temporales-lags-y-rolling-para-pronostico">
+<h2>Preparación de features temporales (lags y rolling) para pronóstico<a class="headerlink" href="#preparacion-de-features-temporales-lags-y-rolling-para-pronostico" title="Permalink to this heading">#</a></h2>
+<p>La salida muestra que el pipeline ya está preparado para generar variables temporales avanzadas (rezagos y estadísticas móviles), que son fundamentales para modelos de predicción de ventas basados en series de tiempo.</p>
+<section id="que-hace-este-bloque">
+<h3>Qué hace este bloque<a class="headerlink" href="#que-hace-este-bloque" title="Permalink to this heading">#</a></h3>
+<p>Se define una función (<code class="docutils literal notranslate"><span class="pre">add_time_features</span></code>) que, para cada combinación de agrupación (por ejemplo, <code class="docutils literal notranslate"><span class="pre">CENTRO</span></code> y <code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code>), construye:</p>
+<ul class="simple">
+<li><p>Rezagos (lags) del objetivo: <code class="docutils literal notranslate"><span class="pre">VENTA_NETA_LAG_1</span></code>, <code class="docutils literal notranslate"><span class="pre">LAG_7</span></code>, <code class="docutils literal notranslate"><span class="pre">LAG_14</span></code></p></li>
+<li><p>Ventanas móviles (rolling) sobre el pasado (usando <code class="docutils literal notranslate"><span class="pre">shift(1)</span></code> para evitar fuga de información):</p>
+<ul>
+<li><p>Promedio móvil: <code class="docutils literal notranslate"><span class="pre">ROLLMEAN_7</span></code>, <code class="docutils literal notranslate"><span class="pre">ROLLMEAN_14</span></code>, <code class="docutils literal notranslate"><span class="pre">ROLLMEAN_28</span></code></p></li>
+<li><p>Desviación estándar móvil: <code class="docutils literal notranslate"><span class="pre">ROLLSTD_7</span></code>, <code class="docutils literal notranslate"><span class="pre">ROLLSTD_14</span></code>, <code class="docutils literal notranslate"><span class="pre">ROLLSTD_28</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Este diseño es relevante porque captura:</p>
+<ul class="simple">
+<li><p>memoria de corto y mediano plazo</p></li>
+<li><p>patrones semanales (7 días) y quincenales (14 días)</p></li>
+<li><p>volatilidad de la demanda (rolling std), útil para inventarios y abastecimiento</p></li>
+</ul>
+</section>
+<section id="mensaje-de-advertencia-observado">
+<h3>Mensaje de advertencia observado<a class="headerlink" href="#mensaje-de-advertencia-observado" title="Permalink to this heading">#</a></h3>
+<p>La salida indica:</p>
+<p>“Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.”</p>
+<p>Esto no representa un error del pipeline; es una validación correcta. Con un único día no existe información previa para calcular rezagos o promedios móviles, por lo que dichas columnas quedarían sin valores hasta disponer de múltiples fechas.</p>
+</section>
+<section id="valor-estrategico-del-enfoque">
+<h3>Valor estratégico del enfoque<a class="headerlink" href="#valor-estrategico-del-enfoque" title="Permalink to this heading">#</a></h3>
+<p>Aunque la muestra actual es de un solo día, este bloque deja lista la arquitectura para escalar cuando se cuente con el histórico completo. En la práctica, al incorporar más fechas, el mismo flujo producirá automáticamente:</p>
+<ul class="simple">
+<li><p>features temporales por producto y tienda</p></li>
+<li><p>señales de tendencia y estacionalidad</p></li>
+<li><p>indicadores de variabilidad y comportamiento reciente</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Conclusión<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>El pipeline está correctamente diseñado para analítica predictiva de ventas. La advertencia observada confirma que el sistema detecta de forma transparente la limitación del extracto actual y mantiene el proceso preparado para operar con datos históricos más amplios sin necesidad de reescritura.</p>
+</section>
+</section>
+<section id="features-de-promociones-intensidad-y-efecto-descuento-promo-rate">
+<h2><strong>2.7 Features de promociones: intensidad y efecto (descuento %, promo rate)</strong><a class="headerlink" href="#features-de-promociones-intensidad-y-efecto-descuento-promo-rate" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intensidad de promo (monto y %)</span>
+<span class="c1"># Nota: si tuvieras precio regular, podrías calcular elasticidades mejor. Aquí hacemos proxies.</span>
+
+<span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT_APROX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># Señal de promo en agregación: si hubo al menos una línea en promo</span>
+<span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;PROMO_LINES&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Precio medio neto aproximado (valor neto / unidades)</span>
+<span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;PRECIO_MEDIO_NETO_APROX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="n">agg_ptp_feat</span><span class="p">[[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;UNIDADES&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_RATE&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO_PCT_APROX&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">,</span> <span class="s2">&quot;PRECIO_MEDIO_NETO_APROX&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FECHA</th>
+      <th>CENTRO</th>
+      <th>PLU_SAP</th>
+      <th>VENTA_NETA</th>
+      <th>UNIDADES</th>
+      <th>PROMO_RATE</th>
+      <th>DESCUENTO_PCT_APROX</th>
+      <th>PROMO_FLAG_AGG</th>
+      <th>PRECIO_MEDIO_NETO_APROX</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>3</td>
+      <td>36,900.000</td>
+      <td>2.061</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>17,903.930</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>5</td>
+      <td>143,700.000</td>
+      <td>21.285</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>6,751.233</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>7</td>
+      <td>60,900.000</td>
+      <td>1.968</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>30,945.122</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>9</td>
+      <td>17,750.000</td>
+      <td>0.771</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>23,022.049</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>11</td>
+      <td>24,300.000</td>
+      <td>0.804</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>30,223.881</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>13</td>
+      <td>7,200.000</td>
+      <td>1.926</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>3,738.318</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>15</td>
+      <td>17,980.000</td>
+      <td>0.792</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>22,702.020</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>17</td>
+      <td>23,700.000</td>
+      <td>1.266</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>18,720.379</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>19</td>
+      <td>31,400.000</td>
+      <td>5.402</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>5,812.662</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2026-01-01</td>
+      <td>1</td>
+      <td>21</td>
+      <td>31,800.000</td>
+      <td>0.580</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>54,827.586</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="construccion-de-indicadores-de-intensidad-promocional-y-precio-agregado">
+<h2>Construcción de indicadores de intensidad promocional y precio agregado<a class="headerlink" href="#construccion-de-indicadores-de-intensidad-promocional-y-precio-agregado" title="Permalink to this heading">#</a></h2>
+<p>El bloque presentado fortalece el nivel agregado día–tienda–producto incorporando métricas que permiten medir de forma más estructurada el impacto comercial de las promociones y el comportamiento de precios.</p>
+<section id="descuento-pct-aprox">
+<h3>1. DESCUENTO_PCT_APROX<a class="headerlink" href="#descuento-pct-aprox" title="Permalink to this heading">#</a></h3>
+<p>Se calcula como:</p>
+<p>DESCUENTO / VENTA_BRUTA</p>
+<p>Este indicador permite medir la intensidad relativa del descuento a nivel agregado del SKU en el día. A diferencia del descuento absoluto, esta métrica es comparable entre productos de distintos rangos de precio.</p>
+<p>En la muestra observada:</p>
+<ul class="simple">
+<li><p>DESCUENTO_PCT_APROX = 0.000</p></li>
+<li><p>Coherente con PROMO_RATE = 0.000</p></li>
+</ul>
+<p>Esto confirma consistencia interna en el extracto analizado.</p>
+</section>
+<section id="promo-flag-agg">
+<h3>2. PROMO_FLAG_AGG<a class="headerlink" href="#promo-flag-agg" title="Permalink to this heading">#</a></h3>
+<p>Se define como:</p>
+<p>1 si hubo al menos una línea en promoción<br />
+0 en caso contrario</p>
+<p>Esta variable es útil para:</p>
+<ul class="simple">
+<li><p>Modelos donde interesa capturar simplemente presencia/ausencia de promoción.</p></li>
+<li><p>Análisis binario del efecto promocional sobre volumen.</p></li>
+<li><p>Simplificación de variables cuando no se requiere intensidad continua.</p></li>
+</ul>
+<p>En la muestra, todos los valores son 0, lo cual es consistente con la ausencia de promociones en el día analizado.</p>
+</section>
+<section id="precio-medio-neto-aprox">
+<h3>3. PRECIO_MEDIO_NETO_APROX<a class="headerlink" href="#precio-medio-neto-aprox" title="Permalink to this heading">#</a></h3>
+<p>Se calcula como:</p>
+<p>VENTA_NETA / UNIDADES</p>
+<p>Representa el precio promedio efectivo por unidad a nivel agregado del SKU en el día.</p>
+<p>Este indicador es clave porque:</p>
+<ul class="simple">
+<li><p>Captura señal económica directa.</p></li>
+<li><p>Permite estudiar relación precio–volumen.</p></li>
+<li><p>Puede utilizarse como variable explicativa en modelos de demanda.</p></li>
+</ul>
+<p>En la tabla se observan precios heterogéneos entre productos, lo cual es esperable dado que se trata de múltiples referencias.</p>
+</section>
+</section>
+<section id="lectura-ejecutiva">
+<h2>Lectura ejecutiva<a class="headerlink" href="#lectura-ejecutiva" title="Permalink to this heading">#</a></h2>
+<p>La agregación final integra tres dimensiones fundamentales:</p>
+<ul class="simple">
+<li><p>Volumen (UNIDADES)</p></li>
+<li><p>Ingreso (VENTA_NETA)</p></li>
+<li><p>Intensidad promocional (DESCUENTO_PCT_APROX y PROMO_RATE)</p></li>
+</ul>
+<p>Esto deja el dataset en una estructura lista para:</p>
+<ul class="simple">
+<li><p>Modelos de forecast por SKU.</p></li>
+<li><p>Evaluación de elasticidad precio–demanda.</p></li>
+<li><p>Simulación de escenarios promocionales.</p></li>
+</ul>
+<p>El pipeline está correctamente alineado con una arquitectura de analítica comercial avanzada y preparado para escalar cuando se incorpore mayor histórico temporal.</p>
+</section>
+<section id="validaciones-posteriores-a-agregacion-consistencia-y-gaps">
+<h2><strong>2.8 Validaciones posteriores a agregación (consistencia y gaps)</strong><a class="headerlink" href="#validaciones-posteriores-a-agregacion-consistencia-y-gaps" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post_checks</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># 1) Venta neta negativa (raro sin devoluciones)</span>
+<span class="n">post_checks</span><span class="p">[</span><span class="s2">&quot;venta_neta_negativa_agregada&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 2) Descuento &gt; venta bruta agregada (raro)</span>
+<span class="n">post_checks</span><span class="p">[</span><span class="s2">&quot;descuento_mayor_que_venta_bruta_agregada&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 3) Unidades &lt;= 0 (raro)</span>
+<span class="n">post_checks</span><span class="p">[</span><span class="s2">&quot;unidades_le_0_agregadas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 4) Distribución de promo rate</span>
+<span class="n">post_checks</span><span class="p">[</span><span class="s2">&quot;promo_rate_min&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;PROMO_RATE&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+<span class="n">post_checks</span><span class="p">[</span><span class="s2">&quot;promo_rate_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">agg_ptp_feat</span><span class="p">[</span><span class="s2">&quot;PROMO_RATE&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+<span class="n">post_checks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;venta_neta_negativa_agregada&#39;: 0,
+ &#39;descuento_mayor_que_venta_bruta_agregada&#39;: 0,
+ &#39;unidades_le_0_agregadas&#39;: 0,
+ &#39;promo_rate_min&#39;: 0.0,
+ &#39;promo_rate_max&#39;: 1.0}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="controles-de-consistencia-posteriores-a-la-agregacion">
+<h2>Controles de consistencia posteriores a la agregación<a class="headerlink" href="#controles-de-consistencia-posteriores-a-la-agregacion" title="Permalink to this heading">#</a></h2>
+<p>Una vez construida la tabla agregada a nivel día–tienda–producto, se ejecutaron validaciones adicionales para garantizar que la transformación no introdujera inconsistencias numéricas o lógicas.</p>
+<section id="resultados-de-validacion">
+<h3>Resultados de validación<a class="headerlink" href="#resultados-de-validacion" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">venta_neta_negativa_agregada:</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descuento_mayor_que_venta_bruta_agregada:</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unidades_le_0_agregadas:</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">promo_rate_min:</span> <span class="pre">0.0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">promo_rate_max:</span> <span class="pre">1.0</span></code></p></li>
+</ul>
+</section>
+<section id="interpretacion-ejecutiva">
+<h3>Interpretación ejecutiva<a class="headerlink" href="#interpretacion-ejecutiva" title="Permalink to this heading">#</a></h3>
+<p><strong>1. Venta neta negativa = 0</strong><br />
+No existen registros agregados con ingresos negativos. Esto confirma que la consolidación mantiene coherencia financiera.</p>
+<p><strong>2. Descuento mayor que venta bruta = 0</strong><br />
+Ningún SKU presenta descuento total superior a la venta bruta agregada. Esto descarta distorsiones contables tras la agregación.</p>
+<p><strong>3. Unidades menores o iguales a cero = 0</strong><br />
+Todos los productos presentan volumen positivo. No hay agregaciones con errores de suma ni inconsistencias operativas.</p>
+<p><strong>4. PROMO_RATE dentro de rango válido (0.0 – 1.0)</strong><br />
+La proporción de líneas en promoción se mantiene en el rango lógico esperado.<br />
+Un máximo de 1.0 implica que, en algunos casos (en histórico futuro), un SKU podría venderse 100% bajo promoción en un día determinado, lo cual es matemáticamente consistente.</p>
+</section>
+<section id="id5">
+<h3>Conclusión<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>Los controles posteriores confirman que el proceso de agregación preserva integridad financiera, coherencia operativa y consistencia lógica en las métricas derivadas.</p>
+<p>Desde una perspectiva de gobierno de datos, esto valida que la tabla agregada es apta para:</p>
+<ul class="simple">
+<li><p>Modelos predictivos por SKU</p></li>
+<li><p>Simulación de escenarios promocionales</p></li>
+<li><p>Análisis de rentabilidad y volumen</p></li>
+</ul>
+</section>
+</section>
+<section id="dataset-final-de-fase-1-tablas-listas-para-eda-y-modelado-baseline">
+<h2><strong>2.9 Dataset final de Fase 1 (tablas listas para EDA y modelado baseline)</strong><a class="headerlink" href="#dataset-final-de-fase-1-tablas-listas-para-eda-y-modelado-baseline" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Guardar tablas agregadas (listas para EDA y baseline)</span>
+<span class="n">out_ptp</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;ts_ventas_dia_tienda_producto.csv&quot;</span>
+<span class="n">agg_ptp_feat</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_ptp</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Guardado:&quot;</span><span class="p">,</span> <span class="n">out_ptp</span><span class="p">)</span>
+
+<span class="c1"># (Opcional) también crear día–tienda–categoría si existe GRUPO_CATEG</span>
+<span class="k">if</span> <span class="s2">&quot;GRUPO_CATEG&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">group_cols_ptc</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;GRUPO_CATEG&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">agg_ptc</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_cols_ptc</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+          <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+              <span class="n">VENTA_BRUTA</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+              <span class="n">DESCUENTO</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+              <span class="n">VENTA_NETA</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+              <span class="n">UNIDADES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+              <span class="n">PROMO_LINES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+              <span class="n">LINES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">),</span>
+          <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">agg_ptc</span><span class="p">[</span><span class="s2">&quot;PROMO_RATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">agg_ptc</span><span class="p">[</span><span class="s2">&quot;LINES&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">agg_ptc</span><span class="p">[</span><span class="s2">&quot;PROMO_LINES&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ptc</span><span class="p">[</span><span class="s2">&quot;LINES&quot;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="n">out_ptc</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;ts_ventas_dia_tienda_categoria.csv&quot;</span>
+    <span class="n">agg_ptc</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_ptc</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Guardado:&quot;</span><span class="p">,</span> <span class="n">out_ptc</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No existe GRUPO_CATEG en el dataset; omitimos tabla día–tienda–categoría.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Guardado: C:\Users\juana\olimpica_book\data\processed\ts_ventas_dia_tienda_producto.csv
+Guardado: C:\Users\juana\olimpica_book\data\processed\ts_ventas_dia_tienda_categoria.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="persistencia-de-series-temporales-listas-para-analisis-y-modelado">
+<h2>Persistencia de series temporales listas para análisis y modelado<a class="headerlink" href="#persistencia-de-series-temporales-listas-para-analisis-y-modelado" title="Permalink to this heading">#</a></h2>
+<p>El bloque ejecutado formaliza uno de los entregables más importantes del pipeline: la generación y almacenamiento de tablas agregadas optimizadas para análisis exploratorio y modelos predictivos.</p>
+<section id="archivos-generados">
+<h3>Archivos generados<a class="headerlink" href="#archivos-generados" title="Permalink to this heading">#</a></h3>
+<p>Se guardaron correctamente los siguientes archivos en <code class="docutils literal notranslate"><span class="pre">data/processed</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ts_ventas_dia_tienda_producto.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ts_ventas_dia_tienda_categoria.csv</span></code></p></li>
+</ul>
+<p>Esto implica que el proyecto ya cuenta con dos niveles estratégicos de agregación:</p>
+<ol class="arabic simple">
+<li><p>Día–Tienda–Producto<br />
+Nivel ideal para modelos de forecast por SKU y análisis detallado de elasticidad precio–demanda.</p></li>
+<li><p>Día–Tienda–Categoría<br />
+Nivel más agregado, útil para:</p>
+<ul class="simple">
+<li><p>Planeación comercial</p></li>
+<li><p>Presupuestación</p></li>
+<li><p>Evaluación de desempeño por línea de negocio</p></li>
+<li><p>Modelos cuando el histórico por SKU sea insuficiente</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="valor-estrategico-de-esta-persistencia">
+<h3>Valor estratégico de esta persistencia<a class="headerlink" href="#valor-estrategico-de-esta-persistencia" title="Permalink to this heading">#</a></h3>
+<p>Guardar estas tablas en la carpeta <code class="docutils literal notranslate"><span class="pre">processed</span></code> garantiza:</p>
+<ul class="simple">
+<li><p>Separación clara entre datos crudos y datos listos para analítica.</p></li>
+<li><p>Reproducibilidad del flujo.</p></li>
+<li><p>Facilidad para conectar estas tablas a dashboards o modelos sin reprocesar todo el pipeline.</p></li>
+<li><p>Escalabilidad futura cuando se incorporen más fechas y centros.</p></li>
+</ul>
+</section>
+<section id="enfoque-metodologico">
+<h3>Enfoque metodológico<a class="headerlink" href="#enfoque-metodologico" title="Permalink to this heading">#</a></h3>
+<p>Este paso demuestra una arquitectura analítica estructurada:</p>
+<ul class="simple">
+<li><p>Datos crudos → limpieza → validación → enriquecimiento → agregación → persistencia.</p></li>
+<li><p>Cada etapa deja evidencia trazable.</p></li>
+<li><p>Las tablas finales están alineadas con objetivos de forecast y optimización comercial.</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2>Conclusión<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<p>El proyecto ya dispone de datasets estructurados específicamente para análisis temporal y modelado predictivo, en dos niveles de granularidad complementarios.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./eda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_ingesta_y_auditoria2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>1. Ingesta y Auditoría del Dataset</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_eda_ventas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>3. Análisis Exploratorio de Ventas</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-processed-y-verificacion"><strong>2.1 Carga del dataset limpio (processed) y verificación</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-y-validacion-estructural-final">Carga del dataset limpio y validación estructural final</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-persistencia-y-trazabilidad">Validación de persistencia y trazabilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-actual-del-dataset">Estructura actual del dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva-de-la-muestra-mostrada">Lectura ejecutiva de la muestra mostrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion-de-columnas-y-control-de-tipos-re-chequeo"><strong>2.2 Normalización de columnas y control de tipos (re-chequeo)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-tipos-de-datos-en-variables-criticas">Validación de tipos de datos en variables críticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-del-reporte-de-tipos">Resultado del reporte de tipos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica">Interpretación técnica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-de-negocio-venta-neta-flags-precio-unitario"><strong>2.3 Ingeniería de variables de negocio (venta neta, flags, precio unitario)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidacion-de-variables-derivadas-y-creacion-de-indicador-porcentual-de-descuento">Consolidación de variables derivadas y creación de indicador porcentual de descuento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-consolidadas-en-la-tabla">Variables consolidadas en la tabla</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento-pct-estandarizacion-del-impacto-promocional">DESCUENTO_PCT: estandarización del impacto promocional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-pipeline">Robustez del pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-calendario-dia-semana-mes-fin-de-mes-quincena"><strong>2.4 Features de calendario (día semana, mes, fin de mes, quincena)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-de-variables-de-calendario-para-analisis-temporal">Generación de variables de calendario para análisis temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-creadas-y-su-utilidad-analitica">Variables creadas y su utilidad analítica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-muestra-observada">Lectura de la muestra observada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria"><strong>2.5 Construcción de tablas agregadas para forecasting (día–tienda–producto y día–tienda–categoría)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-serie-agregada-a-nivel-diatiendaproducto">Construcción de serie agregada a nivel día–tienda–producto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-de-agregacion-construido">Nivel de agregación construido</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-agregadas-generadas">Métricas agregadas generadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-salida-observada">Lectura de la salida observada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-transformacion">Valor estratégico de esta transformación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-temporales-lags-y-rolling-windows-ventas-y-unidades"><strong>2.6 Features temporales: lags y rolling windows (ventas y unidades)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-features-temporales-lags-y-rolling-para-pronostico">Preparación de features temporales (lags y rolling) para pronóstico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-hace-este-bloque">Qué hace este bloque</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mensaje-de-advertencia-observado">Mensaje de advertencia observado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-del-enfoque">Valor estratégico del enfoque</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Conclusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-promociones-intensidad-y-efecto-descuento-promo-rate"><strong>2.7 Features de promociones: intensidad y efecto (descuento %, promo rate)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-indicadores-de-intensidad-promocional-y-precio-agregado">Construcción de indicadores de intensidad promocional y precio agregado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento-pct-aprox">1. DESCUENTO_PCT_APROX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promo-flag-agg">2. PROMO_FLAG_AGG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-medio-neto-aprox">3. PRECIO_MEDIO_NETO_APROX</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones-posteriores-a-agregacion-consistencia-y-gaps"><strong>2.8 Validaciones posteriores a agregación (consistencia y gaps)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-posteriores-a-la-agregacion">Controles de consistencia posteriores a la agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-validacion">Resultados de validación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-final-de-fase-1-tablas-listas-para-eda-y-modelado-baseline"><strong>2.9 Dataset final de Fase 1 (tablas listas para EDA y modelado baseline)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-de-series-temporales-listas-para-analisis-y-modelado">Persistencia de series temporales listas para análisis y modelado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-generados">Archivos generados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-persistencia">Valor estratégico de esta persistencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-metodologico">Enfoque metodológico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Conclusión</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Andrés Ramos Cardona & Sergio Cadavid
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

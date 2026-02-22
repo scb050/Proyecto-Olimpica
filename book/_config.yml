@@ -1,0 +1,25 @@
+title: "Proyecto Olimpica"
+subtitle: "Fase 1 – Análisis Exploratorio de Ventas"
+author: "Juan Andrés Ramos Cardona & Sergio Cadavid"
+
+logo: ""
+
+execute:
+  execute_notebooks: "auto"
+  timeout: 300
+  allow_errors: false
+
+repository:
+  url: ""
+  branch: main
+
+html:
+  home_page_in_navbar: true
+  use_edit_page_button: false
+  use_repository_button: false
+  use_issues_button: false
+
+sphinx:
+  config:
+    html_theme_options:
+      navigation_depth: 3

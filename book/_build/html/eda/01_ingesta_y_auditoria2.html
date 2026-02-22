@@ -1,0 +1,2149 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Ingesta y Auditoría del Dataset &#8212; Proyecto Olimpica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eda/01_ingesta_y_auditoria2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Limpieza y Construcción de Variables" href="02_limpieza_y_features2.html" />
+    <link rel="prev" title="📊 Proyecto Predicción de ventas en Olímpica" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Olimpica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Ingesta y Auditoría del Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_limpieza_y_features2.html">2. Limpieza y Construcción de Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_eda_ventas.html">3. Análisis Exploratorio de Ventas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_eda_promos_precios.html">4. Análisis de Promociones y Descuentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conclusiones_y_reqs_dataset_grande.html">5. Conclusiones y Requerimientos para la Fase 2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/eda/01_ingesta_y_auditoria2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Ingesta y Auditoría del Dataset</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial"><strong>1.1 Configuración inicial</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset"><strong>1.2 Carga del dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-y-validacion-inicial-de-los-datos-ventas-olimpica">Carga y Validación Inicial de los Datos – Ventas Olímpica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-dinamica-de-la-ruta-del-proyecto">1. Detección dinámica de la ruta del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-estructurada-de-los-datos">2. Organización estructurada de los datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-controlada-del-archivo-de-ventas">3. Lectura controlada del archivo de ventas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-inicial-del-dataset">4. Validación inicial del dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-para-el-proyecto">Valor estratégico para el proyecto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vista-rapida-y-estructura-general"><strong>1.3 Vista rápida y estructura general</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-visual-de-columnas-y-muestra-de-datos">Validación visual de columnas y muestra de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-datos-tipos-nulos-cardinalidades"><strong>1.4 Diccionario de datos (tipos, nulos, cardinalidades)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-datos-evaluacion-integral-de-calidad">Diccionario de Datos – Evaluación Integral de Calidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-calidad-estructural">1. Control de calidad estructural</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipificacion-actual-de-las-variables">2. Tipificación actual de las variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-cardinalidad-valores-unicos">3. Análisis de cardinalidad (valores únicos)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones estratégicas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-tipos-criticos"><strong>1.5 Conversión de tipos críticos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-de-tipos-y-preparacion-del-dataset-para-analitica">Estandarización de tipos y preparación del dataset para analítica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-columnas-esperadas">Validación de columnas esperadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-fecha-a-formato-analitico">Conversión de fecha a formato analítico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas-correctamente-tipificadas">Variables numéricas correctamente tipificadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificadores-y-dimensiones-como-texto">Identificadores y dimensiones como texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-proceso-de-limpieza">Robustez del proceso de limpieza</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-granularidad-y-llaves-factura-producto-fecha-centro"><strong>1.6 Validación de granularidad y llaves (factura-producto-fecha-centro)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-granularidad-y-unicidad-de-registros">Auditoría de granularidad y unicidad de registros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llave-operacional-utilizada">Llave operacional utilizada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-de-duplicados-por-llave">Resultado de duplicados por llave</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-cardinalidades-relevantes">Resumen de cardinalidades relevantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos"><strong>1.7 Auditoría de calidad (nulos, duplicados, rangos, valores inválidos)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-integridad-y-validacion-de-rangos-operativos">Auditoría de integridad y validación de rangos operativos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-valores-nulos">1. Control de valores nulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-duplicados-completos">2. Control de duplicados completos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-rangos-en-variables-criticas">3. Validación de rangos en variables críticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#venta">VENTA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cantidad">CANTIDAD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento">DESCUENTO</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistencia-temporal">4. Consistencia temporal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-negocio-ventas-netas-y-senal-de-promocion"><strong>1.8 Reglas de negocio: ventas netas y señal de promoción</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivacion-de-variables-de-negocio-para-analisis-y-modelado">Derivación de variables de negocio para análisis y modelado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-neta-medicion-real-del-ingreso-por-linea">VENTA_NETA: medición real del ingreso por línea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promo-flag-identificacion-operativa-de-promocion">PROMO_FLAG: identificación operativa de promoción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto-senal-de-precio-implicito">PRECIO_UNITARIO_NETO: señal de precio implícito</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticas-descriptivas-ventas-cantidades-descuentos"><strong>1.9 Estadísticas descriptivas (ventas, cantidades, descuentos)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos-de-variables-criticas-de-negocio">Estadísticos descriptivos de variables críticas de negocio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-y-venta-neta">1. VENTA y VENTA_NETA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. DESCUENTO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. CANTIDAD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto">4. PRECIO_UNITARIO_NETO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-y-valores-extremos-diagnostico-inicial"><strong>1.10 Outliers y valores extremos (diagnóstico inicial)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checks-de-consistencia-oferta-vs-descuento-signos-coherencia-basica"><strong>1.11 Checks de consistencia (oferta vs descuento, signos, coherencia básica)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-bajo-reglas-de-negocio">Controles de consistencia bajo reglas de negocio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-validacion">Resultados de validación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardado-de-dataset-limpio-processed-y-log-de-auditoria"><strong>1.12 Guardado de dataset limpio (processed) y log de auditoría</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-del-dataset-limpio-y-trazabilidad-del-proceso">Persistencia del dataset limpio y trazabilidad del proceso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-del-dataset-limpio">1. Generación del dataset limpio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-del-reporte-de-auditoria-json">2. Generación del reporte de auditoría (JSON)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos-clave-consolidados-en-el-reporte">3. Hallazgos clave consolidados en el reporte</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ingesta-y-auditoria-del-dataset">
+<h1><strong>1. Ingesta y Auditoría del Dataset</strong><a class="headerlink" href="#ingesta-y-auditoria-del-dataset" title="Permalink to this heading">#</a></h1>
+<section id="configuracion-inicial">
+<h2><strong>1.1 Configuración inicial</strong><a class="headerlink" href="#configuracion-inicial" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.width&quot;</span><span class="p">,</span> <span class="mi">160</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.float_format&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">,.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="carga-del-dataset">
+<h2><strong>1.2 Carga del dataset</strong><a class="headerlink" href="#carga-del-dataset" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rutas (ajusta si tu notebook está en otra carpeta)</span>
+<span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>  <span class="c1"># si el notebook está en book/eda/, esto apunta a book/</span>
+<span class="c1"># Mejor: resolvemos desde el CWD actual</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+
+<span class="c1"># Intento: detectar ruta del proyecto (sube hasta encontrar carpeta &#39;data&#39;)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_project_root</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">max_up</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_up</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">marker</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">p</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">return</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_project_root</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span>
+<span class="n">DATA_RAW</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span>
+<span class="n">DATA_PROCESSED</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;processed&quot;</span>
+<span class="n">DATA_PROCESSED</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">DATA_RAW</span> <span class="o">/</span> <span class="s2">&quot;Ventas_1.csv&quot;</span>
+<span class="k">assert</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;No encuentro el archivo en: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Nota: el archivo tiene separador estándar y decimales con coma en algunas columnas.</span>
+<span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># leer como texto para controlar conversiones</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ruta:&quot;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape:&quot;</span><span class="p">,</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df_raw</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ruta: C:\Users\juana\olimpica_book\data\raw\Ventas_1.csv
+Shape: (345, 12)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NroReg</th>
+      <th>FECHA</th>
+      <th>CENTRO</th>
+      <th>Estrato</th>
+      <th>OFERTA_ID</th>
+      <th>FACTURA</th>
+      <th>GRUPO_CATEG</th>
+      <th>PLU_SAP</th>
+      <th>CANTIDAD</th>
+      <th>VENTA</th>
+      <th>DESCUENTO</th>
+      <th>GRUCOM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>45</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2,061</td>
+      <td>36900</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>61</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>5</td>
+      <td>7,095</td>
+      <td>47900</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>63</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>6</td>
+      <td>1</td>
+      <td>7</td>
+      <td>0,984</td>
+      <td>30450</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>83</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>8</td>
+      <td>1</td>
+      <td>9</td>
+      <td>0,771</td>
+      <td>17750</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>88</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>10</td>
+      <td>1</td>
+      <td>11</td>
+      <td>0,402</td>
+      <td>12150</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="carga-y-validacion-inicial-de-los-datos-ventas-olimpica">
+<h2>Carga y Validación Inicial de los Datos – Ventas Olímpica<a class="headerlink" href="#carga-y-validacion-inicial-de-los-datos-ventas-olimpica" title="Permalink to this heading">#</a></h2>
+<section id="deteccion-dinamica-de-la-ruta-del-proyecto">
+<h3>1. Detección dinámica de la ruta del proyecto<a class="headerlink" href="#deteccion-dinamica-de-la-ruta-del-proyecto" title="Permalink to this heading">#</a></h3>
+<p>El código implementa una búsqueda automática de la carpeta raíz del proyecto (<code class="docutils literal notranslate"><span class="pre">data/</span></code>), lo que garantiza que el notebook sea <strong>portátil y reproducible</strong> en distintos entornos (local, servidor o nube).<br />
+Esto evita errores por rutas absolutas y facilita la colaboración dentro del equipo de analítica.</p>
+</section>
+<section id="organizacion-estructurada-de-los-datos">
+<h3>2. Organización estructurada de los datos<a class="headerlink" href="#organizacion-estructurada-de-los-datos" title="Permalink to this heading">#</a></h3>
+<p>Se establecen claramente dos rutas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data/raw</span></code> → Datos originales sin transformación.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data/processed</span></code> → Datos limpios y listos para modelado.</p></li>
+</ul>
+<p>Además, el código crea automáticamente la carpeta <code class="docutils literal notranslate"><span class="pre">processed</span></code> si no existe, asegurando una arquitectura de datos ordenada y alineada con estándares de proyectos de ciencia de datos.</p>
+</section>
+<section id="lectura-controlada-del-archivo-de-ventas">
+<h3>3. Lectura controlada del archivo de ventas<a class="headerlink" href="#lectura-controlada-del-archivo-de-ventas" title="Permalink to this heading">#</a></h3>
+<p>El archivo <code class="docutils literal notranslate"><span class="pre">Ventas_1.csv</span></code> se carga inicialmente como texto (<code class="docutils literal notranslate"><span class="pre">dtype=str</span></code>).<br />
+Esto es estratégico porque:</p>
+<ul class="simple">
+<li><p>Permite manejar correctamente columnas con <strong>decimales usando coma</strong>.</p></li>
+<li><p>Evita conversiones automáticas incorrectas.</p></li>
+<li><p>Da control total sobre el proceso posterior de limpieza y tipificación.</p></li>
+</ul>
+</section>
+<section id="validacion-inicial-del-dataset">
+<h3>4. Validación inicial del dataset<a class="headerlink" href="#validacion-inicial-del-dataset" title="Permalink to this heading">#</a></h3>
+<p>La salida indica:</p>
+<p><strong>Dimensión del dataset:</strong> <code class="docutils literal notranslate"><span class="pre">(345,</span> <span class="pre">12)</span></code><br />
+345 registros de transacciones con 12 variables asociadas.</p>
+<ul class="simple">
+<li><p>Variables relevantes identificadas:</p></li>
+<li><p>Fecha (<code class="docutils literal notranslate"><span class="pre">FECHA</span></code>)</p></li>
+<li><p>Centro (<code class="docutils literal notranslate"><span class="pre">CENTRO</span></code>)</p></li>
+<li><p>Estrato</p></li>
+<li><p>Oferta (<code class="docutils literal notranslate"><span class="pre">OFERTA_ID</span></code>)</p></li>
+<li><p>Categoría (<code class="docutils literal notranslate"><span class="pre">GRUPO_CATEG</span></code>)</p></li>
+<li><p>Producto (<code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code>)</p></li>
+<li><p>Cantidad vendida</p></li>
+<li><p>Valor de venta</p></li>
+<li><p>Descuento aplicado</p></li>
+</ul>
+<p>Esto confirma que el dataset contiene tanto variables operativas como comerciales, lo que lo hace adecuado para:</p>
+<ul class="simple">
+<li><p>Análisis de comportamiento de ventas</p></li>
+<li><p>Evaluación de impacto de descuentos</p></li>
+<li><p>Comparación entre centros</p></li>
+<li><p>Modelos de predicción de demanda (series de tiempo)</p></li>
+</ul>
+</section>
+<section id="valor-estrategico-para-el-proyecto">
+<h3>Valor estratégico para el proyecto<a class="headerlink" href="#valor-estrategico-para-el-proyecto" title="Permalink to this heading">#</a></h3>
+<p>Este primer paso garantiza:</p>
+<ul class="simple">
+<li><p>Integridad estructural del archivo</p></li>
+<li><p>Reproducibilidad del análisis</p></li>
+<li><p>Base sólida para limpieza, transformación y modelado predictivo</p></li>
+</ul>
+<p>Desde la perspectiva gerencial, este enfoque demuestra que el proyecto no solo busca generar modelos, sino hacerlo bajo un esquema metodológico robusto y auditable.</p>
+<p><strong>Conclusión:</strong><br />
+La carga de datos está correctamente estructurada y validada. El dataset presenta una base coherente para iniciar el análisis exploratorio y posteriormente avanzar hacia modelos predictivos de ventas, alineados con la estrategia analítica de Olímpica.</p>
+</section>
+</section>
+<section id="vista-rapida-y-estructura-general">
+<h2><strong>1.3 Vista rápida y estructura general</strong><a class="headerlink" href="#vista-rapida-y-estructura-general" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columnas:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_raw</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Muestra aleatoria:&quot;</span><span class="p">)</span>
+<span class="n">df_raw</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_raw</span><span class="p">)),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columnas: [&#39;NroReg&#39;, &#39;FECHA&#39;, &#39;CENTRO&#39;, &#39;Estrato&#39;, &#39;OFERTA_ID&#39;, &#39;FACTURA&#39;, &#39;GRUPO_CATEG&#39;, &#39;PLU_SAP&#39;, &#39;CANTIDAD&#39;, &#39;VENTA&#39;, &#39;DESCUENTO&#39;, &#39;GRUCOM&#39;]
+
+Muestra aleatoria:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NroReg</th>
+      <th>FECHA</th>
+      <th>CENTRO</th>
+      <th>Estrato</th>
+      <th>OFERTA_ID</th>
+      <th>FACTURA</th>
+      <th>GRUPO_CATEG</th>
+      <th>PLU_SAP</th>
+      <th>CANTIDAD</th>
+      <th>VENTA</th>
+      <th>DESCUENTO</th>
+      <th>GRUCOM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>173</th>
+      <td>3198</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>158</td>
+      <td>1</td>
+      <td>254</td>
+      <td>0,361</td>
+      <td>27700</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>491</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>61</td>
+      <td>1</td>
+      <td>62</td>
+      <td>0,421</td>
+      <td>25500</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>2075</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>129</td>
+      <td>1</td>
+      <td>190</td>
+      <td>0,389</td>
+      <td>29900</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>6032</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>251106</td>
+      <td>291</td>
+      <td>1</td>
+      <td>198</td>
+      <td>0,152</td>
+      <td>4005</td>
+      <td>445,00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>2537</td>
+      <td>46023</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>218</td>
+      <td>1</td>
+      <td>219</td>
+      <td>2,952</td>
+      <td>9570</td>
+      <td>0,00</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="validacion-visual-de-columnas-y-muestra-de-datos">
+<h2>Validación visual de columnas y muestra de datos<a class="headerlink" href="#validacion-visual-de-columnas-y-muestra-de-datos" title="Permalink to this heading">#</a></h2>
+<p>La salida presentada confirma que el dataset de ventas contiene 12 columnas correctamente estructuradas, cubriendo información transaccional, comercial, operativa y de producto. Esto valida que la base entregada mantiene la integridad esperada del modelo de datos.</p>
+<p>En la muestra aleatoria observada se identifican los siguientes puntos relevantes:</p>
+<ul class="simple">
+<li><p>Consistencia en la estructura de los registros.</p></li>
+<li><p>Presencia de valores decimales en la variable <code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code>, lo que indica ventas fraccionadas o unidades no enteras.</p></li>
+<li><p>Existencia de registros con descuento aplicado (<code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code> distinto de cero), lo que permitirá analizar el impacto promocional en el comportamiento de ventas.</p></li>
+<li><p>Coherencia entre <code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code> y <code class="docutils literal notranslate"><span class="pre">VENTA</span></code>, lo que sugiere integridad inicial en los datos monetarios.</p></li>
+</ul>
+<p>Desde una perspectiva ejecutiva, esta validación preliminar confirma que la base de datos es consistente y contiene variables estratégicas suficientes para realizar análisis de desempeño comercial y avanzar hacia modelos predictivos de demanda y optimización de ventas.</p>
+</section>
+<section id="diccionario-de-datos-tipos-nulos-cardinalidades">
+<h2><strong>1.4 Diccionario de datos (tipos, nulos, cardinalidades)</strong><a class="headerlink" href="#diccionario-de-datos-tipos-nulos-cardinalidades" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">data_dictionary</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s2">&quot;col&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+        <span class="s2">&quot;dtype_raw&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+        <span class="s2">&quot;n_null&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+        <span class="s2">&quot;pct_null&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+        <span class="s2">&quot;n_unique&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+        <span class="s2">&quot;sample_1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;pct_null&quot;</span><span class="p">,</span> <span class="s2">&quot;n_unique&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">dic_raw</span> <span class="o">=</span> <span class="n">data_dictionary</span><span class="p">(</span><span class="n">df_raw</span><span class="p">)</span>
+<span class="n">dic_raw</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col</th>
+      <th>dtype_raw</th>
+      <th>n_null</th>
+      <th>pct_null</th>
+      <th>n_unique</th>
+      <th>sample_1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>FECHA</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>46023</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CENTRO</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Estrato</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>GRUPO_CATEG</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>GRUCOM</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>OFERTA_ID</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>DESCUENTO</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>24</td>
+      <td>0,00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>FACTURA</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>175</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>VENTA</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>195</td>
+      <td>36900</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>CANTIDAD</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>210</td>
+      <td>2,061</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PLU_SAP</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>228</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NroReg</td>
+      <td>str</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>345</td>
+      <td>45</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="diccionario-de-datos-evaluacion-integral-de-calidad">
+<h2>Diccionario de Datos – Evaluación Integral de Calidad<a class="headerlink" href="#diccionario-de-datos-evaluacion-integral-de-calidad" title="Permalink to this heading">#</a></h2>
+<p>El bloque presentado construye un diccionario técnico del dataset con el objetivo de auditar la calidad estructural de la información antes de iniciar procesos de transformación y modelado.</p>
+<section id="control-de-calidad-estructural">
+<h3>1. Control de calidad estructural<a class="headerlink" href="#control-de-calidad-estructural" title="Permalink to this heading">#</a></h3>
+<p>La salida muestra que:</p>
+<ul class="simple">
+<li><p>Todas las columnas tienen <code class="docutils literal notranslate"><span class="pre">n_null</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+<li><p>El porcentaje de valores nulos (<code class="docutils literal notranslate"><span class="pre">pct_null</span></code>) es <code class="docutils literal notranslate"><span class="pre">0.000</span></code> en todos los casos</p></li>
+</ul>
+<p>Esto indica <strong>integridad total en la captura de datos</strong> dentro de esta muestra. Desde una perspectiva operativa, refleja consistencia en los sistemas transaccionales que originan la información.</p>
+</section>
+<section id="tipificacion-actual-de-las-variables">
+<h3>2. Tipificación actual de las variables<a class="headerlink" href="#tipificacion-actual-de-las-variables" title="Permalink to this heading">#</a></h3>
+<p>Se observa que todas las variables están cargadas como tipo <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p>Esta decisión fue intencional en la etapa inicial para evitar errores en:</p>
+<ul class="simple">
+<li><p>Valores monetarios (<code class="docutils literal notranslate"><span class="pre">VENTA</span></code>)</p></li>
+<li><p>Cantidades con separador decimal tipo coma (<code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code>)</p></li>
+<li><p>Descuentos (<code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code>)</p></li>
+</ul>
+<p>Sin embargo, para análisis cuantitativo y modelos predictivos será necesario:</p>
+<ul class="simple">
+<li><p>Convertir <code class="docutils literal notranslate"><span class="pre">VENTA</span></code>, <code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code> y <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code> a formato numérico</p></li>
+<li><p>Transformar <code class="docutils literal notranslate"><span class="pre">FECHA</span></code> a tipo fecha</p></li>
+<li><p>Definir variables categóricas (por ejemplo <code class="docutils literal notranslate"><span class="pre">CENTRO</span></code>, <code class="docutils literal notranslate"><span class="pre">GRUPO_CATEG</span></code>, <code class="docutils literal notranslate"><span class="pre">Estrato</span></code>)</p></li>
+</ul>
+</section>
+<section id="analisis-de-cardinalidad-valores-unicos">
+<h3>3. Análisis de cardinalidad (valores únicos)<a class="headerlink" href="#analisis-de-cardinalidad-valores-unicos" title="Permalink to this heading">#</a></h3>
+<p>El número de valores únicos permite entender la naturaleza de cada variable:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NroReg</span></code> presenta 345 valores únicos → identificador por registro</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code> presenta 228 valores únicos → alta diversidad de productos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FACTURA</span></code> presenta 175 valores únicos → múltiples productos por transacción</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code> presenta 24 valores únicos → posible análisis de políticas promocionales</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CENTRO</span></code>, <code class="docutils literal notranslate"><span class="pre">Estrato</span></code>, <code class="docutils literal notranslate"><span class="pre">GRUPO_CATEG</span></code> presentan baja cardinalidad → ideales para segmentación</p></li>
+</ul>
+<p>Este análisis es estratégico porque permite anticipar:</p>
+<ul class="simple">
+<li><p>Variables explicativas relevantes para modelos de predicción</p></li>
+<li><p>Potencial de segmentación comercial</p></li>
+<li><p>Nivel de granularidad disponible para análisis de desempeño</p></li>
+</ul>
+</section>
+<section id="implicaciones-estrategicas">
+<h3>Implicaciones estratégicas<a class="headerlink" href="#implicaciones-estrategicas" title="Permalink to this heading">#</a></h3>
+<p>La revisión confirma que la base:</p>
+<ul class="simple">
+<li><p>Tiene alta calidad estructural</p></li>
+<li><p>No presenta valores faltantes</p></li>
+<li><p>Contiene diversidad suficiente para análisis por producto, centro y factura</p></li>
+<li><p>Está lista para una fase de tipificación y transformación controlada</p></li>
+</ul>
+<p>Conclusión<br />
+El diccionario de datos confirma que la información entregada cumple con estándares adecuados de integridad y diversidad analítica, lo que permite avanzar con confianza hacia análisis descriptivos avanzados y modelos predictivos orientados a optimización comercial.</p>
+</section>
+</section>
+<section id="conversion-de-tipos-criticos">
+<h2><strong>1.5 Conversión de tipos críticos</strong><a class="headerlink" href="#conversion-de-tipos-criticos" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Helpers robustos</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_numeric_comma</span><span class="p">(</span><span class="n">series</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convierte strings con coma decimal y separadores raros a float (NaN si falla).&quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;None&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;nan&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">})</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>      <span class="c1"># por si hay miles con punto (poco probable)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>     <span class="c1"># coma decimal -&gt; punto</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">excel_serial_to_date</span><span class="p">(</span><span class="n">series</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convierte serial excel (días desde 1899-12-30) a datetime.&quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;1899-12-30&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ajusta nombres si cambian</span>
+<span class="n">cols_expected</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NroReg&quot;</span><span class="p">,</span> <span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;FACTURA&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;OFERTA_ID&quot;</span><span class="p">]</span>
+<span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols_expected</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Faltan (si aplica):&quot;</span><span class="p">,</span> <span class="n">missing</span><span class="p">)</span>
+
+<span class="c1"># Conversión</span>
+<span class="k">if</span> <span class="s2">&quot;NroReg&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;NroReg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;NroReg&quot;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s2">&quot;FECHA&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">excel_serial_to_date</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_numeric_comma</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;FACTURA&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;GRUPO_CATEG&quot;</span><span class="p">,</span> <span class="s2">&quot;GRUCOM&quot;</span><span class="p">,</span> <span class="s2">&quot;Estrato&quot;</span><span class="p">,</span> <span class="s2">&quot;OFERTA_ID&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Tipos finales</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Faltan (si aplica): []
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NroReg                  Int64
+FECHA          datetime64[us]
+CENTRO                    str
+Estrato                   str
+OFERTA_ID                 str
+FACTURA                   str
+GRUPO_CATEG               str
+PLU_SAP                   str
+CANTIDAD              float64
+VENTA                   int64
+DESCUENTO             float64
+GRUCOM                    str
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estandarizacion-de-tipos-y-preparacion-del-dataset-para-analitica">
+<h2>Estandarización de tipos y preparación del dataset para analítica<a class="headerlink" href="#estandarizacion-de-tipos-y-preparacion-del-dataset-para-analitica" title="Permalink to this heading">#</a></h2>
+<p>La salida confirma que el proceso de tipificación y limpieza fue exitoso y deja el dataset listo para análisis exploratorio cuantitativo y, posteriormente, para modelado predictivo.</p>
+<section id="validacion-de-columnas-esperadas">
+<h3>Validación de columnas esperadas<a class="headerlink" href="#validacion-de-columnas-esperadas" title="Permalink to this heading">#</a></h3>
+<p>La línea <code class="docutils literal notranslate"><span class="pre">Faltan</span> <span class="pre">(si</span> <span class="pre">aplica):</span> <span class="pre">[]</span></code> indica que todas las columnas críticas definidas como necesarias para el análisis (<code class="docutils literal notranslate"><span class="pre">FECHA</span></code>, <code class="docutils literal notranslate"><span class="pre">VENTA</span></code>, <code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code>, <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code>, identificadores y llaves operativas) están presentes. Esto reduce riesgos de reprocesos y garantiza que el flujo de trabajo puede continuar sin ajustes de esquema.</p>
+</section>
+<section id="conversion-de-fecha-a-formato-analitico">
+<h3>Conversión de fecha a formato analítico<a class="headerlink" href="#conversion-de-fecha-a-formato-analitico" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">FECHA</span></code> aparece como <code class="docutils literal notranslate"><span class="pre">datetime64[us]</span></code>, lo que confirma que la variable fue convertida correctamente desde un serial tipo Excel a una fecha real. Este paso es fundamental porque habilita análisis temporales como:</p>
+<ul class="simple">
+<li><p>tendencias por día/semana/mes</p></li>
+<li><p>estacionalidad</p></li>
+<li><p>construcción de series de tiempo para predicción de ventas</p></li>
+</ul>
+</section>
+<section id="variables-numericas-correctamente-tipificadas">
+<h3>Variables numéricas correctamente tipificadas<a class="headerlink" href="#variables-numericas-correctamente-tipificadas" title="Permalink to this heading">#</a></h3>
+<p>Las variables clave para el análisis monetario y de volumen quedan como numéricas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA</span></code> → <code class="docutils literal notranslate"><span class="pre">int64</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code> → <code class="docutils literal notranslate"><span class="pre">float64</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code> → <code class="docutils literal notranslate"><span class="pre">float64</span></code></p></li>
+</ul>
+<p>Esto confirma que se resolvió adecuadamente el reto de lectura inicial (valores con coma decimal) y que ahora es posible:</p>
+<ul class="simple">
+<li><p>calcular métricas agregadas (sumas, promedios, percentiles)</p></li>
+<li><p>evaluar elasticidad a descuentos</p></li>
+<li><p>construir variables derivadas (precio unitario, ticket promedio, etc.)</p></li>
+</ul>
+</section>
+<section id="identificadores-y-dimensiones-como-texto">
+<h3>Identificadores y dimensiones como texto<a class="headerlink" href="#identificadores-y-dimensiones-como-texto" title="Permalink to this heading">#</a></h3>
+<p>Dimensiones como <code class="docutils literal notranslate"><span class="pre">CENTRO</span></code>, <code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code>, <code class="docutils literal notranslate"><span class="pre">GRUPO_CATEG</span></code>, <code class="docutils literal notranslate"><span class="pre">OFERTA_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">Estrato</span></code> y <code class="docutils literal notranslate"><span class="pre">GRUCOM</span></code> permanecen como <code class="docutils literal notranslate"><span class="pre">str</span></code>, lo cual es adecuado porque se comportan como variables categóricas y son esenciales para segmentación y análisis comparativo.</p>
+</section>
+<section id="robustez-del-proceso-de-limpieza">
+<h3>Robustez del proceso de limpieza<a class="headerlink" href="#robustez-del-proceso-de-limpieza" title="Permalink to this heading">#</a></h3>
+<p>Los resultados reflejan que el pipeline implementa controles prácticos de calidad:</p>
+<ul class="simple">
+<li><p>normalización de separadores decimales y posibles separadores de miles</p></li>
+<li><p>conversión segura con <code class="docutils literal notranslate"><span class="pre">errors=&quot;coerce&quot;</span></code> para evitar fallas en ejecución</p></li>
+<li><p>estandarización de texto con <code class="docutils literal notranslate"><span class="pre">strip()</span></code> para eliminar espacios e inconsistencias</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>La tipificación final confirma que el dataset ya está en un estado “listo para analítica”: fechas interpretables, variables numéricas operables y dimensiones categóricas consistentes. Esto habilita una fase de exploración más profunda y crea una base sólida para modelos de pronóstico de ventas alineados con los objetivos del proyecto.</p>
+</section>
+<section id="validacion-de-granularidad-y-llaves-factura-producto-fecha-centro">
+<h2><strong>1.6 Validación de granularidad y llaves (factura-producto-fecha-centro)</strong><a class="headerlink" href="#validacion-de-granularidad-y-llaves-factura-producto-fecha-centro" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Granularidad esperada: una línea de factura (producto dentro de factura)</span>
+<span class="c1"># Posible llave: FECHA + CENTRO + FACTURA + PLU_SAP</span>
+<span class="n">key_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;FACTURA&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Key cols:&quot;</span><span class="p">,</span> <span class="n">key_cols</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">key_cols</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="n">dup_key</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">key_cols</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Duplicados por llave (FECHA-CENTRO-FACTURA-PLU_SAP):&quot;</span><span class="p">,</span> <span class="n">dup_key</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No están todas las columnas para la llave completa.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Conteos de cardinalidad útiles para auditoría</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;n_rows&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
+    <span class="s2">&quot;n_cols&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;n_dates&quot;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;FECHA&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;n_centros&quot;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;CENTRO&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;n_facturas&quot;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FACTURA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;FACTURA&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;n_products&quot;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;PLU_SAP&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key cols: [&#39;FECHA&#39;, &#39;CENTRO&#39;, &#39;FACTURA&#39;, &#39;PLU_SAP&#39;]
+Duplicados por llave (FECHA-CENTRO-FACTURA-PLU_SAP): 0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n_rows&#39;: 345,
+ &#39;n_cols&#39;: 12,
+ &#39;n_dates&#39;: 1,
+ &#39;n_centros&#39;: 1,
+ &#39;n_facturas&#39;: 175,
+ &#39;n_products&#39;: 228}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="auditoria-de-granularidad-y-unicidad-de-registros">
+<h2>Auditoría de granularidad y unicidad de registros<a class="headerlink" href="#auditoria-de-granularidad-y-unicidad-de-registros" title="Permalink to this heading">#</a></h2>
+<p>La salida valida un aspecto crítico del dataset: que la unidad de análisis corresponde a una “línea de factura” (producto dentro de una factura), y que dicha granularidad puede identificarse de forma consistente mediante una llave compuesta.</p>
+<section id="llave-operacional-utilizada">
+<h3>Llave operacional utilizada<a class="headerlink" href="#llave-operacional-utilizada" title="Permalink to this heading">#</a></h3>
+<p>Se definieron como columnas clave:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FECHA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CENTRO</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FACTURA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code></p></li>
+</ul>
+<p>Esta combinación representa, de forma natural, una transacción a nivel de producto dentro de una factura, en un centro específico y en una fecha determinada.</p>
+</section>
+<section id="resultado-de-duplicados-por-llave">
+<h3>Resultado de duplicados por llave<a class="headerlink" href="#resultado-de-duplicados-por-llave" title="Permalink to this heading">#</a></h3>
+<p>La auditoría arroja:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Duplicados</span> <span class="pre">por</span> <span class="pre">llave</span> <span class="pre">(FECHA-CENTRO-FACTURA-PLU_SAP):</span> <span class="pre">0</span></code></p></li>
+</ul>
+<p>Esto es un indicador fuerte de calidad, porque confirma que no existen registros repetidos para la misma combinación clave. En términos prácticos, cada fila del dataset es única bajo la granularidad esperada, lo que evita distorsiones en métricas como ventas totales, volumen, ticket promedio o análisis de promociones.</p>
+</section>
+<section id="resumen-de-cardinalidades-relevantes">
+<h3>Resumen de cardinalidades relevantes<a class="headerlink" href="#resumen-de-cardinalidades-relevantes" title="Permalink to this heading">#</a></h3>
+<p>Los conteos reportados permiten entender rápidamente la estructura del dataset:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_rows:</span> <span class="pre">345</span></code> registros (líneas de venta)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_cols:</span> <span class="pre">12</span></code> variables disponibles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_dates:</span> <span class="pre">1</span></code> fecha única en la muestra analizada</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_centros:</span> <span class="pre">1</span></code> centro único en la muestra analizada</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_facturas:</span> <span class="pre">175</span></code> facturas distintas</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_products:</span> <span class="pre">228</span></code> productos distintos</p></li>
+</ul>
+<p>Interpretación operativa:</p>
+<ul class="simple">
+<li><p>La muestra representa un solo día y un solo centro, lo cual es consistente con un extracto inicial o una partición del histórico.</p></li>
+<li><p>Existe una relación de múltiples productos por factura: 175 facturas para 345 líneas, lo que sugiere aproximadamente 2 ítems por factura en promedio en esta muestra.</p></li>
+<li><p>La diversidad de productos (228) indica buena variedad de referencias, incluso en un extracto de tamaño limitado.</p></li>
+</ul>
+</section>
+</section>
+<section id="id1">
+<h2>Conclusión<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Esta auditoría confirma que el dataset está correctamente estructurado a nivel de “línea de factura” y que no presenta duplicidades bajo la llave operacional definida. Esto garantiza que los análisis posteriores (agregaciones, segmentación por producto o factura, y construcción de series de tiempo) se basarán en una representación consistente y confiable de las transacciones.</p>
+</section>
+<section id="auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos">
+<h2><strong>1.7 Auditoría de calidad (nulos, duplicados, rangos, valores inválidos)</strong><a class="headerlink" href="#auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">audit</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Nulos</span>
+<span class="n">audit</span><span class="p">[</span><span class="s2">&quot;nulls&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="c1"># Duplicados fila completa</span>
+<span class="n">audit</span><span class="p">[</span><span class="s2">&quot;duplicate_rows_full&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Rango básico</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">audit</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">_min&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+        <span class="n">audit</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+        <span class="n">audit</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">_neg_count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Fechas raras</span>
+<span class="k">if</span> <span class="s2">&quot;FECHA&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">audit</span><span class="p">[</span><span class="s2">&quot;fecha_min&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+    <span class="n">audit</span><span class="p">[</span><span class="s2">&quot;fecha_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">audit</span><span class="p">[</span><span class="s2">&quot;fecha_na&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">audit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;nulls&#39;: {&#39;NroReg&#39;: 0,
+  &#39;FECHA&#39;: 0,
+  &#39;CENTRO&#39;: 0,
+  &#39;Estrato&#39;: 0,
+  &#39;OFERTA_ID&#39;: 0,
+  &#39;FACTURA&#39;: 0,
+  &#39;GRUPO_CATEG&#39;: 0,
+  &#39;PLU_SAP&#39;: 0,
+  &#39;CANTIDAD&#39;: 0,
+  &#39;VENTA&#39;: 0,
+  &#39;DESCUENTO&#39;: 0,
+  &#39;GRUCOM&#39;: 0},
+ &#39;duplicate_rows_full&#39;: 0,
+ &#39;VENTA_min&#39;: 1200.0,
+ &#39;VENTA_max&#39;: 77790.0,
+ &#39;VENTA_neg_count&#39;: 0,
+ &#39;CANTIDAD_min&#39;: 0.088,
+ &#39;CANTIDAD_max&#39;: 9.906,
+ &#39;CANTIDAD_neg_count&#39;: 0,
+ &#39;DESCUENTO_min&#39;: 0.0,
+ &#39;DESCUENTO_max&#39;: 13510.0,
+ &#39;DESCUENTO_neg_count&#39;: 0,
+ &#39;fecha_min&#39;: &#39;2026-01-01 00:00:00&#39;,
+ &#39;fecha_max&#39;: &#39;2026-01-01 00:00:00&#39;,
+ &#39;fecha_na&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="auditoria-de-integridad-y-validacion-de-rangos-operativos">
+<h2>Auditoría de integridad y validación de rangos operativos<a class="headerlink" href="#auditoria-de-integridad-y-validacion-de-rangos-operativos" title="Permalink to this heading">#</a></h2>
+<p>La salida presentada corresponde a una auditoría estructural y numérica del dataset, orientada a validar consistencia, integridad y posibles anomalías antes de avanzar hacia análisis estratégicos o modelado predictivo.</p>
+<section id="control-de-valores-nulos">
+<h3>1. Control de valores nulos<a class="headerlink" href="#control-de-valores-nulos" title="Permalink to this heading">#</a></h3>
+<p>El bloque reporta:</p>
+<ul class="simple">
+<li><p>Todos los campos con 0 valores nulos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fecha_na:</span> <span class="pre">0</span></code></p></li>
+</ul>
+<p>Esto confirma integridad total en la muestra analizada. No se requieren procesos de imputación ni ajustes correctivos en esta etapa.</p>
+</section>
+<section id="control-de-duplicados-completos">
+<h3>2. Control de duplicados completos<a class="headerlink" href="#control-de-duplicados-completos" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">duplicate_rows_full:</span> <span class="pre">0</span></code></p></li>
+</ul>
+<p>No existen filas completamente duplicadas en el dataset. Esto reduce el riesgo de sobreestimación en métricas como ventas totales, volumen vendido o número de transacciones.</p>
+</section>
+<section id="validacion-de-rangos-en-variables-criticas">
+<h3>3. Validación de rangos en variables críticas<a class="headerlink" href="#validacion-de-rangos-en-variables-criticas" title="Permalink to this heading">#</a></h3>
+<section id="venta">
+<h4>VENTA<a class="headerlink" href="#venta" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Mínimo: 1.200</p></li>
+<li><p>Máximo: 77.790</p></li>
+<li><p>Registros negativos: 0</p></li>
+</ul>
+<p>Los valores monetarios son coherentes y no presentan ventas negativas, lo cual es consistente con operaciones normales de facturación.</p>
+</section>
+<section id="cantidad">
+<h4>CANTIDAD<a class="headerlink" href="#cantidad" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Mínimo: 0.088</p></li>
+<li><p>Máximo: 9.906</p></li>
+<li><p>Registros negativos: 0</p></li>
+</ul>
+<p>Se observan cantidades fraccionadas, lo que sugiere venta por peso o unidades parciales. No existen valores negativos, lo cual valida consistencia operativa.</p>
+</section>
+<section id="descuento">
+<h4>DESCUENTO<a class="headerlink" href="#descuento" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Mínimo: 0.0</p></li>
+<li><p>Máximo: 13.510</p></li>
+<li><p>Registros negativos: 0</p></li>
+</ul>
+<p>El rango indica presencia de descuentos significativos en algunos registros, lo cual será relevante para analizar impacto promocional y elasticidad en ventas.</p>
+</section>
+</section>
+<section id="consistencia-temporal">
+<h3>4. Consistencia temporal<a class="headerlink" href="#consistencia-temporal" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fecha_min</span></code>: 2026-01-01</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fecha_max</span></code>: 2026-01-01</p></li>
+</ul>
+<p>La muestra corresponde a un único día, lo cual es consistente con un extracto puntual del histórico. Esto debe considerarse al interpretar métricas agregadas y antes de construir modelos de series de tiempo.</p>
+</section>
+</section>
+<section id="conclusion-ejecutiva">
+<h2>Conclusión ejecutiva<a class="headerlink" href="#conclusion-ejecutiva" title="Permalink to this heading">#</a></h2>
+<p>La auditoría confirma que el dataset:</p>
+<ul class="simple">
+<li><p>No contiene valores faltantes.</p></li>
+<li><p>No presenta duplicados completos.</p></li>
+<li><p>No tiene valores negativos en variables monetarias ni de volumen.</p></li>
+<li><p>Mantiene rangos coherentes para ventas, cantidades y descuentos.</p></li>
+<li><p>Está acotado a una única fecha en esta muestra.</p></li>
+</ul>
+<p>En términos de calidad de datos, la base se encuentra en condiciones adecuadas para análisis exploratorio avanzado y posterior modelado predictivo, sin riesgos estructurales evidentes en esta etapa.</p>
+</section>
+<section id="reglas-de-negocio-ventas-netas-y-senal-de-promocion">
+<h2><strong>1.8 Reglas de negocio: ventas netas y señal de promoción</strong><a class="headerlink" href="#reglas-de-negocio-ventas-netas-y-senal-de-promocion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ventas netas (asumiendo VENTA = bruto y DESCUENTO = descuento en moneda)</span>
+<span class="k">if</span> <span class="p">{</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># promo_flag a partir de OFERTA_ID o descuento</span>
+<span class="k">if</span> <span class="s2">&quot;OFERTA_ID&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;OFERTA_ID_NUM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;OFERTA_ID&quot;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;OFERTA_ID_NUM&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># precio unitario neto (solo exploratorio; cuidado si cantidad es por peso)</span>
+<span class="k">if</span> <span class="p">{</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PRECIO_UNITARIO_NETO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">,</span> <span class="s2">&quot;PRECIO_UNITARIO_NETO&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VENTA</th>
+      <th>DESCUENTO</th>
+      <th>VENTA_NETA</th>
+      <th>CANTIDAD</th>
+      <th>PROMO_FLAG</th>
+      <th>PRECIO_UNITARIO_NETO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>36900</td>
+      <td>0.000</td>
+      <td>36,900.000</td>
+      <td>2.061</td>
+      <td>0</td>
+      <td>17,903.930</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>47900</td>
+      <td>0.000</td>
+      <td>47,900.000</td>
+      <td>7.095</td>
+      <td>0</td>
+      <td>6,751.233</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30450</td>
+      <td>0.000</td>
+      <td>30,450.000</td>
+      <td>0.984</td>
+      <td>0</td>
+      <td>30,945.122</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>17750</td>
+      <td>0.000</td>
+      <td>17,750.000</td>
+      <td>0.771</td>
+      <td>0</td>
+      <td>23,022.049</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12150</td>
+      <td>0.000</td>
+      <td>12,150.000</td>
+      <td>0.402</td>
+      <td>0</td>
+      <td>30,223.881</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1200</td>
+      <td>0.000</td>
+      <td>1,200.000</td>
+      <td>0.321</td>
+      <td>0</td>
+      <td>3,738.318</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>17980</td>
+      <td>0.000</td>
+      <td>17,980.000</td>
+      <td>0.792</td>
+      <td>0</td>
+      <td>22,702.020</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>11850</td>
+      <td>0.000</td>
+      <td>11,850.000</td>
+      <td>0.633</td>
+      <td>0</td>
+      <td>18,720.379</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>31400</td>
+      <td>0.000</td>
+      <td>31,400.000</td>
+      <td>5.402</td>
+      <td>0</td>
+      <td>5,812.662</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>31800</td>
+      <td>0.000</td>
+      <td>31,800.000</td>
+      <td>0.580</td>
+      <td>0</td>
+      <td>54,827.586</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="derivacion-de-variables-de-negocio-para-analisis-y-modelado">
+<h2>Derivación de variables de negocio para análisis y modelado<a class="headerlink" href="#derivacion-de-variables-de-negocio-para-analisis-y-modelado" title="Permalink to this heading">#</a></h2>
+<p>La salida evidencia la creación de tres variables derivadas clave que enriquecen el dataset y lo alinean con preguntas típicas de negocio: ventas netas, presencia de promoción y precio unitario neto.</p>
+<section id="venta-neta-medicion-real-del-ingreso-por-linea">
+<h3>VENTA_NETA: medición real del ingreso por línea<a class="headerlink" href="#venta-neta-medicion-real-del-ingreso-por-linea" title="Permalink to this heading">#</a></h3>
+<p>A partir de <code class="docutils literal notranslate"><span class="pre">VENTA</span></code> y <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code> se calcula:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span> <span class="pre">=</span> <span class="pre">VENTA</span> <span class="pre">-</span> <span class="pre">DESCUENTO</span></code></p></li>
+</ul>
+<p>En la muestra mostrada, la mayoría de registros tienen <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span> <span class="pre">=</span> <span class="pre">0</span></code>, por lo que <code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code> coincide con <code class="docutils literal notranslate"><span class="pre">VENTA</span></code>. Este resultado es útil para:</p>
+<ul class="simple">
+<li><p>consolidar ingresos netos por producto, factura o centro</p></li>
+<li><p>comparar desempeño entre promociones vs no promociones</p></li>
+<li><p>construir series de tiempo con una métrica homogénea para pronóstico</p></li>
+</ul>
+</section>
+<section id="promo-flag-identificacion-operativa-de-promocion">
+<h3>PROMO_FLAG: identificación operativa de promoción<a class="headerlink" href="#promo-flag-identificacion-operativa-de-promocion" title="Permalink to this heading">#</a></h3>
+<p>La salida incluye una bandera binaria:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span> <span class="pre">=</span> <span class="pre">1</span></code> si <code class="docutils literal notranslate"><span class="pre">OFERTA_ID</span> <span class="pre">&gt;</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span> <span class="pre">=</span> <span class="pre">0</span></code> en caso contrario</p></li>
+</ul>
+<p>En los 10 registros presentados, <code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span> <span class="pre">=</span> <span class="pre">0</span></code>, lo que es consistente con <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span> <span class="pre">=</span> <span class="pre">0</span></code> en esa muestra. Esta variable permite análisis directos como:</p>
+<ul class="simple">
+<li><p>participación de ventas en promoción vs no promoción</p></li>
+<li><p>elasticidad de demanda frente a promociones</p></li>
+<li><p>evaluación de efectividad promocional por categoría o producto</p></li>
+</ul>
+</section>
+<section id="precio-unitario-neto-senal-de-precio-implicito">
+<h3>PRECIO_UNITARIO_NETO: señal de precio implícito<a class="headerlink" href="#precio-unitario-neto-senal-de-precio-implicito" title="Permalink to this heading">#</a></h3>
+<p>Se calcula como:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PRECIO_UNITARIO_NETO</span> <span class="pre">=</span> <span class="pre">VENTA_NETA</span> <span class="pre">/</span> <span class="pre">CANTIDAD</span></code> (cuando <code class="docutils literal notranslate"><span class="pre">CANTIDAD</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>)</p></li>
+</ul>
+<p>En la salida se observan precios unitarios que varían ampliamente entre filas, lo cual es esperable porque:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code> puede representar unidades fraccionadas (por ejemplo, productos vendidos por peso)</p></li>
+<li><p>se trata de diferentes productos (<code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code>) con estructuras de precio distintas</p></li>
+</ul>
+<p>Este indicador es particularmente valioso para:</p>
+<ul class="simple">
+<li><p>detectar outliers de precio (posibles errores de captura o casos atípicos)</p></li>
+<li><p>construir features para modelos (precio unitario, dispersión por producto)</p></li>
+<li><p>estudiar sensibilidad del volumen ante cambios en precio neto</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>Conclusión<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>La tabla resultante confirma que el dataset ya incorpora variables interpretables desde negocio. Estas transformaciones habilitan análisis más directos y accionables, y mejoran la capacidad explicativa para modelos predictivos de ventas, especialmente al distinguir ventas netas, actividad promocional y señales de precio unitario.</p>
+</section>
+<section id="estadisticas-descriptivas-ventas-cantidades-descuentos">
+<h2><strong>1.9 Estadísticas descriptivas (ventas, cantidades, descuentos)</strong><a class="headerlink" href="#estadisticas-descriptivas-ventas-cantidades-descuentos" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">describe_numeric</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mf">.01</span><span class="p">,</span> <span class="mf">.05</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="mf">.99</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">describe_numeric</span><span class="p">([</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;PRECIO_UNITARIO_NETO&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>1%</th>
+      <th>5%</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>95%</th>
+      <th>99%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>VENTA</th>
+      <td>345.000</td>
+      <td>16,541.858</td>
+      <td>11,738.521</td>
+      <td>1,200.000</td>
+      <td>1,200.000</td>
+      <td>3,800.000</td>
+      <td>8,250.000</td>
+      <td>13,650.000</td>
+      <td>22,725.000</td>
+      <td>38,860.000</td>
+      <td>52,808.000</td>
+      <td>77,790.000</td>
+    </tr>
+    <tr>
+      <th>DESCUENTO</th>
+      <td>345.000</td>
+      <td>247.272</td>
+      <td>1,250.130</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1,463.800</td>
+      <td>5,806.000</td>
+      <td>13,510.000</td>
+    </tr>
+    <tr>
+      <th>VENTA_NETA</th>
+      <td>345.000</td>
+      <td>16,294.586</td>
+      <td>11,540.719</td>
+      <td>1,200.000</td>
+      <td>1,200.000</td>
+      <td>3,566.400</td>
+      <td>8,250.000</td>
+      <td>13,220.000</td>
+      <td>21,990.000</td>
+      <td>38,320.000</td>
+      <td>50,760.400</td>
+      <td>77,790.000</td>
+    </tr>
+    <tr>
+      <th>CANTIDAD</th>
+      <td>345.000</td>
+      <td>0.868</td>
+      <td>1.195</td>
+      <td>0.088</td>
+      <td>0.128</td>
+      <td>0.156</td>
+      <td>0.321</td>
+      <td>0.518</td>
+      <td>0.962</td>
+      <td>2.428</td>
+      <td>7.095</td>
+      <td>9.906</td>
+    </tr>
+    <tr>
+      <th>PRECIO_UNITARIO_NETO</th>
+      <td>345.000</td>
+      <td>32,372.717</td>
+      <td>31,720.941</td>
+      <td>2,944.515</td>
+      <td>3,241.870</td>
+      <td>4,455.899</td>
+      <td>10,991.189</td>
+      <td>23,421.053</td>
+      <td>41,610.738</td>
+      <td>85,531.429</td>
+      <td>158,602.500</td>
+      <td>248,458.150</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="estadisticos-descriptivos-de-variables-criticas-de-negocio">
+<h2>Estadísticos descriptivos de variables críticas de negocio<a class="headerlink" href="#estadisticos-descriptivos-de-variables-criticas-de-negocio" title="Permalink to this heading">#</a></h2>
+<p>La tabla presentada resume la distribución de las principales variables cuantitativas del dataset, incorporando percentiles avanzados (1%, 5%, 95% y 99%) para evaluar dispersión y posibles valores extremos.</p>
+<section id="venta-y-venta-neta">
+<h3>1. VENTA y VENTA_NETA<a class="headerlink" href="#venta-y-venta-neta" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Total de registros: 345</p></li>
+<li><p>Venta promedio: 16.542</p></li>
+<li><p>Mediana (P50): 13.650</p></li>
+<li><p>P95: 52.808</p></li>
+<li><p>Máximo: 77.790</p></li>
+</ul>
+<p>La media es superior a la mediana, lo que sugiere una distribución asimétrica positiva, con presencia de tickets altos que elevan el promedio.<br />
+Este comportamiento es consistente con ventas minoristas donde existen algunos productos de mayor valor o compras voluminosas.</p>
+<p>La similitud entre <code class="docutils literal notranslate"><span class="pre">VENTA</span></code> y <code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code> indica que, en esta muestra, el impacto promedio de descuentos es relativamente bajo.</p>
+</section>
+<section id="id3">
+<h3>2. DESCUENTO<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Media: 247</p></li>
+<li><p>Mediana: 0</p></li>
+<li><p>P75: 0</p></li>
+<li><p>P95: 1.463</p></li>
+<li><p>Máximo: 13.510</p></li>
+</ul>
+<p>El hecho de que la mediana y el P75 sean cero confirma que la mayoría de transacciones no tienen descuento aplicado.<br />
+Sin embargo, el máximo elevado evidencia que existen eventos promocionales puntuales de alto impacto, lo cual será relevante para analizar elasticidad y efecto promocional.</p>
+</section>
+<section id="id4">
+<h3>3. CANTIDAD<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Media: 0.868</p></li>
+<li><p>Mediana: 0.518</p></li>
+<li><p>P95: 2.428</p></li>
+<li><p>Máximo: 9.906</p></li>
+</ul>
+<p>La media superior a la mediana también sugiere asimetría positiva.<br />
+La presencia de valores fraccionados confirma que existen productos vendidos por peso o fracción de unidad.<br />
+Algunos registros muestran compras de alto volumen (cercanos a 10 unidades o kilogramos), que pueden influir significativamente en ingresos totales.</p>
+</section>
+<section id="precio-unitario-neto">
+<h3>4. PRECIO_UNITARIO_NETO<a class="headerlink" href="#precio-unitario-neto" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Media: 32.373</p></li>
+<li><p>Mediana: 23.421</p></li>
+<li><p>P95: 158.603</p></li>
+<li><p>Máximo: 248.458</p></li>
+</ul>
+<p>La dispersión es alta, lo cual es esperable dado que se trata de múltiples productos con estructuras de precio distintas.<br />
+La diferencia significativa entre mediana y P95 indica la presencia de productos premium o de alto valor unitario.</p>
+</section>
+</section>
+<section id="lectura-ejecutiva">
+<h2>Lectura ejecutiva<a class="headerlink" href="#lectura-ejecutiva" title="Permalink to this heading">#</a></h2>
+<p>Los estadísticos descriptivos muestran:</p>
+<ul class="simple">
+<li><p>Distribuciones asimétricas en ventas y cantidades.</p></li>
+<li><p>Bajo uso generalizado de descuentos, con eventos promocionales concentrados.</p></li>
+<li><p>Alta heterogeneidad en precios unitarios.</p></li>
+</ul>
+<p>Desde una perspectiva estratégica, estos resultados respaldan la necesidad de:</p>
+<ul class="simple">
+<li><p>Analizar comportamiento por segmento de producto.</p></li>
+<li><p>Evaluar impacto específico de promociones en productos de alto ticket.</p></li>
+<li><p>Considerar transformaciones (por ejemplo, logaritmos) en modelos predictivos debido a la asimetría observada.</p></li>
+</ul>
+</section>
+<section id="outliers-y-valores-extremos-diagnostico-inicial">
+<h2><strong>1.10 Outliers y valores extremos (diagnóstico inicial)</strong><a class="headerlink" href="#outliers-y-valores-extremos-diagnostico-inicial" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Top 10 por venta neta</span>
+<span class="k">if</span> <span class="s2">&quot;VENTA_NETA&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">top_venta</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">top_venta</span><span class="p">[[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;FACTURA&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]]</span>
+
+<span class="c1"># Top 10 por descuento</span>
+<span class="k">if</span> <span class="s2">&quot;DESCUENTO&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">top_desc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">top_desc</span><span class="p">[[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;FACTURA&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;CANTIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="checks-de-consistencia-oferta-vs-descuento-signos-coherencia-basica">
+<h2><strong>1.11 Checks de consistencia (oferta vs descuento, signos, coherencia básica)</strong><a class="headerlink" href="#checks-de-consistencia-oferta-vs-descuento-signos-coherencia-basica" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checks</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># 1) Venta neta negativa (raro si no hay devoluciones)</span>
+<span class="k">if</span> <span class="s2">&quot;VENTA_NETA&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">&quot;venta_neta_negativa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 2) Descuento &gt; venta (raro)</span>
+<span class="k">if</span> <span class="p">{</span><span class="s2">&quot;VENTA&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">&quot;descuento_mayor_que_venta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;VENTA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 3) promo_flag vs descuento (consistencia)</span>
+<span class="k">if</span> <span class="p">{</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">,</span> <span class="s2">&quot;DESCUENTO&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">&quot;promo_flag_1_descuento_0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(((</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">&quot;promo_flag_0_descuento_gt_0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(((</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 4) Cantidad &lt;= 0 (raro)</span>
+<span class="k">if</span> <span class="s2">&quot;CANTIDAD&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">&quot;cantidad_le_0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;CANTIDAD&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">checks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;venta_neta_negativa&#39;: 0,
+ &#39;descuento_mayor_que_venta&#39;: 0,
+ &#39;promo_flag_1_descuento_0&#39;: 0,
+ &#39;promo_flag_0_descuento_gt_0&#39;: 0,
+ &#39;cantidad_le_0&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="controles-de-consistencia-bajo-reglas-de-negocio">
+<h2>Controles de consistencia bajo reglas de negocio<a class="headerlink" href="#controles-de-consistencia-bajo-reglas-de-negocio" title="Permalink to this heading">#</a></h2>
+<p>El bloque ejecutado valida coherencia lógica entre variables clave del dataset, aplicando reglas básicas de negocio para identificar posibles anomalías operativas.</p>
+<section id="resultados-de-validacion">
+<h3>Resultados de validación<a class="headerlink" href="#resultados-de-validacion" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">venta_neta_negativa:</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descuento_mayor_que_venta:</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">promo_flag_1_descuento_0:</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">promo_flag_0_descuento_gt_0:</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cantidad_le_0:</span> <span class="pre">0</span></code></p></li>
+</ul>
+</section>
+<section id="interpretacion-ejecutiva">
+<h3>Interpretación ejecutiva<a class="headerlink" href="#interpretacion-ejecutiva" title="Permalink to this heading">#</a></h3>
+<p><strong>1. Venta neta negativa = 0</strong><br />
+No existen registros donde la venta neta sea negativa. Esto indica ausencia de devoluciones o errores de captura en esta muestra, y garantiza coherencia en el cálculo de ingresos.</p>
+<p><strong>2. Descuento mayor que la venta = 0</strong><br />
+No se detectan casos donde el descuento supere el valor bruto de la venta. Esta validación es crítica, ya que evitaría distorsiones en métricas financieras y márgenes.</p>
+<p><strong>3. Consistencia entre promoción y descuento</strong><br />
+No se encontraron inconsistencias entre <code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span></code> y <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code>.<br />
+Esto significa que:</p>
+<ul class="simple">
+<li><p>No existen promociones marcadas sin descuento aplicado.</p></li>
+<li><p>No existen descuentos aplicados sin una bandera promocional asociada.</p></li>
+</ul>
+<p>Este resultado refuerza la confiabilidad del modelo de datos promocional.</p>
+<p><strong>4. Cantidad menor o igual a cero = 0</strong><br />
+Todas las cantidades vendidas son positivas. No hay registros con valores cero o negativos, lo que confirma integridad transaccional.</p>
+</section>
+</section>
+<section id="id5">
+<h2>Conclusión<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<p>Las validaciones muestran que el dataset cumple con reglas básicas de coherencia financiera y operativa. No se detectan anomalías estructurales ni inconsistencias lógicas en esta muestra.</p>
+<p>Desde una perspectiva analítica, esto reduce significativamente el riesgo de sesgos en métricas agregadas y fortalece la confiabilidad del dataset como insumo para análisis exploratorio avanzado y modelos predictivos.</p>
+</section>
+<section id="guardado-de-dataset-limpio-processed-y-log-de-auditoria">
+<h2><strong>1.12 Guardado de dataset limpio (processed) y log de auditoría</strong><a class="headerlink" href="#guardado-de-dataset-limpio-processed-y-log-de-auditoria" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Guardar dataset limpio (muestra) en processed</span>
+<span class="n">out_csv</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;Ventas_1_clean.csv&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Guardado:&quot;</span><span class="p">,</span> <span class="n">out_csv</span><span class="p">)</span>
+
+<span class="c1"># Log de auditoría (json)</span>
+<span class="n">audit_report</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">file_path</span><span class="p">),</span>
+    <span class="s2">&quot;shape_raw&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+    <span class="s2">&quot;shape_clean&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+    <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span>
+    <span class="s2">&quot;checks&quot;</span><span class="p">:</span> <span class="n">checks</span><span class="p">,</span>
+    <span class="s2">&quot;nulls&quot;</span><span class="p">:</span> <span class="n">audit</span><span class="p">[</span><span class="s2">&quot;nulls&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;duplicate_rows_full&quot;</span><span class="p">:</span> <span class="n">audit</span><span class="p">[</span><span class="s2">&quot;duplicate_rows_full&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">out_json</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;audit_Ventas_1.json&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_json</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">audit_report</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Audit report:&quot;</span><span class="p">,</span> <span class="n">out_json</span><span class="p">)</span>
+<span class="n">audit_report</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Guardado: C:\Users\juana\olimpica_book\data\processed\Ventas_1_clean.csv
+Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;file&#39;: &#39;C:\\Users\\juana\\olimpica_book\\data\\raw\\Ventas_1.csv&#39;,
+ &#39;shape_raw&#39;: [345, 12],
+ &#39;shape_clean&#39;: [345, 16],
+ &#39;summary&#39;: {&#39;n_rows&#39;: 345,
+  &#39;n_cols&#39;: 12,
+  &#39;n_dates&#39;: 1,
+  &#39;n_centros&#39;: 1,
+  &#39;n_facturas&#39;: 175,
+  &#39;n_products&#39;: 228},
+ &#39;checks&#39;: {&#39;venta_neta_negativa&#39;: 0,
+  &#39;descuento_mayor_que_venta&#39;: 0,
+  &#39;promo_flag_1_descuento_0&#39;: 0,
+  &#39;promo_flag_0_descuento_gt_0&#39;: 0,
+  &#39;cantidad_le_0&#39;: 0},
+ &#39;nulls&#39;: {&#39;NroReg&#39;: 0,
+  &#39;FECHA&#39;: 0,
+  &#39;CENTRO&#39;: 0,
+  &#39;Estrato&#39;: 0,
+  &#39;OFERTA_ID&#39;: 0,
+  &#39;FACTURA&#39;: 0,
+  &#39;GRUPO_CATEG&#39;: 0,
+  &#39;PLU_SAP&#39;: 0,
+  &#39;CANTIDAD&#39;: 0,
+  &#39;VENTA&#39;: 0,
+  &#39;DESCUENTO&#39;: 0,
+  &#39;GRUCOM&#39;: 0},
+ &#39;duplicate_rows_full&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="persistencia-del-dataset-limpio-y-trazabilidad-del-proceso">
+<h2>Persistencia del dataset limpio y trazabilidad del proceso<a class="headerlink" href="#persistencia-del-dataset-limpio-y-trazabilidad-del-proceso" title="Permalink to this heading">#</a></h2>
+<p>El bloque ejecutado cumple una función estratégica dentro del proyecto: no solo transforma y valida la información, sino que garantiza su trazabilidad y gobernanza mediante la generación de artefactos formales.</p>
+<section id="generacion-del-dataset-limpio">
+<h3>1. Generación del dataset limpio<a class="headerlink" href="#generacion-del-dataset-limpio" title="Permalink to this heading">#</a></h3>
+<p>Se guarda el archivo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Ventas_1_clean.csv</span></code> en la carpeta <code class="docutils literal notranslate"><span class="pre">data/processed</span></code></p></li>
+</ul>
+<p>Esto permite:</p>
+<ul class="simple">
+<li><p>Separar claramente datos originales (<code class="docutils literal notranslate"><span class="pre">raw</span></code>) de datos transformados (<code class="docutils literal notranslate"><span class="pre">processed</span></code>)</p></li>
+<li><p>Garantizar reproducibilidad del análisis</p></li>
+<li><p>Facilitar auditorías posteriores</p></li>
+<li><p>Evitar reprocesamientos innecesarios</p></li>
+</ul>
+<p>El cambio estructural evidencia valor agregado:</p>
+<ul class="simple">
+<li><p>Shape original: 345 x 12</p></li>
+<li><p>Shape limpio: 345 x 16</p></li>
+</ul>
+<p>Las 4 columnas adicionales corresponden a variables derivadas estratégicas (por ejemplo, venta neta, bandera promocional y precio unitario neto), que enriquecen el análisis sin alterar la integridad transaccional.</p>
+</section>
+<section id="generacion-del-reporte-de-auditoria-json">
+<h3>2. Generación del reporte de auditoría (JSON)<a class="headerlink" href="#generacion-del-reporte-de-auditoria-json" title="Permalink to this heading">#</a></h3>
+<p>Se crea el archivo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">audit_Ventas_1.json</span></code></p></li>
+</ul>
+<p>Este reporte consolida:</p>
+<ul class="simple">
+<li><p>Ruta del archivo fuente</p></li>
+<li><p>Dimensiones antes y después del procesamiento</p></li>
+<li><p>Resumen de cardinalidades</p></li>
+<li><p>Validaciones de reglas de negocio</p></li>
+<li><p>Conteo de nulos</p></li>
+<li><p>Duplicados completos</p></li>
+</ul>
+</section>
+<section id="hallazgos-clave-consolidados-en-el-reporte">
+<h3>3. Hallazgos clave consolidados en el reporte<a class="headerlink" href="#hallazgos-clave-consolidados-en-el-reporte" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>No existen valores nulos.</p></li>
+<li><p>No hay duplicados completos.</p></li>
+<li><p>No se detectan inconsistencias financieras (ventas negativas, descuentos superiores a la venta, etc.).</p></li>
+<li><p>La muestra corresponde a 1 fecha y 1 centro.</p></li>
+<li><p>Se observan 175 facturas y 228 productos distintos.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./eda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">📊 Proyecto Predicción de ventas en Olímpica</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_limpieza_y_features2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>2. Limpieza y Construcción de Variables</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial"><strong>1.1 Configuración inicial</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset"><strong>1.2 Carga del dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-y-validacion-inicial-de-los-datos-ventas-olimpica">Carga y Validación Inicial de los Datos – Ventas Olímpica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-dinamica-de-la-ruta-del-proyecto">1. Detección dinámica de la ruta del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-estructurada-de-los-datos">2. Organización estructurada de los datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-controlada-del-archivo-de-ventas">3. Lectura controlada del archivo de ventas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-inicial-del-dataset">4. Validación inicial del dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-para-el-proyecto">Valor estratégico para el proyecto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vista-rapida-y-estructura-general"><strong>1.3 Vista rápida y estructura general</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-visual-de-columnas-y-muestra-de-datos">Validación visual de columnas y muestra de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-datos-tipos-nulos-cardinalidades"><strong>1.4 Diccionario de datos (tipos, nulos, cardinalidades)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-datos-evaluacion-integral-de-calidad">Diccionario de Datos – Evaluación Integral de Calidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-calidad-estructural">1. Control de calidad estructural</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipificacion-actual-de-las-variables">2. Tipificación actual de las variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-cardinalidad-valores-unicos">3. Análisis de cardinalidad (valores únicos)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones estratégicas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-tipos-criticos"><strong>1.5 Conversión de tipos críticos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-de-tipos-y-preparacion-del-dataset-para-analitica">Estandarización de tipos y preparación del dataset para analítica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-columnas-esperadas">Validación de columnas esperadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-fecha-a-formato-analitico">Conversión de fecha a formato analítico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas-correctamente-tipificadas">Variables numéricas correctamente tipificadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificadores-y-dimensiones-como-texto">Identificadores y dimensiones como texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-proceso-de-limpieza">Robustez del proceso de limpieza</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-granularidad-y-llaves-factura-producto-fecha-centro"><strong>1.6 Validación de granularidad y llaves (factura-producto-fecha-centro)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-granularidad-y-unicidad-de-registros">Auditoría de granularidad y unicidad de registros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llave-operacional-utilizada">Llave operacional utilizada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-de-duplicados-por-llave">Resultado de duplicados por llave</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-cardinalidades-relevantes">Resumen de cardinalidades relevantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos"><strong>1.7 Auditoría de calidad (nulos, duplicados, rangos, valores inválidos)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-integridad-y-validacion-de-rangos-operativos">Auditoría de integridad y validación de rangos operativos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-valores-nulos">1. Control de valores nulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-duplicados-completos">2. Control de duplicados completos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-rangos-en-variables-criticas">3. Validación de rangos en variables críticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#venta">VENTA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cantidad">CANTIDAD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento">DESCUENTO</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistencia-temporal">4. Consistencia temporal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-negocio-ventas-netas-y-senal-de-promocion"><strong>1.8 Reglas de negocio: ventas netas y señal de promoción</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivacion-de-variables-de-negocio-para-analisis-y-modelado">Derivación de variables de negocio para análisis y modelado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-neta-medicion-real-del-ingreso-por-linea">VENTA_NETA: medición real del ingreso por línea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promo-flag-identificacion-operativa-de-promocion">PROMO_FLAG: identificación operativa de promoción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto-senal-de-precio-implicito">PRECIO_UNITARIO_NETO: señal de precio implícito</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticas-descriptivas-ventas-cantidades-descuentos"><strong>1.9 Estadísticas descriptivas (ventas, cantidades, descuentos)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos-de-variables-criticas-de-negocio">Estadísticos descriptivos de variables críticas de negocio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-y-venta-neta">1. VENTA y VENTA_NETA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. DESCUENTO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. CANTIDAD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto">4. PRECIO_UNITARIO_NETO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-y-valores-extremos-diagnostico-inicial"><strong>1.10 Outliers y valores extremos (diagnóstico inicial)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checks-de-consistencia-oferta-vs-descuento-signos-coherencia-basica"><strong>1.11 Checks de consistencia (oferta vs descuento, signos, coherencia básica)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-bajo-reglas-de-negocio">Controles de consistencia bajo reglas de negocio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-validacion">Resultados de validación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardado-de-dataset-limpio-processed-y-log-de-auditoria"><strong>1.12 Guardado de dataset limpio (processed) y log de auditoría</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-del-dataset-limpio-y-trazabilidad-del-proceso">Persistencia del dataset limpio y trazabilidad del proceso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-del-dataset-limpio">1. Generación del dataset limpio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-del-reporte-de-auditoria-json">2. Generación del reporte de auditoría (JSON)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos-clave-consolidados-en-el-reporte">3. Hallazgos clave consolidados en el reporte</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Andrés Ramos Cardona & Sergio Cadavid
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

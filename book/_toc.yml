@@ -1,0 +1,18 @@
+format: jb-book
+root: intro
+
+chapters:
+  - file: eda/01_ingesta_y_auditoria2
+    title: "1. Ingesta y Auditoría del Dataset"
+
+  - file: eda/02_limpieza_y_features2
+    title: "2. Limpieza y Construcción de Variables"
+
+  - file: eda/03_eda_ventas
+    title: "3. Análisis Exploratorio de Ventas"
+
+  - file: eda/04_eda_promos_precios
+    title: "4. Análisis de Promociones y Descuentos"
+
+  - file: eda/05_conclusiones_y_reqs_dataset_grande
+    title: "5. Conclusiones y Requerimientos para la Fase 2"
