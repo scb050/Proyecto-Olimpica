@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Conclusiones Ejecutivas y Requerimientos para la Fase 2 &#8212; Proyecto Olimpica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eda/05_conclusiones_y_reqs_dataset_grande';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="4. Análisis de Promociones y Descuentos" href="04_eda_promos_precios.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Olimpica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ingesta_y_auditoria2.html">1. Ingesta y Auditoría del Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_limpieza_y_features2.html">2. Limpieza y Construcción de Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_eda_ventas.html">3. Análisis Exploratorio de Ventas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_eda_promos_precios.html">4. Análisis de Promociones y Descuentos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Conclusiones y Requerimientos para la Fase 2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/eda/05_conclusiones_y_reqs_dataset_grande.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5. Conclusiones Ejecutivas y Requerimientos para la Fase 2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos-clave-del-analisis-exploratorio"><strong>5.1 Hallazgos clave del análisis exploratorio</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-calidad-del-dataset"><strong>5.2 Diagnóstico de calidad del dataset</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fortalezas">Fortalezas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aspectos-a-considerar">Aspectos a considerar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oportunidades-detectadas-para-modelado-predictivo"><strong>5.3 Oportunidades detectadas para modelado predictivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-de-la-muestra-actual"><strong>5.4 Limitaciones de la Muestra Actual</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requerimientos-tecnicos-para-el-dataset-completo"><strong>5.5 Requerimientos Técnicos para el Dataset Completo</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#historico">Histórico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-adicionales-clave">Variables adicionales clave</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensiones-complementarias">Dimensiones complementarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-de-fase-2-modelado-predictivo"><strong>5.6 Propuesta de Fase 2 – Modelado Predictivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-estrategico-para-toma-de-decisiones"><strong>5.7 Resumen Estratégico para Toma de Decisiones</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-general">Conclusión General</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conclusiones-ejecutivas-y-requerimientos-para-la-fase-2">
+<h1><strong>5. Conclusiones Ejecutivas y Requerimientos para la Fase 2</strong><a class="headerlink" href="#conclusiones-ejecutivas-y-requerimientos-para-la-fase-2" title="Permalink to this heading">#</a></h1>
+<section id="hallazgos-clave-del-analisis-exploratorio">
+<h2><strong>5.1 Hallazgos clave del análisis exploratorio</strong><a class="headerlink" href="#hallazgos-clave-del-analisis-exploratorio" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_project_root</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">max_up</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_up</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">marker</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">p</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">return</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_project_root</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
+<span class="n">DATA_PROCESSED</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;processed&quot;</span>
+
+<span class="n">ts_path</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;ts_ventas_dia_tienda_producto.csv&quot;</span>
+
+<span class="n">df_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ts_path</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape:&quot;</span><span class="p">,</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df_ts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+
+<span class="n">hallazgos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Total Ventas Netas&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s2">&quot;Total Unidades&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s2">&quot;Porcentaje promedio de descuento&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="s2">&quot;VENTA_BRUTA&quot;</span> <span class="ow">in</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;Productos distintos&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+    <span class="s2">&quot;Tiendas distintas&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+    <span class="s2">&quot;Fechas disponibles&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">hallazgos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (228, 15)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Total Ventas Netas&#39;: np.float64(5621632.0),
+ &#39;Total Unidades&#39;: np.float64(299.32899999999995),
+ &#39;Porcentaje promedio de descuento&#39;: np.float64(1.333619883416488),
+ &#39;Productos distintos&#39;: 228,
+ &#39;Tiendas distintas&#39;: 1,
+ &#39;Fechas disponibles&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tras la auditoría y el análisis exploratorio realizado sobre la muestra de datos proporcionada por Olímpica, se identificaron los siguientes hallazgos relevantes:</p>
+<ul class="simple">
+<li><p>El dataset presenta una estructura transaccional a nivel de línea de factura (producto–ticket–tienda–fecha), lo cual es ideal para agregaciones temporales.</p></li>
+<li><p>Existe señal clara de actividad promocional mediante las variables de descuento y oferta.</p></li>
+<li><p>No se detectaron problemas estructurales graves (nulos masivos, inconsistencias críticas o valores imposibles).</p></li>
+<li><p>Se evidencia concentración de ventas en un subconjunto reducido de productos (patrón tipo 80/20).</p></li>
+<li><p>La variabilidad entre productos sugiere distintos comportamientos de demanda.</p></li>
+</ul>
+<p>Estos resultados confirman que el dataset es técnicamente viable para la construcción de modelos predictivos.</p>
+</section>
+<section id="diagnostico-de-calidad-del-dataset">
+<h2><strong>5.2 Diagnóstico de calidad del dataset</strong><a class="headerlink" href="#diagnostico-de-calidad-del-dataset" title="Permalink to this heading">#</a></h2>
+<p>Desde el punto de vista técnico, la muestra analizada presenta:</p>
+<section id="fortalezas">
+<h3>Fortalezas<a class="headerlink" href="#fortalezas" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Integridad estructural adecuada.</p></li>
+<li><p>Ausencia de duplicados críticos.</p></li>
+<li><p>Coherencia entre descuentos y promociones.</p></li>
+<li><p>Variables suficientes para análisis inicial de ventas.</p></li>
+</ul>
+</section>
+<section id="aspectos-a-considerar">
+<h3>Aspectos a considerar<a class="headerlink" href="#aspectos-a-considerar" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>La muestra contiene únicamente una fecha, lo cual limita el análisis temporal.</p></li>
+<li><p>No se dispone de precio regular explícito.</p></li>
+<li><p>No se cuenta con información de inventario o disponibilidad.</p></li>
+<li><p>No hay segmentación geográfica ampliada en esta muestra.</p></li>
+</ul>
+<p>En conclusión, la calidad es adecuada para Fase 1 (EDA), pero insuficiente aún para modelado temporal completo.</p>
+</section>
+</section>
+<section id="oportunidades-detectadas-para-modelado-predictivo">
+<h2><strong>5.3 Oportunidades detectadas para modelado predictivo</strong><a class="headerlink" href="#oportunidades-detectadas-para-modelado-predictivo" title="Permalink to this heading">#</a></h2>
+<p>El análisis permitió identificar señales importantes que justifican avanzar hacia modelos de forecasting:</p>
+<ul class="simple">
+<li><p>Presencia de variabilidad entre productos.</p></li>
+<li><p>Impacto observable de promociones en ventas.</p></li>
+<li><p>Diferencias entre tiendas (si se amplía la muestra).</p></li>
+<li><p>Potencial de incluir variables de calendario y comportamiento temporal.</p></li>
+</ul>
+<p>Estas señales son fundamentales para aplicar modelos como:</p>
+<ul class="simple">
+<li><p>Baselines estadísticos (Naive, Moving Average)</p></li>
+<li><p>Modelos de Machine Learning (XGBoost, LightGBM)</p></li>
+<li><p>Modelos de Deep Learning (LSTM, Temporal Fusion Transformers)</p></li>
+</ul>
+<p>El dataset tiene estructura compatible con modelos secuenciales.</p>
+</section>
+<section id="limitaciones-de-la-muestra-actual">
+<h2><strong>5.4 Limitaciones de la Muestra Actual</strong><a class="headerlink" href="#limitaciones-de-la-muestra-actual" title="Permalink to this heading">#</a></h2>
+<p>La muestra proporcionada tiene las siguientes limitaciones:</p>
+<ul class="simple">
+<li><p>Solo una fecha disponible (no permite análisis de estacionalidad ni tendencia).</p></li>
+<li><p>No es posible calcular lags ni ventanas móviles reales.</p></li>
+<li><p>No se puede estimar elasticidad real sin histórico.</p></li>
+<li><p>No se puede evaluar efecto acumulado de promociones.</p></li>
+</ul>
+<p>Por lo tanto, esta fase debe entenderse como una validación estructural preliminar.</p>
+</section>
+<section id="requerimientos-tecnicos-para-el-dataset-completo">
+<h2><strong>5.5 Requerimientos Técnicos para el Dataset Completo</strong><a class="headerlink" href="#requerimientos-tecnicos-para-el-dataset-completo" title="Permalink to this heading">#</a></h2>
+<p>Para avanzar hacia la Fase 2 (modelado predictivo de ventas), se recomienda solicitar:</p>
+<section id="historico">
+<h3>Histórico<a class="headerlink" href="#historico" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mínimo 2–3 años de información diaria.</p></li>
+<li><p>Granularidad Día – Tienda – Producto.</p></li>
+</ul>
+</section>
+<section id="variables-adicionales-clave">
+<h3>Variables adicionales clave<a class="headerlink" href="#variables-adicionales-clave" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Precio regular del producto.</p></li>
+<li><p>Tipo de promoción (porcentaje, 2x1, combo, etc.).</p></li>
+<li><p>Calendario comercial (festivos, campañas).</p></li>
+<li><p>Indicador de inventario o quiebres.</p></li>
+<li><p>(Opcional) Costo del producto.</p></li>
+</ul>
+</section>
+<section id="dimensiones-complementarias">
+<h3>Dimensiones complementarias<a class="headerlink" href="#dimensiones-complementarias" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Información geográfica de tiendas.</p></li>
+<li><p>Clasificación ampliada de productos.</p></li>
+</ul>
+<p>Con estas variables, el modelo podrá capturar patrones reales de comportamiento comercial.</p>
+</section>
+</section>
+<section id="propuesta-de-fase-2-modelado-predictivo">
+<h2><strong>5.6 Propuesta de Fase 2 – Modelado Predictivo</strong><a class="headerlink" href="#propuesta-de-fase-2-modelado-predictivo" title="Permalink to this heading">#</a></h2>
+<p>La siguiente fase del proyecto se estructurará en:</p>
+<ol class="arabic simple">
+<li><p>Construcción de modelos baseline.</p></li>
+<li><p>Implementación de modelos de Machine Learning.</p></li>
+<li><p>Implementación de modelos Deep Learning (LSTM).</p></li>
+<li><p>Comparación mediante métricas:</p>
+<ul class="simple">
+<li><p>MAE</p></li>
+<li><p>RMSE</p></li>
+<li><p>WMAPE</p></li>
+</ul>
+</li>
+<li><p>Evaluación de impacto comercial.</p></li>
+</ol>
+<p>El objetivo no es solo predecir ventas, sino mejorar la toma de decisiones operativas.</p>
+</section>
+<section id="resumen-estrategico-para-toma-de-decisiones">
+<h2><strong>5.7 Resumen Estratégico para Toma de Decisiones</strong><a class="headerlink" href="#resumen-estrategico-para-toma-de-decisiones" title="Permalink to this heading">#</a></h2>
+<p>El análisis exploratorio confirma que:</p>
+<ul class="simple">
+<li><p>La estructura del dataset es adecuada.</p></li>
+<li><p>Existe señal comercial relevante.</p></li>
+<li><p>La calidad de datos es consistente.</p></li>
+<li><p>Se requiere histórico ampliado para modelado robusto.</p></li>
+</ul>
+<section id="conclusion-general">
+<h3>Conclusión General<a class="headerlink" href="#conclusion-general" title="Permalink to this heading">#</a></h3>
+<p>El proyecto se encuentra en condiciones técnicas para avanzar hacia la construcción de modelos predictivos de ventas, siempre que se disponga del histórico completo y variables comerciales complementarias.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./eda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_eda_promos_precios.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>4. Análisis de Promociones y Descuentos</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos-clave-del-analisis-exploratorio"><strong>5.1 Hallazgos clave del análisis exploratorio</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-calidad-del-dataset"><strong>5.2 Diagnóstico de calidad del dataset</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fortalezas">Fortalezas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aspectos-a-considerar">Aspectos a considerar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oportunidades-detectadas-para-modelado-predictivo"><strong>5.3 Oportunidades detectadas para modelado predictivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-de-la-muestra-actual"><strong>5.4 Limitaciones de la Muestra Actual</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requerimientos-tecnicos-para-el-dataset-completo"><strong>5.5 Requerimientos Técnicos para el Dataset Completo</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#historico">Histórico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-adicionales-clave">Variables adicionales clave</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensiones-complementarias">Dimensiones complementarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-de-fase-2-modelado-predictivo"><strong>5.6 Propuesta de Fase 2 – Modelado Predictivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-estrategico-para-toma-de-decisiones"><strong>5.7 Resumen Estratégico para Toma de Decisiones</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-general">Conclusión General</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Andrés Ramos Cardona & Sergio Cadavid
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

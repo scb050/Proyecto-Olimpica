@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Análisis de Promociones y Descuentos &#8212; Proyecto Olimpica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eda/04_eda_promos_precios';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Conclusiones Ejecutivas y Requerimientos para la Fase 2" href="05_conclusiones_y_reqs_dataset_grande.html" />
+    <link rel="prev" title="3. Análisis Exploratorio de Ventas" href="03_eda_ventas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Olimpica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ingesta_y_auditoria2.html">1. Ingesta y Auditoría del Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_limpieza_y_features2.html">2. Limpieza y Construcción de Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_eda_ventas.html">3. Análisis Exploratorio de Ventas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Análisis de Promociones y Descuentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conclusiones_y_reqs_dataset_grande.html">5. Conclusiones y Requerimientos para la Fase 2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/eda/04_eda_promos_precios.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4. Análisis de Promociones y Descuentos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-promociones"><strong>4.1 Panorama general de promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencia-de-promociones-por-producto-y-tienda"><strong>4.2 Frecuencia de promociones por producto y tienda</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-de-promocion-en-ventas-netas"><strong>4.3 Impacto de promoción en ventas netas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-ventas-con-promocion-vs-sin-promocion"><strong>4.4 Comparación ventas con promoción vs sin promoción</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-porcentaje-de-descuento"><strong>4.5 Análisis del porcentaje de descuento</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticidad-aproximada-precioventas-exploratorio"><strong>4.6 Elasticidad aproximada precio–ventas (exploratorio)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-descuento-aplicado"><strong>4.7 Distribución del descuento aplicado</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-mas-sensibles-a-promociones"><strong>4.8 Productos más sensibles a promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-estrategicas-sobre-promociones"><strong>4.9 Conclusiones estratégicas sobre promociones</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-promociones-y-descuentos">
+<h1><strong>4. Análisis de Promociones y Descuentos</strong><a class="headerlink" href="#analisis-de-promociones-y-descuentos" title="Permalink to this heading">#</a></h1>
+<section id="panorama-general-de-promociones">
+<h2><strong>4.1 Panorama general de promociones</strong><a class="headerlink" href="#panorama-general-de-promociones" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_project_root</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">max_up</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_up</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">marker</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">p</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">return</span> <span class="n">start</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_project_root</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
+<span class="n">DATA_PROCESSED</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;processed&quot;</span>
+
+<span class="n">ts_path</span> <span class="o">=</span> <span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">&quot;ts_ventas_dia_tienda_producto.csv&quot;</span>
+
+<span class="n">df_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ts_path</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;FECHA&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape:&quot;</span><span class="p">,</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df_ts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="n">promo_summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Total registros&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_ts</span><span class="p">),</span>
+    <span class="s2">&quot;Registros con promoción&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="k">if</span> <span class="s2">&quot;PROMO_FLAG_AGG&quot;</span> <span class="ow">in</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;Porcentaje con promoción&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="s2">&quot;PROMO_FLAG_AGG&quot;</span> <span class="ow">in</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;Descuento total&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s2">&quot;Descuento promedio (%)&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="s2">&quot;VENTA_BRUTA&quot;</span> <span class="ow">in</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">promo_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (228, 15)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Total registros&#39;: 228,
+ &#39;Registros con promoción&#39;: 24,
+ &#39;Porcentaje con promoción&#39;: np.float64(10.526315789473683),
+ &#39;Descuento total&#39;: np.float64(85309.0),
+ &#39;Descuento promedio (%)&#39;: np.float64(1.333619883416488)}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="frecuencia-de-promociones-por-producto-y-tienda">
+<h2><strong>4.2 Frecuencia de promociones por producto y tienda</strong><a class="headerlink" href="#frecuencia-de-promociones-por-producto-y-tienda" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">promo_producto</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">promo_producto</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PLU_SAP
+27     1.0
+41     1.0
+98     1.0
+73     1.0
+126    1.0
+189    1.0
+181    1.0
+124    1.0
+133    1.0
+383    1.0
+Name: PROMO_FLAG_AGG, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="impacto-de-promocion-en-ventas-netas">
+<h2><strong>4.3 Impacto de promoción en ventas netas</strong><a class="headerlink" href="#impacto-de-promocion-en-ventas-netas" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">impacto_promo</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">impacto_promo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PROMO_FLAG_AGG
+0    24861.960784
+1    22908.000000
+Name: VENTA_NETA, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparacion-ventas-con-promocion-vs-sin-promocion">
+<h2><strong>4.4 Comparación ventas con promoción vs sin promoción</strong><a class="headerlink" href="#comparacion-ventas-con-promocion-vs-sin-promocion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">ventas_promo</span> <span class="o">=</span> <span class="n">df_ts</span><span class="p">[</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+<span class="n">ventas_no_promo</span> <span class="o">=</span> <span class="n">df_ts</span><span class="p">[</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ventas_no_promo</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sin Promo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ventas_promo</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Con Promo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución Ventas Netas: Promo vs No Promo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/35726c1dd6ee0ab6d550ceba0730837bc4aa583e510039dd293ae6423cac917d.png" src="../_images/35726c1dd6ee0ab6d550ceba0730837bc4aa583e510039dd293ae6423cac917d.png" />
+</div>
+</div>
+</section>
+<section id="analisis-del-porcentaje-de-descuento">
+<h2><strong>4.5 Análisis del porcentaje de descuento</strong><a class="headerlink" href="#analisis-del-porcentaje-de-descuento" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT_REAL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT_REAL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">0.9</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    228.000000
+mean       0.013336
+std        0.048819
+min        0.000000
+10%        0.000000
+25%        0.000000
+50%        0.000000
+75%        0.000000
+90%        0.028294
+max        0.346287
+Name: DESCUENTO_PCT_REAL, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="elasticidad-aproximada-precioventas-exploratorio">
+<h2><strong>4.6 Elasticidad aproximada precio–ventas (exploratorio)</strong><a class="headerlink" href="#elasticidad-aproximada-precioventas-exploratorio" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proxy de precio medio</span>
+<span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;PRECIO_MEDIO_APROX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">]</span>
+
+<span class="n">correlacion</span> <span class="o">=</span> <span class="n">df_ts</span><span class="p">[[</span><span class="s2">&quot;PRECIO_MEDIO_APROX&quot;</span><span class="p">,</span> <span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">correlacion</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PRECIO_MEDIO_APROX</th>
+      <th>VENTA_NETA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PRECIO_MEDIO_APROX</th>
+      <td>1.000000</td>
+      <td>0.196395</td>
+    </tr>
+    <tr>
+      <th>VENTA_NETA</th>
+      <td>0.196395</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="distribucion-del-descuento-aplicado">
+<h2><strong>4.7 Distribución del descuento aplicado</strong><a class="headerlink" href="#distribucion-del-descuento-aplicado" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT_REAL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución del </span><span class="si">% d</span><span class="s2">e Descuento&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eeb10aeb605cdfa412b84d6751a915cd8ec7446f41628009ffd7616e7e42db4b.png" src="../_images/eeb10aeb605cdfa412b84d6751a915cd8ec7446f41628009ffd7616e7e42db4b.png" />
+</div>
+</div>
+</section>
+<section id="productos-mas-sensibles-a-promociones">
+<h2><strong>4.8 Productos más sensibles a promociones</strong><a class="headerlink" href="#productos-mas-sensibles-a-promociones" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensibilidad</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">])[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">sensibilidad</span><span class="p">[</span><span class="s2">&quot;Lift_Promo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensibilidad</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sensibilidad</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sensibilidad</span> <span class="o">=</span> <span class="n">sensibilidad</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Lift_Promo&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">sensibilidad</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>PROMO_FLAG_AGG</th>
+      <th>0</th>
+      <th>1</th>
+      <th>Lift_Promo</th>
+    </tr>
+    <tr>
+      <th>PLU_SAP</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>36900.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>143700.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60900.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>17750.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>24300.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>7200.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>17980.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>23700.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>31400.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>31800.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="conclusiones-estrategicas-sobre-promociones">
+<h2><strong>4.9 Conclusiones estratégicas sobre promociones</strong><a class="headerlink" href="#conclusiones-estrategicas-sobre-promociones" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conclusiones_promo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Venta promedio con promo&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ventas_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ventas_promo</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;Venta promedio sin promo&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ventas_no_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ventas_no_promo</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;Lift promedio aproximado&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ventas_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">ventas_no_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ventas_promo</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;Correlación precio–ventas&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">correlacion</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">correlacion</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">conclusiones_promo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Venta promedio con promo&#39;: 22908.0,
+ &#39;Venta promedio sin promo&#39;: 24861.960784313724,
+ &#39;Lift promedio aproximado&#39;: -1953.9607843137237,
+ &#39;Correlación precio–ventas&#39;: 0.19639542670916246}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./eda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_eda_ventas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>3. Análisis Exploratorio de Ventas</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_conclusiones_y_reqs_dataset_grande.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>5. Conclusiones Ejecutivas y Requerimientos para la Fase 2</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-promociones"><strong>4.1 Panorama general de promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencia-de-promociones-por-producto-y-tienda"><strong>4.2 Frecuencia de promociones por producto y tienda</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-de-promocion-en-ventas-netas"><strong>4.3 Impacto de promoción en ventas netas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-ventas-con-promocion-vs-sin-promocion"><strong>4.4 Comparación ventas con promoción vs sin promoción</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-porcentaje-de-descuento"><strong>4.5 Análisis del porcentaje de descuento</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticidad-aproximada-precioventas-exploratorio"><strong>4.6 Elasticidad aproximada precio–ventas (exploratorio)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-descuento-aplicado"><strong>4.7 Distribución del descuento aplicado</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-mas-sensibles-a-promociones"><strong>4.8 Productos más sensibles a promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-estrategicas-sobre-promociones"><strong>4.9 Conclusiones estratégicas sobre promociones</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan Andrés Ramos Cardona & Sergio Cadavid
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
