@@ -314,14 +314,36 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-promociones"><strong>4.1 Panorama general de promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-analisis-de-promociones">Interpretación del Análisis de Promociones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intensidad-promocional">Intensidad promocional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-economico-de-los-descuentos">Impacto económico de los descuentos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevancia-para-modelado">Relevancia para Modelado</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencia-de-promociones-por-producto-y-tienda"><strong>4.2 Frecuencia de promociones por producto y tienda</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-frecuencia-de-promociones-por-producto">Interpretación – Frecuencia de promociones por producto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-estrategica">Lectura estratégica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-modelado-predictivo">Implicaciones para modelado predictivo</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-de-promocion-en-ventas-netas"><strong>4.3 Impacto de promoción en ventas netas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-impacto-de-promocion-en-ventas-netas">Interpretación – Impacto de promoción en ventas netas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-inicial">Lectura inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-tecnicas">Consideraciones técnicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Implicaciones estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevancia-para-el-modelo-predictivo">Relevancia para el modelo predictivo</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-ventas-con-promocion-vs-sin-promocion"><strong>4.4 Comparación ventas con promoción vs sin promoción</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-porcentaje-de-descuento"><strong>4.5 Análisis del porcentaje de descuento</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticidad-aproximada-precioventas-exploratorio"><strong>4.6 Elasticidad aproximada precio–ventas (exploratorio)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-descuento-aplicado"><strong>4.7 Distribución del descuento aplicado</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-mas-sensibles-a-promociones"><strong>4.8 Productos más sensibles a promociones</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-estrategicas-sobre-promociones"><strong>4.9 Conclusiones estratégicas sobre promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticidad-aproximada-precioventas-exploratorio"><strong>4.5 Elasticidad aproximada precio–ventas (exploratorio)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-elasticidad-aproximada-precioventas-analisis-exploratorio">Interpretación – Elasticidad aproximada precio–ventas (análisis exploratorio)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-tecnica">Lectura técnica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-analisis-actual">Limitaciones del análisis actual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implicaciones estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevancia-para-el-modelo-de-deep-learning">Relevancia para el modelo de Deep Learning</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -392,6 +414,43 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="interpretacion-del-analisis-de-promociones">
+<h2>Interpretación del Análisis de Promociones<a class="headerlink" href="#interpretacion-del-analisis-de-promociones" title="Permalink to this heading">#</a></h2>
+<p>La muestra analizada contiene 228 registros agregados a nivel Día–Tienda–Producto. De estos, 24 registros presentan actividad promocional, lo que representa aproximadamente el 10.53% del total.</p>
+<section id="intensidad-promocional">
+<h3>Intensidad promocional<a class="headerlink" href="#intensidad-promocional" title="Permalink to this heading">#</a></h3>
+<p>Un 10.53% de productos en promoción indica una estrategia promocional selectiva y no masiva en la fecha analizada. Esto sugiere que la política comercial no estuvo orientada a una campaña generalizada, sino a intervenciones puntuales sobre productos específicos.</p>
+<p>Desde el punto de vista analítico, esta proporción es relevante porque:</p>
+<ul class="simple">
+<li><p>Permite evaluar el efecto diferencial de promociones.</p></li>
+<li><p>Genera contraste entre productos con y sin incentivo comercial.</p></li>
+<li><p>Introduce variabilidad estructural útil para modelado predictivo.</p></li>
+</ul>
+</section>
+<section id="impacto-economico-de-los-descuentos">
+<h3>Impacto económico de los descuentos<a class="headerlink" href="#impacto-economico-de-los-descuentos" title="Permalink to this heading">#</a></h3>
+<p>El descuento total registrado asciende a 85.309, lo que representa aproximadamente 1.33% del total de ventas brutas.</p>
+<p>Este nivel agregado de descuento es relativamente bajo, lo que indica que:</p>
+<ul class="simple">
+<li><p>No se trató de una jornada de alta presión promocional.</p></li>
+<li><p>El impacto financiero directo de descuentos fue moderado.</p></li>
+<li><p>La mayoría de los ingresos provino de ventas sin incentivo directo.</p></li>
+</ul>
+</section>
+<section id="implicaciones-estrategicas">
+<h3>Implicaciones estratégicas<a class="headerlink" href="#implicaciones-estrategicas" title="Permalink to this heading">#</a></h3>
+<p>Aunque el porcentaje de promociones es reducido, su análisis es crítico para el proyecto de predicción de ventas, ya que:</p>
+<ol class="arabic simple">
+<li><p>Las promociones introducen discontinuidades en el comportamiento de demanda.</p></li>
+<li><p>Pueden generar picos artificiales que el modelo debe aprender a distinguir.</p></li>
+<li><p>Influyen tanto en volumen como en ingreso neto.</p></li>
+</ol>
+</section>
+<section id="relevancia-para-modelado">
+<h3>Relevancia para Modelado<a class="headerlink" href="#relevancia-para-modelado" title="Permalink to this heading">#</a></h3>
+<p>La presencia de promociones en el dataset es un elemento clave para modelos de Deep Learning. Variables como PROMO_FLAG_AGG o DESCUENTO_PCT pueden actuar como features exógenas, mejorando la capacidad del modelo para capturar cambios estructurales en la demanda.</p>
+</section>
+</section>
 <section id="frecuencia-de-promociones-por-producto-y-tienda">
 <h2><strong>4.2 Frecuencia de promociones por producto y tienda</strong><a class="headerlink" href="#frecuencia-de-promociones-por-producto-y-tienda" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -424,6 +483,46 @@ Name: PROMO_FLAG_AGG, dtype: float64
 </div>
 </div>
 </section>
+<section id="interpretacion-frecuencia-de-promociones-por-producto">
+<h2>Interpretación – Frecuencia de promociones por producto<a class="headerlink" href="#interpretacion-frecuencia-de-promociones-por-producto" title="Permalink to this heading">#</a></h2>
+<p>El análisis calcula la media de la variable <code class="docutils literal notranslate"><span class="pre">PROMO_FLAG_AGG</span></code> por producto (PLU_SAP). Dado que esta variable es binaria (0 = sin promoción, 1 = con promoción), su promedio puede interpretarse como la proporción de veces que un producto estuvo en promoción dentro del período analizado.</p>
+<p>En el resultado observado, varios productos presentan un valor de 1.0, lo que indica que estuvieron en promoción en el 100% de las observaciones disponibles para ese producto en esta muestra.</p>
+<section id="lectura-estrategica">
+<h3>Lectura estratégica<a class="headerlink" href="#lectura-estrategica" title="Permalink to this heading">#</a></h3>
+<p>Que un producto tenga frecuencia promocional igual a 1.0 puede significar:</p>
+<ul class="simple">
+<li><p>Fue vendido únicamente bajo esquema promocional en el período analizado.</p></li>
+<li><p>Hace parte de una categoría permanentemente incentivada.</p></li>
+<li><p>Se trata de una muestra temporal limitada donde coincidió con una campaña específica.</p></li>
+</ul>
+<p>Este patrón es relevante porque una alta frecuencia promocional puede:</p>
+<ul class="simple">
+<li><p>Distorsionar la percepción de su demanda real.</p></li>
+<li><p>Generar dependencia comercial del incentivo.</p></li>
+<li><p>Aumentar la volatilidad en ventas si la promoción se retira.</p></li>
+</ul>
+</section>
+<section id="implicaciones-para-modelado-predictivo">
+<h3>Implicaciones para modelado predictivo<a class="headerlink" href="#implicaciones-para-modelado-predictivo" title="Permalink to this heading">#</a></h3>
+<p>Desde la perspectiva de Deep Learning y forecasting:</p>
+<ol class="arabic simple">
+<li><p>Productos con frecuencia promocional alta requieren tratamiento especial.</p></li>
+<li><p>El modelo debe aprender el efecto estructural de la promoción.</p></li>
+<li><p>Puede ser necesario incluir variables como:</p>
+<ul class="simple">
+<li><p>Días consecutivos en promoción.</p></li>
+<li><p>Intensidad del descuento.</p></li>
+<li><p>Historial promocional acumulado.</p></li>
+</ul>
+</li>
+</ol>
+<p>Si no se modela correctamente, el algoritmo podría:</p>
+<ul class="simple">
+<li><p>Sobreestimar ventas futuras cuando no haya promoción.</p></li>
+<li><p>Confundir ventas estructurales con ventas inducidas.</p></li>
+</ul>
+</section>
+</section>
 <section id="impacto-de-promocion-en-ventas-netas">
 <h2><strong>4.3 Impacto de promoción en ventas netas</strong><a class="headerlink" href="#impacto-de-promocion-en-ventas-netas" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -446,6 +545,59 @@ Name: VENTA_NETA, dtype: float64
 </div>
 </div>
 </div>
+</section>
+<section id="interpretacion-impacto-de-promocion-en-ventas-netas">
+<h2>Interpretación – Impacto de promoción en ventas netas<a class="headerlink" href="#interpretacion-impacto-de-promocion-en-ventas-netas" title="Permalink to this heading">#</a></h2>
+<p>El análisis compara el promedio de <code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code> entre registros con promoción (<code class="docutils literal notranslate"><span class="pre">PROMO_FLAG_AGG</span> <span class="pre">=</span> <span class="pre">1</span></code>) y sin promoción (<code class="docutils literal notranslate"><span class="pre">PROMO_FLAG_AGG</span> <span class="pre">=</span> <span class="pre">0</span></code>).</p>
+<p>Resultados observados:</p>
+<ul class="simple">
+<li><p>Sin promoción (0): 24.861,96</p></li>
+<li><p>Con promoción (1): 22.908,00</p></li>
+</ul>
+<section id="lectura-inicial">
+<h3>Lectura inicial<a class="headerlink" href="#lectura-inicial" title="Permalink to this heading">#</a></h3>
+<p>Contrario a lo que podría esperarse, en esta muestra el promedio de ventas netas es ligeramente menor cuando existe promoción.</p>
+<p>Esto puede interpretarse de varias maneras:</p>
+<ol class="arabic simple">
+<li><p>El descuento reduce el ingreso neto por observación.</p></li>
+<li><p>Las promociones están aplicándose sobre productos de menor precio.</p></li>
+<li><p>La muestra corresponde a un único día o periodo corto, lo que limita la representatividad.</p></li>
+<li><p>El efecto volumen (más unidades vendidas) no compensa totalmente el menor precio.</p></li>
+</ol>
+<p>Es importante recordar que aquí estamos analizando ingreso neto promedio por registro agregado, no margen ni volumen total.</p>
+</section>
+<section id="consideraciones-tecnicas">
+<h3>Consideraciones técnicas<a class="headerlink" href="#consideraciones-tecnicas" title="Permalink to this heading">#</a></h3>
+<p>El análisis actual evalúa promedio simple, pero no controla por:</p>
+<ul class="simple">
+<li><p>Tipo de producto.</p></li>
+<li><p>Precio base.</p></li>
+<li><p>Categoría.</p></li>
+<li><p>Nivel de tienda.</p></li>
+<li><p>Elasticidad por segmento.</p></li>
+</ul>
+<p>Por lo tanto, el resultado no debe interpretarse como que “las promociones no funcionan”, sino como una evidencia preliminar que requiere análisis más profundo.</p>
+</section>
+<section id="id1">
+<h3>Implicaciones estratégicas<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Desde una perspectiva gerencial, este hallazgo abre preguntas clave:</p>
+<ul class="simple">
+<li><p>¿Las promociones están orientadas a productos de baja rotación?</p></li>
+<li><p>¿Se está priorizando volumen sobre ingreso?</p></li>
+<li><p>¿Existe canibalización entre productos?</p></li>
+<li><p>¿Las promociones están diseñadas para atraer tráfico más que para maximizar ticket?</p></li>
+</ul>
+</section>
+<section id="relevancia-para-el-modelo-predictivo">
+<h3>Relevancia para el modelo predictivo<a class="headerlink" href="#relevancia-para-el-modelo-predictivo" title="Permalink to this heading">#</a></h3>
+<p>Para modelos de Deep Learning, este resultado es especialmente valioso porque indica que el efecto promocional no es lineal ni necesariamente positivo en ingresos netos.</p>
+<p>El modelo deberá:</p>
+<ul class="simple">
+<li><p>Aprender efectos heterogéneos por producto.</p></li>
+<li><p>Capturar interacción entre precio, promoción y volumen.</p></li>
+<li><p>Diferenciar entre impacto en unidades y en ingreso.</p></li>
+</ul>
+</section>
 </section>
 <section id="comparacion-ventas-con-promocion-vs-sin-promocion">
 <h2><strong>4.4 Comparación ventas con promoción vs sin promoción</strong><a class="headerlink" href="#comparacion-ventas-con-promocion-vs-sin-promocion" title="Permalink to this heading">#</a></h2>
@@ -470,37 +622,8 @@ Name: VENTA_NETA, dtype: float64
 </div>
 </div>
 </section>
-<section id="analisis-del-porcentaje-de-descuento">
-<h2><strong>4.5 Análisis del porcentaje de descuento</strong><a class="headerlink" href="#analisis-del-porcentaje-de-descuento" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT_REAL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span>
-<span class="p">)</span>
-
-<span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT_REAL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">0.9</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    228.000000
-mean       0.013336
-std        0.048819
-min        0.000000
-10%        0.000000
-25%        0.000000
-50%        0.000000
-75%        0.000000
-90%        0.028294
-max        0.346287
-Name: DESCUENTO_PCT_REAL, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="elasticidad-aproximada-precioventas-exploratorio">
-<h2><strong>4.6 Elasticidad aproximada precio–ventas (exploratorio)</strong><a class="headerlink" href="#elasticidad-aproximada-precioventas-exploratorio" title="Permalink to this heading">#</a></h2>
+<h2><strong>4.5 Elasticidad aproximada precio–ventas (exploratorio)</strong><a class="headerlink" href="#elasticidad-aproximada-precioventas-exploratorio" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proxy de precio medio</span>
@@ -551,159 +674,53 @@ Name: DESCUENTO_PCT_REAL, dtype: float64
 </div></div></div>
 </div>
 </section>
-<section id="distribucion-del-descuento-aplicado">
-<h2><strong>4.7 Distribución del descuento aplicado</strong><a class="headerlink" href="#distribucion-del-descuento-aplicado" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO_PCT_REAL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución del </span><span class="si">% d</span><span class="s2">e Descuento&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/eeb10aeb605cdfa412b84d6751a915cd8ec7446f41628009ffd7616e7e42db4b.png" src="../_images/eeb10aeb605cdfa412b84d6751a915cd8ec7446f41628009ffd7616e7e42db4b.png" />
-</div>
-</div>
+<section id="interpretacion-elasticidad-aproximada-precioventas-analisis-exploratorio">
+<h2>Interpretación – Elasticidad aproximada precio–ventas (análisis exploratorio)<a class="headerlink" href="#interpretacion-elasticidad-aproximada-precioventas-analisis-exploratorio" title="Permalink to this heading">#</a></h2>
+<p>En este análisis se construye un proxy de precio medio como:</p>
+<p>PRECIO_MEDIO_APROX = VENTA_NETA / UNIDADES</p>
+<p>Posteriormente se calcula la correlación entre este precio aproximado y las ventas netas agregadas.</p>
+<p>Resultado observado:</p>
+<p>Correlación (PRECIO_MEDIO_APROX vs VENTA_NETA) ≈ 0.196</p>
+<section id="lectura-tecnica">
+<h3>Lectura técnica<a class="headerlink" href="#lectura-tecnica" title="Permalink to this heading">#</a></h3>
+<p>La correlación es positiva pero débil (≈ 0.19). Esto indica que, en esta muestra:</p>
+<ul class="simple">
+<li><p>No existe una relación inversa fuerte entre precio y ventas netas.</p></li>
+<li><p>Los productos con mayor precio promedio tienden ligeramente a generar mayores ingresos netos.</p></li>
+<li><p>No se observa evidencia preliminar de elasticidad negativa marcada en ingresos.</p></li>
+</ul>
+<p>Sin embargo, es fundamental aclarar que aquí se está correlacionando precio con ingreso neto, no con unidades vendidas. Esto introduce un efecto mecánico: productos más costosos pueden generar mayores ingresos aunque vendan menos unidades.</p>
 </section>
-<section id="productos-mas-sensibles-a-promociones">
-<h2><strong>4.8 Productos más sensibles a promociones</strong><a class="headerlink" href="#productos-mas-sensibles-a-promociones" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sensibilidad</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">,</span> <span class="s2">&quot;PROMO_FLAG_AGG&quot;</span><span class="p">])[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-<span class="p">)</span>
-
-<span class="n">sensibilidad</span><span class="p">[</span><span class="s2">&quot;Lift_Promo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensibilidad</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sensibilidad</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sensibilidad</span> <span class="o">=</span> <span class="n">sensibilidad</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Lift_Promo&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">sensibilidad</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>PROMO_FLAG_AGG</th>
-      <th>0</th>
-      <th>1</th>
-      <th>Lift_Promo</th>
-    </tr>
-    <tr>
-      <th>PLU_SAP</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>36900.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>143700.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>60900.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>17750.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>24300.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>7200.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>17980.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>23700.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>31400.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>31800.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
+<section id="limitaciones-del-analisis-actual">
+<h3>Limitaciones del análisis actual<a class="headerlink" href="#limitaciones-del-analisis-actual" title="Permalink to this heading">#</a></h3>
+<p>Este cálculo no representa una elasticidad económica formal, ya que:</p>
+<ol class="arabic simple">
+<li><p>No se trabaja en logaritmos.</p></li>
+<li><p>No se controla por producto.</p></li>
+<li><p>No se controla por efectos de promoción.</p></li>
+<li><p>No se analiza variación temporal.</p></li>
+<li><p>No se separa el efecto precio del efecto volumen.</p></li>
+</ol>
+<p>Por lo tanto, el resultado debe interpretarse como un diagnóstico preliminar y no como una medida estructural de sensibilidad al precio.</p>
 </section>
-<section id="conclusiones-estrategicas-sobre-promociones">
-<h2><strong>4.9 Conclusiones estratégicas sobre promociones</strong><a class="headerlink" href="#conclusiones-estrategicas-sobre-promociones" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conclusiones_promo</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Venta promedio con promo&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ventas_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ventas_promo</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="s2">&quot;Venta promedio sin promo&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ventas_no_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ventas_no_promo</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="s2">&quot;Lift promedio aproximado&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ventas_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">ventas_no_promo</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ventas_promo</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="s2">&quot;Correlación precio–ventas&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">correlacion</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">correlacion</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="n">conclusiones_promo</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Venta promedio con promo&#39;: 22908.0,
- &#39;Venta promedio sin promo&#39;: 24861.960784313724,
- &#39;Lift promedio aproximado&#39;: -1953.9607843137237,
- &#39;Correlación precio–ventas&#39;: 0.19639542670916246}
-</pre></div>
-</div>
-</div>
-</div>
+<section id="id2">
+<h3>Implicaciones estratégicas<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Desde una perspectiva comercial, este resultado sugiere que:</p>
+<ul class="simple">
+<li><p>El ingreso total no depende fuertemente de pequeñas variaciones en precio dentro de esta muestra.</p></li>
+<li><p>Podría existir segmentación por tipo de producto donde la elasticidad varíe significativamente.</p></li>
+<li><p>Las decisiones de pricing deberían analizarse a nivel producto o categoría, no de forma agregada.</p></li>
+</ul>
+</section>
+<section id="relevancia-para-el-modelo-de-deep-learning">
+<h3>Relevancia para el modelo de Deep Learning<a class="headerlink" href="#relevancia-para-el-modelo-de-deep-learning" title="Permalink to this heading">#</a></h3>
+<p>Para el modelo predictivo, este hallazgo es relevante porque indica que:</p>
+<ul class="simple">
+<li><p>El precio es una variable informativa, aunque no dominante.</p></li>
+<li><p>Es probable que la interacción entre precio y promoción sea más importante que el precio aislado.</p></li>
+<li><p>Variables derivadas como descuento porcentual o precio relativo frente al histórico podrían tener mayor poder predictivo.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -772,14 +789,36 @@ Name: DESCUENTO_PCT_REAL, dtype: float64
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-promociones"><strong>4.1 Panorama general de promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-analisis-de-promociones">Interpretación del Análisis de Promociones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intensidad-promocional">Intensidad promocional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-economico-de-los-descuentos">Impacto económico de los descuentos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevancia-para-modelado">Relevancia para Modelado</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencia-de-promociones-por-producto-y-tienda"><strong>4.2 Frecuencia de promociones por producto y tienda</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-frecuencia-de-promociones-por-producto">Interpretación – Frecuencia de promociones por producto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-estrategica">Lectura estratégica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-modelado-predictivo">Implicaciones para modelado predictivo</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-de-promocion-en-ventas-netas"><strong>4.3 Impacto de promoción en ventas netas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-impacto-de-promocion-en-ventas-netas">Interpretación – Impacto de promoción en ventas netas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-inicial">Lectura inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-tecnicas">Consideraciones técnicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Implicaciones estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevancia-para-el-modelo-predictivo">Relevancia para el modelo predictivo</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-ventas-con-promocion-vs-sin-promocion"><strong>4.4 Comparación ventas con promoción vs sin promoción</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-porcentaje-de-descuento"><strong>4.5 Análisis del porcentaje de descuento</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticidad-aproximada-precioventas-exploratorio"><strong>4.6 Elasticidad aproximada precio–ventas (exploratorio)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-descuento-aplicado"><strong>4.7 Distribución del descuento aplicado</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-mas-sensibles-a-promociones"><strong>4.8 Productos más sensibles a promociones</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-estrategicas-sobre-promociones"><strong>4.9 Conclusiones estratégicas sobre promociones</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticidad-aproximada-precioventas-exploratorio"><strong>4.5 Elasticidad aproximada precio–ventas (exploratorio)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-elasticidad-aproximada-precioventas-analisis-exploratorio">Interpretación – Elasticidad aproximada precio–ventas (análisis exploratorio)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-tecnica">Lectura técnica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-analisis-actual">Limitaciones del análisis actual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implicaciones estratégicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevancia-para-el-modelo-de-deep-learning">Relevancia para el modelo de Deep Learning</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

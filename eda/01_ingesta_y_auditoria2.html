@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Limpieza y Construcción de Variables" href="02_limpieza_y_features2.html" />
-    <link rel="prev" title="📊 Proyecto Predicción de ventas en Olímpica" href="../intro.html" />
+    <link rel="prev" title="Proyecto Predicción de ventas en Olímpica" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -316,11 +316,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial"><strong>1.1 Configuración inicial</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset"><strong>1.2 Carga del dataset</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-y-validacion-inicial-de-los-datos-ventas-olimpica">Carga y Validación Inicial de los Datos – Ventas Olímpica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-dinamica-de-la-ruta-del-proyecto">1. Detección dinámica de la ruta del proyecto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-estructurada-de-los-datos">2. Organización estructurada de los datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-estructurada-de-los-datos">1. Organización estructurada de los datos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-controlada-del-archivo-de-ventas">3. Lectura controlada del archivo de ventas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-inicial-del-dataset">4. Validación inicial del dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-para-el-proyecto">Valor estratégico para el proyecto</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vista-rapida-y-estructura-general"><strong>1.3 Vista rápida y estructura general</strong></a></li>
@@ -330,7 +328,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-calidad-estructural">1. Control de calidad estructural</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipificacion-actual-de-las-variables">2. Tipificación actual de las variables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-cardinalidad-valores-unicos">3. Análisis de cardinalidad (valores únicos)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones estratégicas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-tipos-criticos"><strong>1.5 Conversión de tipos críticos</strong></a></li>
@@ -339,10 +336,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-fecha-a-formato-analitico">Conversión de fecha a formato analítico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas-correctamente-tipificadas">Variables numéricas correctamente tipificadas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificadores-y-dimensiones-como-texto">Identificadores y dimensiones como texto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-proceso-de-limpieza">Robustez del proceso de limpieza</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-granularidad-y-llaves-factura-producto-fecha-centro"><strong>1.6 Validación de granularidad y llaves (factura-producto-fecha-centro)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-granularidad-y-unicidad-de-registros">Auditoría de granularidad y unicidad de registros</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llave-operacional-utilizada">Llave operacional utilizada</a></li>
@@ -350,7 +345,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-cardinalidades-relevantes">Resumen de cardinalidades relevantes</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos"><strong>1.7 Auditoría de calidad (nulos, duplicados, rangos, valores inválidos)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-integridad-y-validacion-de-rangos-operativos">Auditoría de integridad y validación de rangos operativos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-valores-nulos">1. Control de valores nulos</a></li>
@@ -364,7 +358,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistencia-temporal">4. Consistencia temporal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-negocio-ventas-netas-y-senal-de-promocion"><strong>1.8 Reglas de negocio: ventas netas y señal de promoción</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivacion-de-variables-de-negocio-para-analisis-y-modelado">Derivación de variables de negocio para análisis y modelado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-neta-medicion-real-del-ingreso-por-linea">VENTA_NETA: medición real del ingreso por línea</a></li>
@@ -372,16 +365,15 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto-senal-de-precio-implicito">PRECIO_UNITARIO_NETO: señal de precio implícito</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticas-descriptivas-ventas-cantidades-descuentos"><strong>1.9 Estadísticas descriptivas (ventas, cantidades, descuentos)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos-de-variables-criticas-de-negocio">Estadísticos descriptivos de variables críticas de negocio</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-y-venta-neta">1. VENTA y VENTA_NETA</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. DESCUENTO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. CANTIDAD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. DESCUENTO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. CANTIDAD</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto">4. PRECIO_UNITARIO_NETO</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-y-valores-extremos-diagnostico-inicial"><strong>1.10 Outliers y valores extremos (diagnóstico inicial)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checks-de-consistencia-oferta-vs-descuento-signos-coherencia-basica"><strong>1.11 Checks de consistencia (oferta vs descuento, signos, coherencia básica)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-bajo-reglas-de-negocio">Controles de consistencia bajo reglas de negocio</a><ul class="nav section-nav flex-column">
@@ -389,7 +381,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardado-de-dataset-limpio-processed-y-log-de-auditoria"><strong>1.12 Guardado de dataset limpio (processed) y log de auditoría</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-del-dataset-limpio-y-trazabilidad-del-proceso">Persistencia del dataset limpio y trazabilidad del proceso</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-del-dataset-limpio">1. Generación del dataset limpio</a></li>
@@ -584,13 +575,8 @@ Shape: (345, 12)
 </section>
 <section id="carga-y-validacion-inicial-de-los-datos-ventas-olimpica">
 <h2>Carga y Validación Inicial de los Datos – Ventas Olímpica<a class="headerlink" href="#carga-y-validacion-inicial-de-los-datos-ventas-olimpica" title="Permalink to this heading">#</a></h2>
-<section id="deteccion-dinamica-de-la-ruta-del-proyecto">
-<h3>1. Detección dinámica de la ruta del proyecto<a class="headerlink" href="#deteccion-dinamica-de-la-ruta-del-proyecto" title="Permalink to this heading">#</a></h3>
-<p>El código implementa una búsqueda automática de la carpeta raíz del proyecto (<code class="docutils literal notranslate"><span class="pre">data/</span></code>), lo que garantiza que el notebook sea <strong>portátil y reproducible</strong> en distintos entornos (local, servidor o nube).<br />
-Esto evita errores por rutas absolutas y facilita la colaboración dentro del equipo de analítica.</p>
-</section>
 <section id="organizacion-estructurada-de-los-datos">
-<h3>2. Organización estructurada de los datos<a class="headerlink" href="#organizacion-estructurada-de-los-datos" title="Permalink to this heading">#</a></h3>
+<h3>1. Organización estructurada de los datos<a class="headerlink" href="#organizacion-estructurada-de-los-datos" title="Permalink to this heading">#</a></h3>
 <p>Se establecen claramente dos rutas:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">data/raw</span></code> → Datos originales sin transformación.</p></li>
@@ -625,25 +611,6 @@ Esto es estratégico porque:</p>
 <li><p>Valor de venta</p></li>
 <li><p>Descuento aplicado</p></li>
 </ul>
-<p>Esto confirma que el dataset contiene tanto variables operativas como comerciales, lo que lo hace adecuado para:</p>
-<ul class="simple">
-<li><p>Análisis de comportamiento de ventas</p></li>
-<li><p>Evaluación de impacto de descuentos</p></li>
-<li><p>Comparación entre centros</p></li>
-<li><p>Modelos de predicción de demanda (series de tiempo)</p></li>
-</ul>
-</section>
-<section id="valor-estrategico-para-el-proyecto">
-<h3>Valor estratégico para el proyecto<a class="headerlink" href="#valor-estrategico-para-el-proyecto" title="Permalink to this heading">#</a></h3>
-<p>Este primer paso garantiza:</p>
-<ul class="simple">
-<li><p>Integridad estructural del archivo</p></li>
-<li><p>Reproducibilidad del análisis</p></li>
-<li><p>Base sólida para limpieza, transformación y modelado predictivo</p></li>
-</ul>
-<p>Desde la perspectiva gerencial, este enfoque demuestra que el proyecto no solo busca generar modelos, sino hacerlo bajo un esquema metodológico robusto y auditable.</p>
-<p><strong>Conclusión:</strong><br />
-La carga de datos está correctamente estructurada y validada. El dataset presenta una base coherente para iniciar el análisis exploratorio y posteriormente avanzar hacia modelos predictivos de ventas, alineados con la estrategia analítica de Olímpica.</p>
 </section>
 </section>
 <section id="vista-rapida-y-estructura-general">
@@ -785,7 +752,6 @@ Muestra aleatoria:
 <li><p>Existencia de registros con descuento aplicado (<code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code> distinto de cero), lo que permitirá analizar el impacto promocional en el comportamiento de ventas.</p></li>
 <li><p>Coherencia entre <code class="docutils literal notranslate"><span class="pre">CANTIDAD</span></code> y <code class="docutils literal notranslate"><span class="pre">VENTA</span></code>, lo que sugiere integridad inicial en los datos monetarios.</p></li>
 </ul>
-<p>Desde una perspectiva ejecutiva, esta validación preliminar confirma que la base de datos es consistente y contiene variables estratégicas suficientes para realizar análisis de desempeño comercial y avanzar hacia modelos predictivos de demanda y optimización de ventas.</p>
 </section>
 <section id="diccionario-de-datos-tipos-nulos-cardinalidades">
 <h2><strong>1.4 Diccionario de datos (tipos, nulos, cardinalidades)</strong><a class="headerlink" href="#diccionario-de-datos-tipos-nulos-cardinalidades" title="Permalink to this heading">#</a></h2>
@@ -986,24 +952,6 @@ Muestra aleatoria:
 <li><p><code class="docutils literal notranslate"><span class="pre">DESCUENTO</span></code> presenta 24 valores únicos → posible análisis de políticas promocionales</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CENTRO</span></code>, <code class="docutils literal notranslate"><span class="pre">Estrato</span></code>, <code class="docutils literal notranslate"><span class="pre">GRUPO_CATEG</span></code> presentan baja cardinalidad → ideales para segmentación</p></li>
 </ul>
-<p>Este análisis es estratégico porque permite anticipar:</p>
-<ul class="simple">
-<li><p>Variables explicativas relevantes para modelos de predicción</p></li>
-<li><p>Potencial de segmentación comercial</p></li>
-<li><p>Nivel de granularidad disponible para análisis de desempeño</p></li>
-</ul>
-</section>
-<section id="implicaciones-estrategicas">
-<h3>Implicaciones estratégicas<a class="headerlink" href="#implicaciones-estrategicas" title="Permalink to this heading">#</a></h3>
-<p>La revisión confirma que la base:</p>
-<ul class="simple">
-<li><p>Tiene alta calidad estructural</p></li>
-<li><p>No presenta valores faltantes</p></li>
-<li><p>Contiene diversidad suficiente para análisis por producto, centro y factura</p></li>
-<li><p>Está lista para una fase de tipificación y transformación controlada</p></li>
-</ul>
-<p>Conclusión<br />
-El diccionario de datos confirma que la información entregada cumple con estándares adecuados de integridad y diversidad analítica, lo que permite avanzar con confianza hacia análisis descriptivos avanzados y modelos predictivos orientados a optimización comercial.</p>
 </section>
 </section>
 <section id="conversion-de-tipos-criticos">
@@ -1108,19 +1056,6 @@ dtype: object
 <h3>Identificadores y dimensiones como texto<a class="headerlink" href="#identificadores-y-dimensiones-como-texto" title="Permalink to this heading">#</a></h3>
 <p>Dimensiones como <code class="docutils literal notranslate"><span class="pre">CENTRO</span></code>, <code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code>, <code class="docutils literal notranslate"><span class="pre">GRUPO_CATEG</span></code>, <code class="docutils literal notranslate"><span class="pre">OFERTA_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">Estrato</span></code> y <code class="docutils literal notranslate"><span class="pre">GRUCOM</span></code> permanecen como <code class="docutils literal notranslate"><span class="pre">str</span></code>, lo cual es adecuado porque se comportan como variables categóricas y son esenciales para segmentación y análisis comparativo.</p>
 </section>
-<section id="robustez-del-proceso-de-limpieza">
-<h3>Robustez del proceso de limpieza<a class="headerlink" href="#robustez-del-proceso-de-limpieza" title="Permalink to this heading">#</a></h3>
-<p>Los resultados reflejan que el pipeline implementa controles prácticos de calidad:</p>
-<ul class="simple">
-<li><p>normalización de separadores decimales y posibles separadores de miles</p></li>
-<li><p>conversión segura con <code class="docutils literal notranslate"><span class="pre">errors=&quot;coerce&quot;</span></code> para evitar fallas en ejecución</p></li>
-<li><p>estandarización de texto con <code class="docutils literal notranslate"><span class="pre">strip()</span></code> para eliminar espacios e inconsistencias</p></li>
-</ul>
-</section>
-</section>
-<section id="conclusion">
-<h2>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<p>La tipificación final confirma que el dataset ya está en un estado “listo para analítica”: fechas interpretables, variables numéricas operables y dimensiones categóricas consistentes. Esto habilita una fase de exploración más profunda y crea una base sólida para modelos de pronóstico de ventas alineados con los objetivos del proyecto.</p>
 </section>
 <section id="validacion-de-granularidad-y-llaves-factura-producto-fecha-centro">
 <h2><strong>1.6 Validación de granularidad y llaves (factura-producto-fecha-centro)</strong><a class="headerlink" href="#validacion-de-granularidad-y-llaves-factura-producto-fecha-centro" title="Permalink to this heading">#</a></h2>
@@ -1199,17 +1134,7 @@ Duplicados por llave (FECHA-CENTRO-FACTURA-PLU_SAP): 0
 <li><p><code class="docutils literal notranslate"><span class="pre">n_facturas:</span> <span class="pre">175</span></code> facturas distintas</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">n_products:</span> <span class="pre">228</span></code> productos distintos</p></li>
 </ul>
-<p>Interpretación operativa:</p>
-<ul class="simple">
-<li><p>La muestra representa un solo día y un solo centro, lo cual es consistente con un extracto inicial o una partición del histórico.</p></li>
-<li><p>Existe una relación de múltiples productos por factura: 175 facturas para 345 líneas, lo que sugiere aproximadamente 2 ítems por factura en promedio en esta muestra.</p></li>
-<li><p>La diversidad de productos (228) indica buena variedad de referencias, incluso en un extracto de tamaño limitado.</p></li>
-</ul>
 </section>
-</section>
-<section id="id1">
-<h2>Conclusión<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>Esta auditoría confirma que el dataset está correctamente estructurado a nivel de “línea de factura” y que no presenta duplicidades bajo la llave operacional definida. Esto garantiza que los análisis posteriores (agregaciones, segmentación por producto o factura, y construcción de series de tiempo) se basarán en una representación consistente y confiable de las transacciones.</p>
 </section>
 <section id="auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos">
 <h2><strong>1.7 Auditoría de calidad (nulos, duplicados, rangos, valores inválidos)</strong><a class="headerlink" href="#auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos" title="Permalink to this heading">#</a></h2>
@@ -1328,18 +1253,6 @@ Duplicados por llave (FECHA-CENTRO-FACTURA-PLU_SAP): 0
 </ul>
 <p>La muestra corresponde a un único día, lo cual es consistente con un extracto puntual del histórico. Esto debe considerarse al interpretar métricas agregadas y antes de construir modelos de series de tiempo.</p>
 </section>
-</section>
-<section id="conclusion-ejecutiva">
-<h2>Conclusión ejecutiva<a class="headerlink" href="#conclusion-ejecutiva" title="Permalink to this heading">#</a></h2>
-<p>La auditoría confirma que el dataset:</p>
-<ul class="simple">
-<li><p>No contiene valores faltantes.</p></li>
-<li><p>No presenta duplicados completos.</p></li>
-<li><p>No tiene valores negativos en variables monetarias ni de volumen.</p></li>
-<li><p>Mantiene rangos coherentes para ventas, cantidades y descuentos.</p></li>
-<li><p>Está acotado a una única fecha en esta muestra.</p></li>
-</ul>
-<p>En términos de calidad de datos, la base se encuentra en condiciones adecuadas para análisis exploratorio avanzado y posterior modelado predictivo, sin riesgos estructurales evidentes en esta etapa.</p>
 </section>
 <section id="reglas-de-negocio-ventas-netas-y-senal-de-promocion">
 <h2><strong>1.8 Reglas de negocio: ventas netas y señal de promoción</strong><a class="headerlink" href="#reglas-de-negocio-ventas-netas-y-senal-de-promocion" title="Permalink to this heading">#</a></h2>
@@ -1538,10 +1451,6 @@ Duplicados por llave (FECHA-CENTRO-FACTURA-PLU_SAP): 0
 </ul>
 </section>
 </section>
-<section id="id2">
-<h2>Conclusión<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>La tabla resultante confirma que el dataset ya incorpora variables interpretables desde negocio. Estas transformaciones habilitan análisis más directos y accionables, y mejoran la capacidad explicativa para modelos predictivos de ventas, especialmente al distinguir ventas netas, actividad promocional y señales de precio unitario.</p>
-</section>
 <section id="estadisticas-descriptivas-ventas-cantidades-descuentos">
 <h2><strong>1.9 Estadísticas descriptivas (ventas, cantidades, descuentos)</strong><a class="headerlink" href="#estadisticas-descriptivas-ventas-cantidades-descuentos" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -1684,8 +1593,8 @@ Duplicados por llave (FECHA-CENTRO-FACTURA-PLU_SAP): 0
 Este comportamiento es consistente con ventas minoristas donde existen algunos productos de mayor valor o compras voluminosas.</p>
 <p>La similitud entre <code class="docutils literal notranslate"><span class="pre">VENTA</span></code> y <code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code> indica que, en esta muestra, el impacto promedio de descuentos es relativamente bajo.</p>
 </section>
-<section id="id3">
-<h3>2. DESCUENTO<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<section id="id1">
+<h3>2. DESCUENTO<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Media: 247</p></li>
 <li><p>Mediana: 0</p></li>
@@ -1696,8 +1605,8 @@ Este comportamiento es consistente con ventas minoristas donde existen algunos p
 <p>El hecho de que la mediana y el P75 sean cero confirma que la mayoría de transacciones no tienen descuento aplicado.<br />
 Sin embargo, el máximo elevado evidencia que existen eventos promocionales puntuales de alto impacto, lo cual será relevante para analizar elasticidad y efecto promocional.</p>
 </section>
-<section id="id4">
-<h3>3. CANTIDAD<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<section id="id2">
+<h3>3. CANTIDAD<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Media: 0.868</p></li>
 <li><p>Mediana: 0.518</p></li>
@@ -1720,8 +1629,8 @@ Algunos registros muestran compras de alto volumen (cercanos a 10 unidades o kil
 La diferencia significativa entre mediana y P95 indica la presencia de productos premium o de alto valor unitario.</p>
 </section>
 </section>
-<section id="lectura-ejecutiva">
-<h2>Lectura ejecutiva<a class="headerlink" href="#lectura-ejecutiva" title="Permalink to this heading">#</a></h2>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
 <p>Los estadísticos descriptivos muestran:</p>
 <ul class="simple">
 <li><p>Distribuciones asimétricas en ventas y cantidades.</p></li>
@@ -1821,11 +1730,6 @@ Esto significa que:</p>
 <p><strong>4. Cantidad menor o igual a cero = 0</strong><br />
 Todas las cantidades vendidas son positivas. No hay registros con valores cero o negativos, lo que confirma integridad transaccional.</p>
 </section>
-</section>
-<section id="id5">
-<h2>Conclusión<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
-<p>Las validaciones muestran que el dataset cumple con reglas básicas de coherencia financiera y operativa. No se detectan anomalías estructurales ni inconsistencias lógicas en esta muestra.</p>
-<p>Desde una perspectiva analítica, esto reduce significativamente el riesgo de sesgos en métricas agregadas y fortalece la confiabilidad del dataset como insumo para análisis exploratorio avanzado y modelos predictivos.</p>
 </section>
 <section id="guardado-de-dataset-limpio-processed-y-log-de-auditoria">
 <h2><strong>1.12 Guardado de dataset limpio (processed) y log de auditoría</strong><a class="headerlink" href="#guardado-de-dataset-limpio-processed-y-log-de-auditoria" title="Permalink to this heading">#</a></h2>
@@ -1980,7 +1884,7 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">📊 Proyecto Predicción de ventas en Olímpica</p>
+        <p class="prev-next-title">Proyecto Predicción de ventas en Olímpica</p>
       </div>
     </a>
     <a class="right-next"
@@ -2011,11 +1915,9 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial"><strong>1.1 Configuración inicial</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset"><strong>1.2 Carga del dataset</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-y-validacion-inicial-de-los-datos-ventas-olimpica">Carga y Validación Inicial de los Datos – Ventas Olímpica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-dinamica-de-la-ruta-del-proyecto">1. Detección dinámica de la ruta del proyecto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-estructurada-de-los-datos">2. Organización estructurada de los datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-estructurada-de-los-datos">1. Organización estructurada de los datos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-controlada-del-archivo-de-ventas">3. Lectura controlada del archivo de ventas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-inicial-del-dataset">4. Validación inicial del dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-para-el-proyecto">Valor estratégico para el proyecto</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vista-rapida-y-estructura-general"><strong>1.3 Vista rápida y estructura general</strong></a></li>
@@ -2025,7 +1927,6 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-calidad-estructural">1. Control de calidad estructural</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipificacion-actual-de-las-variables">2. Tipificación actual de las variables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-cardinalidad-valores-unicos">3. Análisis de cardinalidad (valores únicos)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones estratégicas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-tipos-criticos"><strong>1.5 Conversión de tipos críticos</strong></a></li>
@@ -2034,10 +1935,8 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-fecha-a-formato-analitico">Conversión de fecha a formato analítico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas-correctamente-tipificadas">Variables numéricas correctamente tipificadas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificadores-y-dimensiones-como-texto">Identificadores y dimensiones como texto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-proceso-de-limpieza">Robustez del proceso de limpieza</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-granularidad-y-llaves-factura-producto-fecha-centro"><strong>1.6 Validación de granularidad y llaves (factura-producto-fecha-centro)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-granularidad-y-unicidad-de-registros">Auditoría de granularidad y unicidad de registros</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llave-operacional-utilizada">Llave operacional utilizada</a></li>
@@ -2045,7 +1944,6 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-cardinalidades-relevantes">Resumen de cardinalidades relevantes</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-calidad-nulos-duplicados-rangos-valores-invalidos"><strong>1.7 Auditoría de calidad (nulos, duplicados, rangos, valores inválidos)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-integridad-y-validacion-de-rangos-operativos">Auditoría de integridad y validación de rangos operativos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-valores-nulos">1. Control de valores nulos</a></li>
@@ -2059,7 +1957,6 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistencia-temporal">4. Consistencia temporal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-negocio-ventas-netas-y-senal-de-promocion"><strong>1.8 Reglas de negocio: ventas netas y señal de promoción</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivacion-de-variables-de-negocio-para-analisis-y-modelado">Derivación de variables de negocio para análisis y modelado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-neta-medicion-real-del-ingreso-por-linea">VENTA_NETA: medición real del ingreso por línea</a></li>
@@ -2067,16 +1964,15 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto-senal-de-precio-implicito">PRECIO_UNITARIO_NETO: señal de precio implícito</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticas-descriptivas-ventas-cantidades-descuentos"><strong>1.9 Estadísticas descriptivas (ventas, cantidades, descuentos)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-descriptivos-de-variables-criticas-de-negocio">Estadísticos descriptivos de variables críticas de negocio</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#venta-y-venta-neta">1. VENTA y VENTA_NETA</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. DESCUENTO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. CANTIDAD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. DESCUENTO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. CANTIDAD</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-unitario-neto">4. PRECIO_UNITARIO_NETO</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-y-valores-extremos-diagnostico-inicial"><strong>1.10 Outliers y valores extremos (diagnóstico inicial)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checks-de-consistencia-oferta-vs-descuento-signos-coherencia-basica"><strong>1.11 Checks de consistencia (oferta vs descuento, signos, coherencia básica)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-bajo-reglas-de-negocio">Controles de consistencia bajo reglas de negocio</a><ul class="nav section-nav flex-column">
@@ -2084,7 +1980,6 @@ Audit report: C:\Users\juana\olimpica_book\data\processed\audit_Ventas_1.json
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardado-de-dataset-limpio-processed-y-log-de-auditoria"><strong>1.12 Guardado de dataset limpio (processed) y log de auditoría</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-del-dataset-limpio-y-trazabilidad-del-proceso">Persistencia del dataset limpio y trazabilidad del proceso</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-del-dataset-limpio">1. Generación del dataset limpio</a></li>

@@ -1,15 +1,15 @@
-# 📊 Proyecto Predicción de ventas en Olímpica  
+#  Proyecto Predicción de ventas en Olímpica  
 
 
 ---
 
-### 👥 Integrantes  
+###  Integrantes  
 - **Juan Andrés Ramos Cardona**  
 - **Sergio Cadavid**
 
 ---
 
-## 🏢 Contexto del Proyecto
+## Contexto del Proyecto
 
 En un entorno retail altamente competitivo, la capacidad de anticipar el comportamiento de las ventas constituye una ventaja estratégica clave. Las decisiones relacionadas con inventario, promociones, reposición y planeación comercial dependen en gran medida de la calidad de los análisis de datos históricos.
 
@@ -19,7 +19,7 @@ La presente entrega corresponde a la **Fase 1 del proyecto**, enfocada en la con
 
 ---
 
-## 🎯 Objetivo de la Fase 1
+##  Objetivo de la Fase 1
 
 El propósito principal de esta fase es:
 
@@ -34,7 +34,7 @@ Esta fase es fundamental para garantizar que las etapas posteriores de modelado 
 
 ---
 
-## 📦 Descripción del Dataset (Muestra Inicial)
+##  Descripción del Dataset (Muestra Inicial)
 
 La muestra proporcionada por Olímpica corresponde a registros de ventas a nivel de línea de factura, lo que implica que cada fila representa la venta de un producto específico dentro de un ticket de compra.
 
@@ -58,7 +58,7 @@ Lo cual resulta ideal para modelos de series de tiempo.
 
 ---
 
-## 🔍 Metodología del Análisis Exploratorio
+##  Metodología del Análisis Exploratorio
 
 El análisis se desarrolla siguiendo un enfoque estructurado:
 
@@ -89,7 +89,7 @@ El análisis se desarrolla siguiendo un enfoque estructurado:
 
 ---
 
-## 🚀 Proyección del Proyecto
+##  Proyección del Proyecto
 
 Una vez finalizada esta fase exploratoria, el proyecto avanzará hacia:
 
@@ -102,7 +102,7 @@ El marco metodológico estará alineado con literatura reciente en forecasting r
 
 ---
 
-## 📌 Importancia Estratégica
+##  Importancia Estratégica
 
 Este proyecto no se limita a un ejercicio académico. Representa una oportunidad de:
 
@@ -110,11 +110,3 @@ Este proyecto no se limita a un ejercicio académico. Representa una oportunidad
 - Evaluar la capacidad predictiva del histórico de ventas.
 - Identificar variables críticas para la toma de decisiones comerciales.
 - Establecer una base para futuras implementaciones analíticas en producción.
-
----
-
-> “Un modelo predictivo es tan bueno como la comprensión que se tenga de los datos que lo alimentan.”
-
-La Fase 1 busca precisamente construir esa comprensión.
-
----

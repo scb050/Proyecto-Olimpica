@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'eda/03_eda_ventas';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -316,19 +318,48 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-las-tablas-agregadas-para-analisis"><strong>3.1 Carga de las tablas agregadas para análisis</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-la-tabla-agregada-nivel-diatiendaproducto"><strong>Interpretación de la Tabla Agregada – Nivel Día–Tienda–Producto</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-significado-de-las-variables">Estructura y significado de las variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-tecnicas-relevantes">Observaciones Técnicas Relevantes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones Estratégicas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión Ejecutiva</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-tecnicas">Observaciones Técnicas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-ventas-totales-y-metricas-clave"><strong>3.2 Panorama general de ventas (totales y métricas clave)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-salida"><strong>Interpretación de salida</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-clave-observadas">Métricas clave observadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-financiero-inicial">Análisis Financiero Inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-de-la-muestra">Cobertura de la muestra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-el-proyecto-de-prediccion-de-ventas">Implicaciones para el Proyecto de Predicción de Ventas</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-ventas-netas-y-unidades"><strong>3.3 Distribución de ventas netas y unidades</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-la-distribucion-de-ventas-netas-y-unidades-vendidas">Interpretación de la Distribución de Ventas Netas y Unidades Vendidas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-ventas-netas">Distribución de Ventas Netas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-unidades-vendidas">Distribución de Unidades Vendidas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-analiticas">Implicaciones Analíticas</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-concentracion-regla-80-20-pareto-por-producto"><strong>3.4 Análisis de concentración (Regla 80/20 - Pareto por producto)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-analisis-de-concentracion-regla-80-20">Interpretación del Análisis de Concentración – Regla 80/20</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-productos-lideres">Análisis de los productos líderes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-estructural">Interpretación estructural</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-el-modelo-de-prediccion">Implicaciones para el Modelo de Predicción</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-ventas-y-por-unidades"><strong>3.5 Top productos por ventas y por unidades</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabilidad-de-ventas-coeficiente-de-variacion"><strong>3.6 Variabilidad de ventas (Coeficiente de variación)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-por-tienda"><strong>3.7 Análisis por tienda</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-facturas"><strong>3.8 Análisis de facturas</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-eda-de-ventas"><strong>3.9 Conclusiones del EDA de ventas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-top-de-productos-por-ventas-y-por-unidades">Interpretación del Top de Productos por Ventas y por Unidades</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-ventas-monetarias">Top productos por ventas monetarias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-unidades-vendidas">Top productos por unidades vendidas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacion-estructural">Diferenciación estructural</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Implicaciones para el proyecto de predicción de ventas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-facturas"><strong>3.6 Análisis de facturas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-analisis-de-facturas">Interpretación del Análisis de Facturas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-y-cobertura">Dimensión y cobertura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-del-ticket">Valor del ticket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-distintos-por-factura">Productos distintos por factura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#total-de-unidades-por-factura">Total de unidades por factura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-el-proyecto-de-prediccion">Implicaciones para el Proyecto de Predicción</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -526,8 +557,8 @@ Cada fila representa la agregación de ventas a nivel <strong>Día – Tienda �
 <li><p><strong>PROMO_FLAG_AGG</strong>: Indicador binario de si el producto estuvo en promoción ese día.</p></li>
 </ul>
 </section>
-<section id="observaciones-tecnicas-relevantes">
-<h3>Observaciones Técnicas Relevantes<a class="headerlink" href="#observaciones-tecnicas-relevantes" title="Permalink to this heading">#</a></h3>
+<section id="observaciones-tecnicas">
+<h3>Observaciones Técnicas<a class="headerlink" href="#observaciones-tecnicas" title="Permalink to this heading">#</a></h3>
 <ol class="arabic">
 <li><p><strong>Coherencia en las métricas monetarias</strong><br />
 Se observa consistencia entre VENTA_BRUTA, DESCUENTO y VENTA_NETA. No se evidencian valores negativos ni descuentos superiores a la venta bruta en esta muestra.</p></li>
@@ -553,29 +584,6 @@ La tabla está preparada para incorporar:</p>
 <p>Esto es especialmente relevante para modelos como LSTM o arquitecturas temporales más sofisticadas.</p>
 </li>
 </ol>
-</section>
-<section id="implicaciones-estrategicas">
-<h3>Implicaciones Estratégicas<a class="headerlink" href="#implicaciones-estrategicas" title="Permalink to this heading">#</a></h3>
-<p>Esta estructura permite:</p>
-<ul class="simple">
-<li><p>Modelar ventas a nivel operativo real.</p></li>
-<li><p>Evaluar impacto de promociones en ingresos.</p></li>
-<li><p>Analizar elasticidad precio–ventas.</p></li>
-<li><p>Identificar productos de alta variabilidad.</p></li>
-<li><p>Detectar patrones específicos por tienda.</p></li>
-</ul>
-<p>Además, esta agregación evita el ruido transaccional y convierte el dataset en una base analítica lista para modelado predictivo robusto.</p>
-</section>
-<section id="conclusion-ejecutiva">
-<h3>Conclusión Ejecutiva<a class="headerlink" href="#conclusion-ejecutiva" title="Permalink to this heading">#</a></h3>
-<p>La construcción de esta tabla representa un paso clave hacia la implementación de modelos de predicción de ventas.<br />
-Desde el punto de vista técnico y estructural, el dataset cumple con los requisitos mínimos para avanzar hacia:</p>
-<ul class="simple">
-<li><p>Modelos baseline de forecasting.</p></li>
-<li><p>Modelos de Machine Learning.</p></li>
-<li><p>Modelos Deep Learning orientados a series de tiempo.</p></li>
-</ul>
-<p>La siguiente etapa dependerá principalmente de contar con histórico ampliado para capturar patrones temporales de largo plazo.</p>
 </section>
 </section>
 <section id="panorama-general-de-ventas-totales-y-metricas-clave">
@@ -609,6 +617,62 @@ Desde el punto de vista técnico y estructural, el dataset cumple con los requis
 </div>
 </div>
 </section>
+<section id="interpretacion-de-salida">
+<h2><strong>Interpretación de salida</strong><a class="headerlink" href="#interpretacion-de-salida" title="Permalink to this heading">#</a></h2>
+<p>El resumen anterior presenta una visión consolidada del comportamiento comercial en la muestra analizada, permitiendo dimensionar el volumen operativo y la estructura del negocio en el periodo observado.</p>
+<section id="metricas-clave-observadas">
+<h3>Métricas clave observadas<a class="headerlink" href="#metricas-clave-observadas" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Ventas Netas Totales:</strong> 5.621.632</p></li>
+<li><p><strong>Ventas Brutas Totales:</strong> 5.706.941</p></li>
+<li><p><strong>Descuentos Totales:</strong> 85.309</p></li>
+<li><p><strong>Unidades Totales Vendidas:</strong> 299.33</p></li>
+<li><p><strong>Número de Productos (PLU):</strong> 228</p></li>
+<li><p><strong>Número de Tiendas:</strong> 1</p></li>
+<li><p><strong>Número de Fechas:</strong> 1</p></li>
+</ul>
+</section>
+<section id="analisis-financiero-inicial">
+<h3>Análisis Financiero Inicial<a class="headerlink" href="#analisis-financiero-inicial" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>1. Impacto de descuentos</strong></p></li>
+</ol>
+<p>La diferencia entre ventas brutas y ventas netas corresponde a 85.309 en descuentos, lo que representa aproximadamente:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{85.309}{5.706.941} \approx 1.5\%
+\]</div>
+<p>Este nivel de descuento es relativamente bajo en términos agregados, lo que sugiere que en esta muestra puntual el efecto promocional global fue moderado.</p>
+<p><strong>2. Precio promedio implícito</strong></p>
+<p>Si relacionamos ventas netas con unidades vendidas:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Precio promedio} \approx \frac{5.621.632}{299.33}
+\]</div>
+<p>Se obtiene un ticket promedio elevado por unidad, lo cual sugiere que la mezcla de productos puede incluir categorías de alto valor o productos vendidos por peso.</p>
+</section>
+<section id="cobertura-de-la-muestra">
+<h3>Cobertura de la muestra<a class="headerlink" href="#cobertura-de-la-muestra" title="Permalink to this heading">#</a></h3>
+<p>Es importante resaltar que esta muestra corresponde a:</p>
+<ul class="simple">
+<li><p><strong>Una sola tienda</strong></p></li>
+<li><p><strong>Un solo día</strong></p></li>
+<li><p><strong>228 productos activos</strong></p></li>
+</ul>
+<p>Por lo tanto, esta vista debe interpretarse como una validación estructural preliminar y no como un diagnóstico global del negocio.</p>
+</section>
+<section id="implicaciones-para-el-proyecto-de-prediccion-de-ventas">
+<h3>Implicaciones para el Proyecto de Predicción de Ventas<a class="headerlink" href="#implicaciones-para-el-proyecto-de-prediccion-de-ventas" title="Permalink to this heading">#</a></h3>
+<p>Este panorama permite confirmar que:</p>
+<ul class="simple">
+<li><p>La base tiene volumen monetario significativo.</p></li>
+<li><p>Existe señal promocional (aunque baja en esta fecha).</p></li>
+<li><p>La granularidad es adecuada para modelado.</p></li>
+<li><p>El dataset puede escalar naturalmente a análisis multi-tienda y multi-fecha.</p></li>
+</ul>
+<p>Sin embargo, para capturar patrones reales de estacionalidad, tendencia y elasticidad precio–demanda, será indispensable contar con histórico extendido.</p>
+</section>
+</section>
 <section id="distribucion-de-ventas-netas-y-unidades">
 <h2><strong>3.3 Distribución de ventas netas y unidades</strong><a class="headerlink" href="#distribucion-de-ventas-netas-y-unidades" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -630,6 +694,50 @@ Desde el punto de vista técnico y estructural, el dataset cumple con los requis
 <img alt="../_images/344522a17ac32df4f700fefe639cc4c6f7737d9bfdf65f6079ea1039b32119b1.png" src="../_images/344522a17ac32df4f700fefe639cc4c6f7737d9bfdf65f6079ea1039b32119b1.png" />
 </div>
 </div>
+</section>
+<section id="interpretacion-de-la-distribucion-de-ventas-netas-y-unidades-vendidas">
+<h2>Interpretación de la Distribución de Ventas Netas y Unidades Vendidas<a class="headerlink" href="#interpretacion-de-la-distribucion-de-ventas-netas-y-unidades-vendidas" title="Permalink to this heading">#</a></h2>
+<p>Los histogramas presentados permiten analizar la estructura estadística de las ventas a nivel Día–Tienda–Producto, identificando patrones de concentración, dispersión y posibles valores extremos.</p>
+<section id="distribucion-de-ventas-netas">
+<h3>Distribución de Ventas Netas<a class="headerlink" href="#distribucion-de-ventas-netas" title="Permalink to this heading">#</a></h3>
+<p>La distribución de ventas netas presenta una marcada asimetría positiva (cola hacia la derecha). La mayoría de los registros se concentran en rangos bajos y medios de facturación, mientras que un grupo reducido de productos alcanza niveles significativamente superiores.</p>
+<p>Este comportamiento es característico del retail y refleja un patrón tipo concentración 80/20, donde un subconjunto pequeño de productos explica una proporción relevante del ingreso total. La presencia de valores extremos altos sugiere la existencia de productos con alta rotación o alto precio unitario.</p>
+<p>Desde el punto de vista estadístico, esta asimetría implica que:</p>
+<ul class="simple">
+<li><p>La media puede estar influenciada por valores extremos.</p></li>
+<li><p>La mediana podría ser una métrica más representativa del comportamiento típico.</p></li>
+<li><p>Será necesario evaluar transformaciones (por ejemplo, logarítmicas) para modelos predictivos.</p></li>
+</ul>
+<p>La variabilidad observada confirma que el dataset contiene señal suficiente para modelar diferencias estructurales entre productos.</p>
+</section>
+<section id="distribucion-de-unidades-vendidas">
+<h3>Distribución de Unidades Vendidas<a class="headerlink" href="#distribucion-de-unidades-vendidas" title="Permalink to this heading">#</a></h3>
+<p>La distribución de unidades vendidas también presenta asimetría positiva, aunque más pronunciada que en ventas monetarias. La mayoría de los productos registran ventas bajas en unidades, mientras que unos pocos alcanzan niveles significativamente superiores.</p>
+<p>Este patrón indica que:</p>
+<ul class="simple">
+<li><p>Existe heterogeneidad en la demanda entre productos.</p></li>
+<li><p>Algunos productos presentan comportamiento de alta rotación.</p></li>
+<li><p>Otros productos operan en volúmenes marginales.</p></li>
+</ul>
+<p>La presencia de valores extremos en unidades vendidas es relevante para modelado, ya que puede generar:</p>
+<ul class="simple">
+<li><p>Sesgos en métricas de error como RMSE.</p></li>
+<li><p>Mayor volatilidad en modelos sensibles a outliers.</p></li>
+<li><p>Necesidad de considerar normalización o escalamiento robusto.</p></li>
+</ul>
+<p>Adicionalmente, la combinación de asimetría en ventas monetarias y en unidades sugiere que no todos los productos de alta facturación necesariamente son los de mayor volumen físico, lo cual abre la puerta a análisis posteriores de elasticidad precio–cantidad.</p>
+</section>
+<section id="implicaciones-analiticas">
+<h3>Implicaciones Analíticas<a class="headerlink" href="#implicaciones-analiticas" title="Permalink to this heading">#</a></h3>
+<p>Ambas distribuciones confirman que el dataset no es homogéneo y presenta alta dispersión entre productos. Este comportamiento es adecuado para entrenar modelos de predicción de ventas, ya que existe variabilidad suficiente para capturar patrones diferenciados.</p>
+<p>Sin embargo, será necesario considerar:</p>
+<ul class="simple">
+<li><p>Técnicas de transformación para estabilizar varianza.</p></li>
+<li><p>Modelos capaces de capturar heterogeneidad.</p></li>
+<li><p>Evaluación cuidadosa de métricas de error.</p></li>
+</ul>
+<p>La estructura observada es consistente con datasets reales de retail y respalda la viabilidad técnica del proyecto de predicción de ventas.</p>
+</section>
 </section>
 <section id="analisis-de-concentracion-regla-80-20-pareto-por-producto">
 <h2><strong>3.4 Análisis de concentración (Regla 80/20 - Pareto por producto)</strong><a class="headerlink" href="#analisis-de-concentracion-regla-80-20-pareto-por-producto" title="Permalink to this heading">#</a></h2>
@@ -757,6 +865,42 @@ Desde el punto de vista técnico y estructural, el dataset cumple con los requis
 </div></div></div>
 </div>
 </section>
+<section id="interpretacion-del-analisis-de-concentracion-regla-80-20">
+<h2>Interpretación del Análisis de Concentración – Regla 80/20<a class="headerlink" href="#interpretacion-del-analisis-de-concentracion-regla-80-20" title="Permalink to this heading">#</a></h2>
+<p>El análisis de concentración por producto permite evaluar la estructura de generación de ingresos bajo el principio de Pareto. Para ello, se ordenaron los productos (PLU_SAP) según su contribución a las ventas netas totales y se calculó el porcentaje acumulado de participación.</p>
+<p>El resultado indica que <strong>132 productos generan el 80% de las ventas totales</strong> dentro de la muestra analizada.</p>
+<p>Considerando que el número total de productos es 228, esto implica que aproximadamente el 58% de los productos concentran el 80% de los ingresos, lo cual sugiere una concentración moderada y no extrema.</p>
+<section id="analisis-de-los-productos-lideres">
+<h3>Análisis de los productos líderes<a class="headerlink" href="#analisis-de-los-productos-lideres" title="Permalink to this heading">#</a></h3>
+<p>Los primeros productos del ranking muestran contribuciones individuales relevantes. Por ejemplo:</p>
+<ul class="simple">
+<li><p>El producto con mayor venta representa aproximadamente 2.6% del total.</p></li>
+<li><p>Los primeros 10 productos ya acumulan alrededor del 15% de las ventas.</p></li>
+</ul>
+<p>Esto indica que, aunque existe concentración, no se observa un escenario de dependencia crítica de uno o pocos productos dominantes.</p>
+</section>
+<section id="interpretacion-estructural">
+<h3>Interpretación estructural<a class="headerlink" href="#interpretacion-estructural" title="Permalink to this heading">#</a></h3>
+<p>El patrón observado sugiere:</p>
+<ul class="simple">
+<li><p>Existe un núcleo de productos estratégicos que sostienen el negocio.</p></li>
+<li><p>No hay hiperconcentración extrema (no es un 20% de productos generando 80%).</p></li>
+<li><p>La estructura de ingresos está relativamente diversificada.</p></li>
+</ul>
+<p>Desde el punto de vista comercial, esto es saludable, ya que reduce el riesgo operativo asociado a dependencia excesiva de pocos SKUs.</p>
+</section>
+<section id="implicaciones-para-el-modelo-de-prediccion">
+<h3>Implicaciones para el Modelo de Predicción<a class="headerlink" href="#implicaciones-para-el-modelo-de-prediccion" title="Permalink to this heading">#</a></h3>
+<p>Es importante recordar que este análisis corresponde a una única fecha y una única tienda. Para validar si este patrón es estructural y no circunstancial, será necesario replicar el análisis sobre un histórico amplio.</p>
+<p>En etapas posteriores, podría complementarse con:</p>
+<ul class="simple">
+<li><p>Curva de Lorenz.</p></li>
+<li><p>Índice de Gini de concentración.</p></li>
+<li><p>Segmentación ABC formal.</p></li>
+</ul>
+<p>El comportamiento observado es consistente con estructuras típicas del retail y confirma que la base contiene suficiente heterogeneidad para desarrollar modelos predictivos robustos.</p>
+</section>
+</section>
 <section id="top-productos-por-ventas-y-por-unidades">
 <h2><strong>3.5 Top productos por ventas y por unidades</strong><a class="headerlink" href="#top-productos-por-ventas-y-por-unidades" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -809,143 +953,59 @@ Desde el punto de vista técnico y estructural, el dataset cumple con los requis
 </div>
 </div>
 </section>
-<section id="variabilidad-de-ventas-coeficiente-de-variacion">
-<h2><strong>3.6 Variabilidad de ventas (Coeficiente de variación)</strong><a class="headerlink" href="#variabilidad-de-ventas-coeficiente-de-variacion" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_producto</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">])</span>
-<span class="p">)</span>
-
-<span class="n">cv_producto</span><span class="p">[</span><span class="s2">&quot;CV&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv_producto</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">cv_producto</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span>
-<span class="n">cv_producto</span> <span class="o">=</span> <span class="n">cv_producto</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;CV&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">cv_producto</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>mean</th>
-      <th>std</th>
-      <th>CV</th>
-    </tr>
-    <tr>
-      <th>PLU_SAP</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>36,900.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>143,700.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>60,900.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>17,750.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>24,300.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>7,200.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>17,980.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>23,700.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>31,400.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>31,800.000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
+<section id="interpretacion-del-top-de-productos-por-ventas-y-por-unidades">
+<h2>Interpretación del Top de Productos por Ventas y por Unidades<a class="headerlink" href="#interpretacion-del-top-de-productos-por-ventas-y-por-unidades" title="Permalink to this heading">#</a></h2>
+<p>El análisis de los diez productos líderes según ventas monetarias y según volumen de unidades permite diferenciar claramente dos dimensiones del desempeño comercial: contribución a ingresos y rotación física.</p>
+<section id="top-productos-por-ventas-monetarias">
+<h3>Top productos por ventas monetarias<a class="headerlink" href="#top-productos-por-ventas-monetarias" title="Permalink to this heading">#</a></h3>
+<p>Los productos con mayor contribución en ventas netas muestran valores significativamente superiores al resto del portafolio. El producto líder alcanza 143.700 en ventas netas, seguido por otros con cifras cercanas a 120.000 y 98.000.</p>
+<p>Este ranking refleja qué productos generan mayor impacto financiero directo en el negocio. Sin embargo, es importante notar que la contribución monetaria no necesariamente implica alta rotación física, ya que puede estar influenciada por:</p>
+<ul class="simple">
+<li><p>Precio unitario elevado.</p></li>
+<li><p>Venta por peso.</p></li>
+<li><p>Mayor margen implícito.</p></li>
+<li><p>Posicionamiento premium.</p></li>
+</ul>
+<p>Desde el punto de vista estratégico, estos productos deben considerarse críticos en términos de precisión predictiva, ya que errores en su forecast pueden tener mayor impacto en resultados financieros.</p>
 </section>
-<section id="analisis-por-tienda">
-<h2><strong>3.7 Análisis por tienda</strong><a class="headerlink" href="#analisis-por-tienda" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ventas_tienda</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">ventas_tienda</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CENTRO
-1   5,621,632.000
-Name: VENTA_NETA, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
+<section id="top-productos-por-unidades-vendidas">
+<h3>Top productos por unidades vendidas<a class="headerlink" href="#top-productos-por-unidades-vendidas" title="Permalink to this heading">#</a></h3>
+<p>El ranking por unidades vendidas presenta un orden diferente. El producto con mayor volumen alcanza 21.285 unidades, seguido por otros en el rango de 18.772 y 9.906.</p>
+<p>Aquí se observa que algunos productos con alta rotación no coinciden necesariamente con los de mayor facturación. Esto sugiere que existen productos de bajo precio pero alta frecuencia de compra.</p>
+<p>Esta diferenciación es clave porque:</p>
+<ul class="simple">
+<li><p>Productos de alta rotación pueden generar presión operativa (inventario, reposición).</p></li>
+<li><p>Productos de alto valor monetario pueden generar mayor sensibilidad financiera.</p></li>
+<li><p>El comportamiento de demanda puede diferir significativamente entre ambos grupos.</p></li>
+</ul>
+</section>
+<section id="diferenciacion-estructural">
+<h3>Diferenciación estructural<a class="headerlink" href="#diferenciacion-estructural" title="Permalink to this heading">#</a></h3>
+<p>La divergencia parcial entre ambos rankings confirma que el portafolio no es homogéneo. Existen al menos dos perfiles claros:</p>
+<ol class="arabic simple">
+<li><p>Productos de alto ingreso unitario.</p></li>
+<li><p>Productos de alta rotación física.</p></li>
+</ol>
+<p>Esta segmentación natural sugiere que el modelo predictivo podría beneficiarse de estrategias diferenciadas, por ejemplo:</p>
+<ul class="simple">
+<li><p>Ajustes específicos por elasticidad precio–cantidad.</p></li>
+<li><p>Segmentación ABC.</p></li>
+<li><p>Modelos con ponderación por importancia comercial.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>Implicaciones para el proyecto de predicción de ventas<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Este análisis refuerza que la variable objetivo no debe analizarse únicamente en términos agregados. El modelo deberá capturar:</p>
+<ul class="simple">
+<li><p>Variabilidad entre productos.</p></li>
+<li><p>Diferencias en patrón de rotación.</p></li>
+<li><p>Posible sensibilidad distinta a promociones.</p></li>
+</ul>
+<p>Adicionalmente, la priorización de métricas de error debería considerar el impacto financiero, no solo el error promedio.</p>
+</section>
 </section>
 <section id="analisis-de-facturas">
-<h2><strong>3.8 Análisis de facturas</strong><a class="headerlink" href="#analisis-de-facturas" title="Permalink to this heading">#</a></h2>
+<h2><strong>3.6 Análisis de facturas</strong><a class="headerlink" href="#analisis-de-facturas" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Volvemos al dataset línea si lo necesitas</span>
@@ -1043,28 +1103,62 @@ Name: VENTA_NETA, dtype: float64
 </div></div></div>
 </div>
 </section>
-<section id="conclusiones-del-eda-de-ventas">
-<h2><strong>3.9 Conclusiones del EDA de ventas</strong><a class="headerlink" href="#conclusiones-del-eda-de-ventas" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conclusiones</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Venta promedio por producto&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;PLU_SAP&quot;</span><span class="p">)[</span><span class="s2">&quot;VENTA_NETA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
-    <span class="s2">&quot;Descuento promedio (%)&quot;</span><span class="p">:</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;DESCUENTO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">if</span> <span class="n">df_ts</span><span class="p">[</span><span class="s2">&quot;VENTA_BRUTA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;Productos que dominan ventas (80%)&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_80</span><span class="p">),</span>
-<span class="p">}</span>
-
-<span class="n">conclusiones</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Venta promedio por producto&#39;: np.float64(24656.280701754386),
- &#39;Descuento promedio (%)&#39;: np.float64(0.01494828840879904),
- &#39;Productos que dominan ventas (80%)&#39;: 132}
-</pre></div>
-</div>
-</div>
-</div>
+<section id="interpretacion-del-analisis-de-facturas">
+<h2>Interpretación del Análisis de Facturas<a class="headerlink" href="#interpretacion-del-analisis-de-facturas" title="Permalink to this heading">#</a></h2>
+<p>El análisis a nivel de factura permite comprender el comportamiento del cliente en cada transacción, aportando una perspectiva distinta al análisis agregado por producto. En este caso, se construyeron métricas clave por número de factura: valor total del ticket, número de productos distintos por compra y total de unidades adquiridas.</p>
+<section id="dimension-y-cobertura">
+<h3>Dimensión y cobertura<a class="headerlink" href="#dimension-y-cobertura" title="Permalink to this heading">#</a></h3>
+<p>Se registran 175 facturas en la muestra analizada, lo que confirma que el volumen transaccional corresponde a un único día y una única tienda.</p>
+<p>Este nivel de granularidad es fundamental para entender:</p>
+<ul class="simple">
+<li><p>Estructura del ticket promedio.</p></li>
+<li><p>Diversificación de compra.</p></li>
+<li><p>Comportamiento típico del consumidor.</p></li>
+</ul>
+</section>
+<section id="valor-del-ticket">
+<h3>Valor del ticket<a class="headerlink" href="#valor-del-ticket" title="Permalink to this heading">#</a></h3>
+<p>El ticket promedio es de aproximadamente 32.123, con una desviación estándar de 33.404. Esta desviación es superior a la media, lo que indica alta dispersión y heterogeneidad en el comportamiento de compra.</p>
+<p>El valor mínimo registrado es 1.200, mientras que el máximo alcanza 219.620, lo que confirma la presencia de transacciones significativamente superiores al promedio.</p>
+<p>Los percentiles muestran que:</p>
+<ul class="simple">
+<li><p>El 50% de los tickets está por debajo de 21.330.</p></li>
+<li><p>El 75% está por debajo de 45.225.</p></li>
+</ul>
+<p>Esto sugiere una distribución asimétrica, consistente con el comportamiento típico del retail, donde existen compras pequeñas frecuentes y compras grandes ocasionales.</p>
+</section>
+<section id="productos-distintos-por-factura">
+<h3>Productos distintos por factura<a class="headerlink" href="#productos-distintos-por-factura" title="Permalink to this heading">#</a></h3>
+<p>El promedio de productos distintos por ticket es 1.97, con mediana igual a 1. Esto indica que la mayoría de las transacciones involucran un único producto.</p>
+<p>El máximo observado es 11 productos distintos en una sola factura, lo cual sugiere que existen compras más completas o de reposición.</p>
+<p>Este patrón puede indicar:</p>
+<ul class="simple">
+<li><p>Alta frecuencia de compras rápidas.</p></li>
+<li><p>Bajo nivel de canasta promedio en esta muestra puntual.</p></li>
+<li><p>Posible predominancia de categorías específicas.</p></li>
+</ul>
+</section>
+<section id="total-de-unidades-por-factura">
+<h3>Total de unidades por factura<a class="headerlink" href="#total-de-unidades-por-factura" title="Permalink to this heading">#</a></h3>
+<p>El promedio de unidades es 1.71 por ticket, con un máximo de 16.188 unidades.</p>
+<p>La mediana inferior a 1 unidad sugiere que algunos productos se venden por peso, lo que explica valores fraccionarios.</p>
+<p>Desde el punto de vista operacional, esta estructura indica:</p>
+<ul class="simple">
+<li><p>Predominancia de compras pequeñas.</p></li>
+<li><p>Baja complejidad promedio del ticket.</p></li>
+<li><p>Existencia de algunos casos de compra volumétrica.</p></li>
+</ul>
+</section>
+<section id="implicaciones-para-el-proyecto-de-prediccion">
+<h3>Implicaciones para el Proyecto de Predicción<a class="headerlink" href="#implicaciones-para-el-proyecto-de-prediccion" title="Permalink to this heading">#</a></h3>
+<p>Este análisis aporta información relevante en varios niveles:</p>
+<ol class="arabic simple">
+<li><p>Permite entender la distribución real del ingreso por transacción.</p></li>
+<li><p>Refuerza la necesidad de capturar heterogeneidad en los modelos.</p></li>
+<li><p>Sugiere que el forecast por producto debe considerar comportamiento de compra atomizado.</p></li>
+<li><p>Abre la posibilidad de incorporar métricas de ticket promedio como variables derivadas en modelos más avanzados.</p></li>
+</ol>
+</section>
 </section>
 </section>
 
@@ -1135,19 +1229,48 @@ Name: VENTA_NETA, dtype: float64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-las-tablas-agregadas-para-analisis"><strong>3.1 Carga de las tablas agregadas para análisis</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-la-tabla-agregada-nivel-diatiendaproducto"><strong>Interpretación de la Tabla Agregada – Nivel Día–Tienda–Producto</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-significado-de-las-variables">Estructura y significado de las variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-tecnicas-relevantes">Observaciones Técnicas Relevantes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-estrategicas">Implicaciones Estratégicas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión Ejecutiva</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-tecnicas">Observaciones Técnicas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panorama-general-de-ventas-totales-y-metricas-clave"><strong>3.2 Panorama general de ventas (totales y métricas clave)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-salida"><strong>Interpretación de salida</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-clave-observadas">Métricas clave observadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-financiero-inicial">Análisis Financiero Inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-de-la-muestra">Cobertura de la muestra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-el-proyecto-de-prediccion-de-ventas">Implicaciones para el Proyecto de Predicción de Ventas</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-ventas-netas-y-unidades"><strong>3.3 Distribución de ventas netas y unidades</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-la-distribucion-de-ventas-netas-y-unidades-vendidas">Interpretación de la Distribución de Ventas Netas y Unidades Vendidas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-ventas-netas">Distribución de Ventas Netas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-unidades-vendidas">Distribución de Unidades Vendidas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-analiticas">Implicaciones Analíticas</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-concentracion-regla-80-20-pareto-por-producto"><strong>3.4 Análisis de concentración (Regla 80/20 - Pareto por producto)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-analisis-de-concentracion-regla-80-20">Interpretación del Análisis de Concentración – Regla 80/20</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-productos-lideres">Análisis de los productos líderes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-estructural">Interpretación estructural</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-el-modelo-de-prediccion">Implicaciones para el Modelo de Predicción</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-ventas-y-por-unidades"><strong>3.5 Top productos por ventas y por unidades</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabilidad-de-ventas-coeficiente-de-variacion"><strong>3.6 Variabilidad de ventas (Coeficiente de variación)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-por-tienda"><strong>3.7 Análisis por tienda</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-facturas"><strong>3.8 Análisis de facturas</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-eda-de-ventas"><strong>3.9 Conclusiones del EDA de ventas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-top-de-productos-por-ventas-y-por-unidades">Interpretación del Top de Productos por Ventas y por Unidades</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-ventas-monetarias">Top productos por ventas monetarias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-productos-por-unidades-vendidas">Top productos por unidades vendidas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacion-estructural">Diferenciación estructural</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Implicaciones para el proyecto de predicción de ventas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-facturas"><strong>3.6 Análisis de facturas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-analisis-de-facturas">Interpretación del Análisis de Facturas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-y-cobertura">Dimensión y cobertura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-del-ticket">Valor del ticket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-distintos-por-factura">Productos distintos por factura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#total-de-unidades-por-factura">Total de unidades por factura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicaciones-para-el-proyecto-de-prediccion">Implicaciones para el Proyecto de Predicción</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

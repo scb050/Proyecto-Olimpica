@@ -313,51 +313,40 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-processed-y-verificacion"><strong>2.1 Carga del dataset limpio (processed) y verificación</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-y-validacion-estructural-final">Carga del dataset limpio y validación estructural final</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-processed-y-verificacion"><strong>2.1 Carga del dataset limpio (processed) y verificación</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-persistencia-y-trazabilidad">Validación de persistencia y trazabilidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-actual-del-dataset">Estructura actual del dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva-de-la-muestra-mostrada">Lectura ejecutiva de la muestra mostrada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-muestra">Lectura de la muestra</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion-de-columnas-y-control-de-tipos-re-chequeo"><strong>2.2 Normalización de columnas y control de tipos (re-chequeo)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-tipos-de-datos-en-variables-criticas">Validación de tipos de datos en variables críticas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-del-reporte-de-tipos">Resultado del reporte de tipos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica">Interpretación técnica</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-de-negocio-venta-neta-flags-precio-unitario"><strong>2.3 Ingeniería de variables de negocio (venta neta, flags, precio unitario)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidacion-de-variables-derivadas-y-creacion-de-indicador-porcentual-de-descuento">Consolidación de variables derivadas y creación de indicador porcentual de descuento</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-consolidadas-en-la-tabla">Variables consolidadas en la tabla</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento-pct-estandarizacion-del-impacto-promocional">DESCUENTO_PCT: estandarización del impacto promocional</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-pipeline">Robustez del pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-calendario-dia-semana-mes-fin-de-mes-quincena"><strong>2.4 Features de calendario (día semana, mes, fin de mes, quincena)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-de-variables-de-calendario-para-analisis-temporal">Generación de variables de calendario para análisis temporal</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-creadas-y-su-utilidad-analitica">Variables creadas y su utilidad analítica</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-muestra-observada">Lectura de la muestra observada</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria"><strong>2.5 Construcción de tablas agregadas para forecasting (día–tienda–producto y día–tienda–categoría)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-serie-agregada-a-nivel-diatiendaproducto">Construcción de serie agregada a nivel día–tienda–producto</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-de-agregacion-construido">Nivel de agregación construido</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-agregadas-generadas">Métricas agregadas generadas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-salida-observada">Lectura de la salida observada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-transformacion">Valor estratégico de esta transformación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-temporales-lags-y-rolling-windows-ventas-y-unidades"><strong>2.6 Features temporales: lags y rolling windows (ventas y unidades)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-features-temporales-lags-y-rolling-para-pronostico">Preparación de features temporales (lags y rolling) para pronóstico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-hace-este-bloque">Qué hace este bloque</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mensaje-de-advertencia-observado">Mensaje de advertencia observado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-del-enfoque">Valor estratégico del enfoque</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Conclusión</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-promociones-intensidad-y-efecto-descuento-promo-rate"><strong>2.7 Features de promociones: intensidad y efecto (descuento %, promo rate)</strong></a></li>
@@ -367,22 +356,18 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-medio-neto-aprox">3. PRECIO_MEDIO_NETO_APROX</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones-posteriores-a-agregacion-consistencia-y-gaps"><strong>2.8 Validaciones posteriores a agregación (consistencia y gaps)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-posteriores-a-la-agregacion">Controles de consistencia posteriores a la agregación</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-validacion">Resultados de validación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-final-de-fase-1-tablas-listas-para-eda-y-modelado-baseline"><strong>2.9 Dataset final de Fase 1 (tablas listas para EDA y modelado baseline)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-de-series-temporales-listas-para-analisis-y-modelado">Persistencia de series temporales listas para análisis y modelado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-generados">Archivos generados</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-persistencia">Valor estratégico de esta persistencia</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-metodologico">Enfoque metodológico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Conclusión</a></li>
 </ul>
             </nav>
         </div>
@@ -571,10 +556,6 @@ Shape: (345, 16)
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="carga-del-dataset-limpio-y-validacion-estructural-final">
-<h2>Carga del dataset limpio y validación estructural final<a class="headerlink" href="#carga-del-dataset-limpio-y-validacion-estructural-final" title="Permalink to this heading">#</a></h2>
-<p>Este bloque marca el inicio formal de la fase analítica sobre datos ya procesados y auditados. Se carga el archivo <code class="docutils literal notranslate"><span class="pre">Ventas_1_clean.csv</span></code> desde la carpeta <code class="docutils literal notranslate"><span class="pre">processed</span></code>, garantizando que el análisis se realice sobre una versión controlada y validada del dataset.</p>
 <section id="validacion-de-persistencia-y-trazabilidad">
 <h3>Validación de persistencia y trazabilidad<a class="headerlink" href="#validacion-de-persistencia-y-trazabilidad" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -594,8 +575,8 @@ Shape: (345, 16)
 </ul>
 <p>La columna <code class="docutils literal notranslate"><span class="pre">FECHA</span></code> se carga correctamente como tipo fecha (<code class="docutils literal notranslate"><span class="pre">parse_dates=[&quot;FECHA&quot;]</span></code>), habilitando análisis temporales y construcción de series de tiempo.</p>
 </section>
-<section id="lectura-ejecutiva-de-la-muestra-mostrada">
-<h3>Lectura ejecutiva de la muestra mostrada<a class="headerlink" href="#lectura-ejecutiva-de-la-muestra-mostrada" title="Permalink to this heading">#</a></h3>
+<section id="lectura-de-la-muestra">
+<h3>Lectura de la muestra<a class="headerlink" href="#lectura-de-la-muestra" title="Permalink to this heading">#</a></h3>
 <p>En los primeros registros se observa:</p>
 <ul class="simple">
 <li><p>Coherencia entre <code class="docutils literal notranslate"><span class="pre">VENTA</span></code> y <code class="docutils literal notranslate"><span class="pre">VENTA_NETA</span></code> cuando no hay descuento.</p></li>
@@ -604,21 +585,6 @@ Shape: (345, 16)
 <li><p>Precios unitarios netos consistentes con la relación venta/cantidad.</p></li>
 </ul>
 </section>
-</section>
-<section id="conclusion">
-<h2>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<p>El dataset limpio ha sido cargado exitosamente y mantiene:</p>
-<ul class="simple">
-<li><p>Integridad estructural.</p></li>
-<li><p>Trazabilidad desde el archivo fuente.</p></li>
-<li><p>Variables enriquecidas listas para análisis avanzado.</p></li>
-</ul>
-<p>A partir de este punto, el entorno está completamente preparado para:</p>
-<ul class="simple">
-<li><p>Análisis exploratorio profundo.</p></li>
-<li><p>Construcción de métricas comerciales.</p></li>
-<li><p>Desarrollo de modelos predictivos de ventas alineados con objetivos estratégicos.</p></li>
-</ul>
 </section>
 <section id="normalizacion-de-columnas-y-control-de-tipos-re-chequeo">
 <h2><strong>2.2 Normalización de columnas y control de tipos (re-chequeo)</strong><a class="headerlink" href="#normalizacion-de-columnas-y-control-de-tipos-re-chequeo" title="Permalink to this heading">#</a></h2>
@@ -684,16 +650,6 @@ Si se requiere homogeneidad con <code class="docutils literal notranslate"><span
 Correctamente tipificadas como <code class="docutils literal notranslate"><span class="pre">float64</span></code>, lo cual es coherente ya que pueden involucrar decimales y operaciones aritméticas.</p>
 <p><strong>CANTIDAD</strong><br />
 Se mantiene como <code class="docutils literal notranslate"><span class="pre">float64</span></code>, lo cual es indispensable dado que existen cantidades fraccionadas (venta por peso).</p>
-</section>
-<section id="conclusion-ejecutiva">
-<h3>Conclusión ejecutiva<a class="headerlink" href="#conclusion-ejecutiva" title="Permalink to this heading">#</a></h3>
-<p>Las variables críticas se encuentran correctamente tipificadas para:</p>
-<ul class="simple">
-<li><p>análisis estadístico</p></li>
-<li><p>cálculo de métricas agregadas</p></li>
-<li><p>ingeniería de variables</p></li>
-<li><p>modelado predictivo</p></li>
-</ul>
 </section>
 </section>
 <section id="ingenieria-de-variables-de-negocio-venta-neta-flags-precio-unitario">
@@ -891,14 +847,6 @@ Se mantiene como <code class="docutils literal notranslate"><span class="pre">fl
 </ul>
 <p>En la muestra mostrada, <code class="docutils literal notranslate"><span class="pre">DESCUENTO_PCT</span> <span class="pre">=</span> <span class="pre">0.000</span></code> en los primeros registros, consistente con <code class="docutils literal notranslate"><span class="pre">DESCUENTO</span> <span class="pre">=</span> <span class="pre">0</span></code> y <code class="docutils literal notranslate"><span class="pre">PROMO_FLAG</span> <span class="pre">=</span> <span class="pre">0</span></code>, lo cual confirma coherencia interna entre las variables derivadas.</p>
 </section>
-<section id="robustez-del-pipeline">
-<h3>Robustez del pipeline<a class="headerlink" href="#robustez-del-pipeline" title="Permalink to this heading">#</a></h3>
-<p>El bloque incorpora verificaciones para asegurar que las columnas existan, incluso si el archivo se vuelve a cargar en otro entorno. Esto reduce fallas por re-ejecución y mantiene consistencia del flujo de trabajo.</p>
-</section>
-</section>
-<section id="id1">
-<h2>Conclusión<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>La tabla resultante confirma que el dataset está enriquecido con variables de negocio interpretables y comparables. En particular, <code class="docutils literal notranslate"><span class="pre">DESCUENTO_PCT</span></code> aporta una métrica estandarizada que facilita análisis de efectividad promocional y mejora la calidad de las variables explicativas para modelos predictivos de ventas.</p>
 </section>
 <section id="features-de-calendario-dia-semana-mes-fin-de-mes-quincena">
 <h2><strong>2.4 Features de calendario (día semana, mes, fin de mes, quincena)</strong><a class="headerlink" href="#features-de-calendario-dia-semana-mes-fin-de-mes-quincena" title="Permalink to this heading">#</a></h2>
@@ -1112,12 +1060,7 @@ Permite capturar incrementos o cambios de comportamiento asociados a compras de 
 <li><p><code class="docutils literal notranslate"><span class="pre">FIN_MES</span> <span class="pre">=</span> <span class="pre">0</span></code> (no es cierre de mes)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FIN_SEMANA</span> <span class="pre">=</span> <span class="pre">0</span></code> (no corresponde a sábado o domingo)</p></li>
 </ul>
-<p>Esto confirma que las variables fueron derivadas correctamente y que el pipeline temporal está listo para escalar a múltiples fechas.</p>
 </section>
-</section>
-<section id="id2">
-<h2>Conclusión<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>Estas variables de calendario enriquecen el dataset con señales temporales que mejoran tanto el análisis exploratorio como el desempeño de modelos predictivos. Son especialmente útiles para capturar patrones semanales y quincenales, y para evaluar efectos de calendario relevantes para la operación comercial.</p>
 </section>
 <section id="construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria">
 <h2><strong>2.5 Construcción de tablas agregadas para forecasting (día–tienda–producto y día–tienda–categoría)</strong><a class="headerlink" href="#construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria" title="Permalink to this heading">#</a></h2>
@@ -1203,39 +1146,6 @@ Permite capturar incrementos o cambios de comportamiento asociados a compras de 
 </ul>
 <p>Esta métrica permite medir intensidad promocional de manera relativa y comparable entre productos.</p>
 </section>
-<section id="lectura-de-la-salida-observada">
-<h3>Lectura de la salida observada<a class="headerlink" href="#lectura-de-la-salida-observada" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Dimensión resultante: 228 filas × 12 columnas</p></li>
-<li><p>Esto coincide con el número de productos distintos en la muestra (228), lo que confirma que:</p>
-<ul>
-<li><p>Se trata de un solo día</p></li>
-<li><p>Un solo centro</p></li>
-<li><p>Un registro agregado por producto</p></li>
-</ul>
-</li>
-</ul>
-<p>En este extracto:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">PROMO_RATE</span> <span class="pre">=</span> <span class="pre">0.000</span></code> para los primeros registros</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DESC_PCT_MED</span> <span class="pre">=</span> <span class="pre">0.000</span></code></p></li>
-</ul>
-<p>Esto es consistente con la muestra inicial donde no se observaron descuentos activos.</p>
-</section>
-<section id="valor-estrategico-de-esta-transformacion">
-<h3>Valor estratégico de esta transformación<a class="headerlink" href="#valor-estrategico-de-esta-transformacion" title="Permalink to this heading">#</a></h3>
-<p>Este nivel de agregación es el punto de partida natural para:</p>
-<ul class="simple">
-<li><p>Construcción de modelos de forecast por SKU</p></li>
-<li><p>Evaluación de sensibilidad a promociones</p></li>
-<li><p>Análisis de elasticidad precio–volumen</p></li>
-<li><p>Identificación de productos de alta variabilidad</p></li>
-</ul>
-</section>
-</section>
-<section id="id3">
-<h2>Conclusión<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<p>La agregación día–tienda–producto convierte datos transaccionales en una estructura analíticamente eficiente y alineada con objetivos de pronóstico y optimización comercial. El dataset resultante es compacto, interpretable y directamente utilizable para modelos de series de tiempo o machine learning.</p>
 </section>
 <section id="features-temporales-lags-y-rolling-windows-ventas-y-unidades">
 <h2><strong>2.6 Features temporales: lags y rolling windows (ventas y unidades)</strong><a class="headerlink" href="#features-temporales-lags-y-rolling-windows-ventas-y-unidades" title="Permalink to this heading">#</a></h2>
@@ -1259,14 +1169,14 @@ Permite capturar incrementos o cambios de comportamiento asociados a compras de 
     <span class="n">agg_ptp_feat</span> <span class="o">=</span> <span class="n">add_time_features</span><span class="p">(</span><span class="n">agg_ptp_feat</span><span class="p">,</span> <span class="n">group_keys</span><span class="o">=</span><span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;CENTRO&quot;</span><span class="p">,</span> <span class="s2">&quot;PLU_SAP&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">agg_ptp</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span> <span class="n">target_col</span><span class="o">=</span><span class="s2">&quot;UNIDADES&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">agg_ptp_feat</span> <span class="o">=</span> <span class="n">agg_ptp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.&quot;</span><span class="p">)</span>
 
 <span class="n">agg_ptp_feat</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⚠️ Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1384,9 +1294,6 @@ Permite capturar incrementos o cambios de comportamiento asociados a compras de 
 </section>
 <section id="preparacion-de-features-temporales-lags-y-rolling-para-pronostico">
 <h2>Preparación de features temporales (lags y rolling) para pronóstico<a class="headerlink" href="#preparacion-de-features-temporales-lags-y-rolling-para-pronostico" title="Permalink to this heading">#</a></h2>
-<p>La salida muestra que el pipeline ya está preparado para generar variables temporales avanzadas (rezagos y estadísticas móviles), que son fundamentales para modelos de predicción de ventas basados en series de tiempo.</p>
-<section id="que-hace-este-bloque">
-<h3>Qué hace este bloque<a class="headerlink" href="#que-hace-este-bloque" title="Permalink to this heading">#</a></h3>
 <p>Se define una función (<code class="docutils literal notranslate"><span class="pre">add_time_features</span></code>) que, para cada combinación de agrupación (por ejemplo, <code class="docutils literal notranslate"><span class="pre">CENTRO</span></code> y <code class="docutils literal notranslate"><span class="pre">PLU_SAP</span></code>), construye:</p>
 <ul class="simple">
 <li><p>Rezagos (lags) del objetivo: <code class="docutils literal notranslate"><span class="pre">VENTA_NETA_LAG_1</span></code>, <code class="docutils literal notranslate"><span class="pre">LAG_7</span></code>, <code class="docutils literal notranslate"><span class="pre">LAG_14</span></code></p></li>
@@ -1403,11 +1310,8 @@ Permite capturar incrementos o cambios de comportamiento asociados a compras de 
 <li><p>patrones semanales (7 días) y quincenales (14 días)</p></li>
 <li><p>volatilidad de la demanda (rolling std), útil para inventarios y abastecimiento</p></li>
 </ul>
-</section>
 <section id="mensaje-de-advertencia-observado">
 <h3>Mensaje de advertencia observado<a class="headerlink" href="#mensaje-de-advertencia-observado" title="Permalink to this heading">#</a></h3>
-<p>La salida indica:</p>
-<p>“Solo hay 1 fecha en la muestra: lags/rolling quedarán vacíos hasta tener más histórico.”</p>
 <p>Esto no representa un error del pipeline; es una validación correcta. Con un único día no existe información previa para calcular rezagos o promedios móviles, por lo que dichas columnas quedarían sin valores hasta disponer de múltiples fechas.</p>
 </section>
 <section id="valor-estrategico-del-enfoque">
@@ -1418,10 +1322,6 @@ Permite capturar incrementos o cambios de comportamiento asociados a compras de 
 <li><p>señales de tendencia y estacionalidad</p></li>
 <li><p>indicadores de variabilidad y comportamiento reciente</p></li>
 </ul>
-</section>
-<section id="id4">
-<h3>Conclusión<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
-<p>El pipeline está correctamente diseñado para analítica predictiva de ventas. La advertencia observada confirma que el sistema detecta de forma transparente la limitación del extracto actual y mantiene el proceso preparado para operar con datos históricos más amplios sin necesidad de reescritura.</p>
 </section>
 </section>
 <section id="features-de-promociones-intensidad-y-efecto-descuento-promo-rate">
@@ -1641,22 +1541,6 @@ Permite capturar incrementos o cambios de comportamiento asociados a compras de 
 <p>En la tabla se observan precios heterogéneos entre productos, lo cual es esperable dado que se trata de múltiples referencias.</p>
 </section>
 </section>
-<section id="lectura-ejecutiva">
-<h2>Lectura ejecutiva<a class="headerlink" href="#lectura-ejecutiva" title="Permalink to this heading">#</a></h2>
-<p>La agregación final integra tres dimensiones fundamentales:</p>
-<ul class="simple">
-<li><p>Volumen (UNIDADES)</p></li>
-<li><p>Ingreso (VENTA_NETA)</p></li>
-<li><p>Intensidad promocional (DESCUENTO_PCT_APROX y PROMO_RATE)</p></li>
-</ul>
-<p>Esto deja el dataset en una estructura lista para:</p>
-<ul class="simple">
-<li><p>Modelos de forecast por SKU.</p></li>
-<li><p>Evaluación de elasticidad precio–demanda.</p></li>
-<li><p>Simulación de escenarios promocionales.</p></li>
-</ul>
-<p>El pipeline está correctamente alineado con una arquitectura de analítica comercial avanzada y preparado para escalar cuando se incorpore mayor histórico temporal.</p>
-</section>
 <section id="validaciones-posteriores-a-agregacion-consistencia-y-gaps">
 <h2><strong>2.8 Validaciones posteriores a agregación (consistencia y gaps)</strong><a class="headerlink" href="#validaciones-posteriores-a-agregacion-consistencia-y-gaps" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -1715,16 +1599,6 @@ Todos los productos presentan volumen positivo. No hay agregaciones con errores 
 <p><strong>4. PROMO_RATE dentro de rango válido (0.0 – 1.0)</strong><br />
 La proporción de líneas en promoción se mantiene en el rango lógico esperado.<br />
 Un máximo de 1.0 implica que, en algunos casos (en histórico futuro), un SKU podría venderse 100% bajo promoción en un día determinado, lo cual es matemáticamente consistente.</p>
-</section>
-<section id="id5">
-<h3>Conclusión<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
-<p>Los controles posteriores confirman que el proceso de agregación preserva integridad financiera, coherencia operativa y consistencia lógica en las métricas derivadas.</p>
-<p>Desde una perspectiva de gobierno de datos, esto valida que la tabla agregada es apta para:</p>
-<ul class="simple">
-<li><p>Modelos predictivos por SKU</p></li>
-<li><p>Simulación de escenarios promocionales</p></li>
-<li><p>Análisis de rentabilidad y volumen</p></li>
-</ul>
 </section>
 </section>
 <section id="dataset-final-de-fase-1-tablas-listas-para-eda-y-modelado-baseline">
@@ -1803,19 +1677,6 @@ Nivel más agregado, útil para:</p>
 <li><p>Escalabilidad futura cuando se incorporen más fechas y centros.</p></li>
 </ul>
 </section>
-<section id="enfoque-metodologico">
-<h3>Enfoque metodológico<a class="headerlink" href="#enfoque-metodologico" title="Permalink to this heading">#</a></h3>
-<p>Este paso demuestra una arquitectura analítica estructurada:</p>
-<ul class="simple">
-<li><p>Datos crudos → limpieza → validación → enriquecimiento → agregación → persistencia.</p></li>
-<li><p>Cada etapa deja evidencia trazable.</p></li>
-<li><p>Las tablas finales están alineadas con objetivos de forecast y optimización comercial.</p></li>
-</ul>
-</section>
-</section>
-<section id="id6">
-<h2>Conclusión<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
-<p>El proyecto ya dispone de datasets estructurados específicamente para análisis temporal y modelado predictivo, en dos niveles de granularidad complementarios.</p>
 </section>
 </section>
 
@@ -1883,51 +1744,40 @@ Nivel más agregado, útil para:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-processed-y-verificacion"><strong>2.1 Carga del dataset limpio (processed) y verificación</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-y-validacion-estructural-final">Carga del dataset limpio y validación estructural final</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset-limpio-processed-y-verificacion"><strong>2.1 Carga del dataset limpio (processed) y verificación</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-persistencia-y-trazabilidad">Validación de persistencia y trazabilidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-actual-del-dataset">Estructura actual del dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva-de-la-muestra-mostrada">Lectura ejecutiva de la muestra mostrada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-muestra">Lectura de la muestra</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion-de-columnas-y-control-de-tipos-re-chequeo"><strong>2.2 Normalización de columnas y control de tipos (re-chequeo)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-de-tipos-de-datos-en-variables-criticas">Validación de tipos de datos en variables críticas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-del-reporte-de-tipos">Resultado del reporte de tipos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica">Interpretación técnica</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-ejecutiva">Conclusión ejecutiva</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-de-negocio-venta-neta-flags-precio-unitario"><strong>2.3 Ingeniería de variables de negocio (venta neta, flags, precio unitario)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidacion-de-variables-derivadas-y-creacion-de-indicador-porcentual-de-descuento">Consolidación de variables derivadas y creación de indicador porcentual de descuento</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-consolidadas-en-la-tabla">Variables consolidadas en la tabla</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descuento-pct-estandarizacion-del-impacto-promocional">DESCUENTO_PCT: estandarización del impacto promocional</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-del-pipeline">Robustez del pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-calendario-dia-semana-mes-fin-de-mes-quincena"><strong>2.4 Features de calendario (día semana, mes, fin de mes, quincena)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-de-variables-de-calendario-para-analisis-temporal">Generación de variables de calendario para análisis temporal</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-creadas-y-su-utilidad-analitica">Variables creadas y su utilidad analítica</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-muestra-observada">Lectura de la muestra observada</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-tablas-agregadas-para-forecasting-diatiendaproducto-y-diatiendacategoria"><strong>2.5 Construcción de tablas agregadas para forecasting (día–tienda–producto y día–tienda–categoría)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-serie-agregada-a-nivel-diatiendaproducto">Construcción de serie agregada a nivel día–tienda–producto</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-de-agregacion-construido">Nivel de agregación construido</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-agregadas-generadas">Métricas agregadas generadas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-la-salida-observada">Lectura de la salida observada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-transformacion">Valor estratégico de esta transformación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-temporales-lags-y-rolling-windows-ventas-y-unidades"><strong>2.6 Features temporales: lags y rolling windows (ventas y unidades)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-features-temporales-lags-y-rolling-para-pronostico">Preparación de features temporales (lags y rolling) para pronóstico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-hace-este-bloque">Qué hace este bloque</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mensaje-de-advertencia-observado">Mensaje de advertencia observado</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-del-enfoque">Valor estratégico del enfoque</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Conclusión</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-de-promociones-intensidad-y-efecto-descuento-promo-rate"><strong>2.7 Features de promociones: intensidad y efecto (descuento %, promo rate)</strong></a></li>
@@ -1937,22 +1787,18 @@ Nivel más agregado, útil para:</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precio-medio-neto-aprox">3. PRECIO_MEDIO_NETO_APROX</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-ejecutiva">Lectura ejecutiva</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validaciones-posteriores-a-agregacion-consistencia-y-gaps"><strong>2.8 Validaciones posteriores a agregación (consistencia y gaps)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-consistencia-posteriores-a-la-agregacion">Controles de consistencia posteriores a la agregación</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-validacion">Resultados de validación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-ejecutiva">Interpretación ejecutiva</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusión</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-final-de-fase-1-tablas-listas-para-eda-y-modelado-baseline"><strong>2.9 Dataset final de Fase 1 (tablas listas para EDA y modelado baseline)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-de-series-temporales-listas-para-analisis-y-modelado">Persistencia de series temporales listas para análisis y modelado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-generados">Archivos generados</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-estrategico-de-esta-persistencia">Valor estratégico de esta persistencia</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-metodologico">Enfoque metodológico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Conclusión</a></li>
 </ul>
   </nav></div>
 
